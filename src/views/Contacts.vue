@@ -1,11 +1,15 @@
 <template>
   <div class="container">
-    <h1>Contacts</h1>
+    <dark-image class="" :src="require('@/assets/images/Slide2.png')" />
   </div>
 </template>
 <script>
+import DarkImage from '../components/common/DarkImage.vue';
+
 export default {
-  name: 'Contacts'
+  name: 'Contacts',
+  components: { DarkImage }
 };
 </script>
-<style lang="scss" scoped></style>
+
+<style lang="scss"></style>

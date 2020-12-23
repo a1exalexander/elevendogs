@@ -19,7 +19,7 @@ export default {
   name: 'Logo'
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .logo {
   @include svg(28px, $mocca);
   stroke: $mocca;

@@ -1,15 +1,13 @@
 <template>
-  <div class="container">
-    <logo-text class="logo" />
-    <nav class="navigation">
-      <ul class="navigation__list">
-        <li class="navigation__item">
-          <router-link class="navigation__link" :to="{ name: routeTypes.HOME }">Сервіси</router-link>
+  <div class="navigation">
+    <logo-text class="navigation__logo" />
+    <nav class="menu">
+      <ul class="menu__list">
+        <li class="menu__item">
+          <router-link class="menu__link" :to="{ name: routeTypes.HOME }">Сервіси</router-link>
         </li>
-        <li class="navigation__item">
-          <router-link class="navigation__link" :to="{ name: routeTypes.CONTACTS }"
-            >Контаки</router-link
-          >
+        <li class="menu__item">
+          <router-link class="menu__link" :to="{ name: routeTypes.CONTACTS }">Контаки</router-link>
         </li>
       </ul>
     </nav>
@@ -29,8 +27,8 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
-.container {
+<style lang="scss">
+.navigation {
   width: 100vw;
   height: 100vh;
   position: fixed;

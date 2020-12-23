@@ -1,16 +1,38 @@
 <template>
   <the-navigation />
-  <transition name="fade" mode="out-in">
+  <transition @beforeEnter="beforeEnter" @enter="enter" @leave="leave" :css="false" mode="out-in">
     <router-view />
   </transition>
 </template>
 
 <script>
+import gsap from 'gsap';
 import TheNavigation from './components/TheNavigation.vue';
 
 export default {
   components: { TheNavigation },
-  name: 'App'
+  name: 'App',
+  methods: {
+    beforeEnter(el) {
+      gsap.set(el, {
+        opacity: 0
+      });
+    },
+    enter(el, done) {
+      gsap.to(el, {
+        duration: 2,
+        opacity: 1,
+        onComplete: done
+      });
+    },
+    leave(el, done) {
+      gsap.to(el, {
+        duration: 2,
+        opacity: 0,
+        onComplete: done
+      });
+    }
+  }
 };
 </script>
 
@@ -18,14 +40,5 @@ export default {
 #app {
   min-height: 100vh;
   position: relative;
-}
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 1s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>
