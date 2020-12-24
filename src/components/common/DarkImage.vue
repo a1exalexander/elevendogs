@@ -17,7 +17,7 @@ export default {
 
 <style lang="scss" scoped>
   img {
-    filter: brightness(0.8);
+    filter: brightness(0.4);
     position: absolute;
     @include position();
     height: 100%;

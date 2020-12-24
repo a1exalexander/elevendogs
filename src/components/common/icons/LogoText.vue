@@ -1,5 +1,5 @@
 <template>
-  <svg class="logo-text" viewBox="0 0 116 54" xmlns="http://www.w3.org/2000/svg">
+  <svg class="LogoText" viewBox="0 0 116 54" xmlns="http://www.w3.org/2000/svg">
     <path d="M45.188 26.8258V1H50.4989V22.376H57.8525V26.8258H50.4989H45.188Z" />
     <path
       d="M50.4989 26.8258H45.188V1H50.4989V22.376M50.4989 26.8258V22.376M50.4989 26.8258H57.8525V22.376H50.4989"
@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style lang="scss">
-.logo-text {
+.LogoText {
   width: 116px;
   height: 54px;
   fill: $mocca;

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="Contacts">
     <dark-image class="" :src="require('@/assets/images/Slide2.png')" />
   </div>
 </template>
