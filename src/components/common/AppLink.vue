@@ -9,8 +9,8 @@ export default {
   props: {
     to: [String, Object],
     href: [String],
-    exact: Boolean
-  }
+    exact: Boolean,
+  },
 };
 </script>
 
@@ -21,9 +21,17 @@ export default {
   @include transition(color);
   @include hover {
     color: lighten($mocca, 20%);
+    &:after,
+    &:before {
+      background-color: lighten($mocca, 20%);
+    }
   }
   &:active {
     color: darken($mocca, 15%);
+    &:after,
+    &:before {
+      background-color: darken($mocca, 15%);
+    }
   }
 }
 </style>

@@ -43,13 +43,16 @@ export default {
 </script>
 
 <style lang="scss">
+html {
+  overflow: hidden;
+}
 #app {
   min-height: 100vh;
   position: relative;
 }
 .app-view {
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
 }
 .fade-enter-active,
 .fade-leave-active {

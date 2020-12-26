@@ -1,6 +1,8 @@
 <template>
   <div class="Navigation">
-    <logo-text class="Navigation__logo" />
+    <router-link class="Navigation__logo-wrapper" :to="{ name: routeTypes.HOME }"
+      ><logo-text class="Navigation__logo"
+    /></router-link>
     <app-menu class="Navigation__menu" />
 
     <ul class="ContactList Navigation__contact">
@@ -26,10 +28,16 @@ import AppLink from './common/AppLink.vue';
 import AppMenu from './common/AppMenu.vue';
 import ContactLink from './common/ContactLink.vue';
 import LogoText from './common/icons/LogoText.vue';
+import { routeTypes } from '../router';
 
 export default {
   name: 'TheNavigation',
-  components: { LogoText, AppMenu, AppLink, ContactLink }
+  components: { LogoText, AppMenu, AppLink, ContactLink },
+  data() {
+    return {
+      routeTypes,
+    };
+  },
 };
 </script>
 <style lang="scss">
@@ -43,7 +51,7 @@ $style: Navigation;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  &__logo {
+  &__logo-wrapper {
     grid-row: 1 / 2;
     grid-column: 1 / 2;
     justify-self: start;
@@ -66,6 +74,32 @@ $style: Navigation;
     grid-column: 1 / 2;
     justify-self: start;
     align-self: end;
+    position: relative;
+    &:after,
+    &:before {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 0;
+      position: absolute;
+      bottom: -6px;
+      background-color: $mocca;
+      @include transition(width);
+    }
+    &:after {
+      left: 50%;
+      transform: rotate(180deg);
+      transform-origin: left center;
+    }
+    &:before {
+      left: 50%;
+      transform-origin: center left;
+    }
+    @include hover {
+      &:after, &:before {
+        width: 50%;
+      }
+    }
   }
   &__link {
     &.router-link-exact-active {
@@ -90,7 +124,7 @@ $style: ContactList;
   list-style: none;
   &__item {
     &:not(:last-child) {
-      margin-bottom: 18px;
+      margin-bottom: 24px;
     }
   }
 }

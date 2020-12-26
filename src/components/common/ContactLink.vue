@@ -1,11 +1,11 @@
 <template>
-  <a class="ContactLink" :href="href" target="_blank">
+  <a @mouseleave="visible = false" class="ContactLink" :href="href" target="_blank">
     <transition @beforeEnter="beforeEnter" @enter="enter" @leave="leave" :css="false">
       <div v-show="visible" class="ContactLink__expand">{{ text }}</div>
     </transition>
     <icon
       @mouseenter="visible = true"
-      @mouseleave="visible = false"
+      @click="visible = true"
       class="ContactLink__icon"
       :name="icon"
     />
@@ -21,43 +21,43 @@ export default {
   props: {
     href: {
       type: String,
-      required: true
+      required: true,
     },
     icon: {
       type: String,
-      required: true
+      required: true,
     },
-    text: String
+    text: String,
   },
   data() {
     return {
-      visible: false
+      visible: false,
     };
   },
   methods: {
     beforeEnter(el) {
       gsap.set(el, {
         opacity: 0,
-        // transform: 'translateX(200px)'
+        translateX: -50,
       });
     },
     enter(el, done) {
       gsap.to(el, {
         duration: 0.3,
         opacity: 1,
-        // transform: 'translateX(0)',
-        onComplete: done
+        translateX: 0,
+        onComplete: done,
       });
     },
     leave(el, done) {
       gsap.to(el, {
         duration: 0.3,
         opacity: 0,
-        // transform: 'translateX(200px)',
-        onComplete: done
+        translateX: -50,
+        onComplete: done,
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -65,12 +65,31 @@ export default {
 $style: ContactLink;
 .#{$style} {
   position: relative;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  @include hover {
+    .#{$style}__icon {
+      transform: scale(1.1);
+    }
+  }
   &__icon {
     @include svg(24px, $mocca);
+    @include transition(transform);
+    margin-left: 14px;
   }
   &__expand {
-    position: absolute;
+    text-decoration: none;
+    @include text(16px, 500, $mocca);
+    display: inline-flex;
     right: calc(100% + 12px);
+  }
+  &__layer {
+    position: absolute;
+    right: 0;
+    width: 160px;
+    top: 0;
+    bottom: 0;
   }
 }
 </style>
