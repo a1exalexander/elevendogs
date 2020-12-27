@@ -1,7 +1,11 @@
 dependencies:
   core-js: 3.8.1
+  gsap: 3.5.1
+  hammerjs: 2.0.8
   vue: 3.0.4
+  vue-page-transition: 0.2.2
   vue-router: 4.0.1_vue@3.0.4
+  vue2-touch-events: 3.1.0
 devDependencies:
   '@vue/cli-plugin-babel': 4.5.9_@vue+cli-service@4.5.9+vue@3.0.4
   '@vue/cli-plugin-eslint': 4.5.9_6778c0324b153720448c6ab0d5359212
@@ -4820,6 +4824,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
+  /gsap/3.5.1:
+    dev: false
+    resolution:
+      integrity: sha512-EMV0RSUKZNeTUzLKAizGlwxVOUyif3/g8I3S1aA/hf3gbqwBvmQ02x1RdTBQNQMOpHCVBv9y/vaHwfctoAg8zw==
   /gzip-size/5.1.1:
     dependencies:
       duplexer: 0.1.2
@@ -4829,6 +4837,12 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-FNHi6mmoHvs1mxZAds4PpdCS6QG8B4C1krxJsMutgxl5t3+GlRTzzI3NEkifXx2pVsOvJdOGSmIgDhQ55FwdPA==
+  /hammerjs/2.0.8:
+    dev: false
+    engines:
+      node: '>=0.8.0'
+    resolution:
+      integrity: sha1-BO93hiz/K7edMPdpIJWTAiK/YPE=
   /handle-thing/2.0.1:
     dev: true
     resolution:
@@ -9542,6 +9556,10 @@ packages:
     optional: true
     resolution:
       integrity: sha512-8QTxh+Fd+HB6fiL52iEVLKqE9N1JSlMXLR92Ijm6g8PZrwIxckgpqjPDWRP5TWxdiPaHR+alUWsnu1ShQOwt+Q==
+  /vue-page-transition/0.2.2:
+    dev: false
+    resolution:
+      integrity: sha512-qOx+llJ28XX0VwJNJ4GVaeNBPRmPMZac2QQgrIHVUhpXyJx2CQ2XvoQOpGD1ge7QMY3PjZ6fwTbdBwZkA3I9qA==
   /vue-router/4.0.1_vue@3.0.4:
     dependencies:
       vue: 3.0.4
@@ -9568,6 +9586,10 @@ packages:
       '@vue/shared': 3.0.4
     resolution:
       integrity: sha512-2o+AiQF8sAupyhbyl3oxVCl3WCwC/n5NI7VMM+gVQ231qvSB8eI7sCBloloqDJK6yA367EEtmRSeSCf4sxCC+A==
+  /vue2-touch-events/3.1.0:
+    dev: false
+    resolution:
+      integrity: sha512-/4S/ipWvQv2vUJcErC97xypppkz+s6V9UdROjRwz+2fMN99eUCwqAUSQ5CPRKEcV1kiU46F5idEhdVC6o9rqAA==
   /watchpack-chokidar2/2.0.1:
     dependencies:
       chokidar: 2.1.8
@@ -9949,8 +9971,12 @@ specifiers:
   eslint-plugin-import: ^2.20.2
   eslint-plugin-prettier: ^3.3.0
   eslint-plugin-vue: ^7.0.0-0
+  gsap: ^3.5.1
+  hammerjs: ^2.0.8
   node-sass: ^4.12.0
   prettier: ^2.2.1
   sass-loader: ^8.0.2
   vue: ^3.0.0
+  vue-page-transition: ^0.2.2
   vue-router: ^4.0.0-0
+  vue2-touch-events: ^3.1.0

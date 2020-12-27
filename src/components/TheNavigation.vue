@@ -47,29 +47,34 @@ $style: Navigation;
   height: 100vh;
   position: fixed;
   z-index: 2;
+  pointer-events: none;
   padding: 36px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   &__logo-wrapper {
+    pointer-events: all;
     grid-row: 1 / 2;
     grid-column: 1 / 2;
     justify-self: start;
     align-self: start;
   }
   &__menu {
+    pointer-events: all;
     grid-row: 1 / 2;
     grid-column: 2 / 3;
     justify-self: end;
     align-self: start;
   }
   &__contact {
+    pointer-events: all;
     grid-row: 1 / 3;
     grid-column: 2 / 3;
     justify-self: end;
     align-self: center;
   }
   &__location {
+    pointer-events: all;
     grid-row: 2 / 3;
     grid-column: 1 / 2;
     justify-self: start;

@@ -74,13 +74,13 @@ $style: ContactLink;
     }
   }
   &__icon {
-    @include svg(24px, $mocca);
+    @include svg($H24, $mocca);
     @include transition(transform);
     margin-left: 14px;
   }
   &__expand {
     text-decoration: none;
-    @include text(16px, 500, $mocca);
+    @include text($H16, 500, $mocca);
     display: inline-flex;
     right: calc(100% + 12px);
   }
