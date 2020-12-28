@@ -114,44 +114,21 @@ export default {
     beforeEnterImage(el) {
       gsap.set(el, {
         scale: 1.05,
-        opacity: 0.5,
         filter: 'grayscale(1) brightness(0.4)',
       });
     },
     enterImage(el, done) {
       const tl = new TimelineMax();
-      tl.to(el, 0.3, {
+      tl.to(el, 0.5, {
         scale: 1,
-        opacity: 1,
-        filter: `grayscale(0) hue-rotate(0deg) brightness(0.4)`,
+        filter: `grayscale(0) brightness(0.4)`,
         ease: Power4.easeInOut,
-      })
-        .to(el, 0.1, {
-          filter: `grayscale(0) hue-rotate(200deg) brightness(0.4)`,
-          ease: Power4.easeInOut,
-        })
-        .to(el, 0.1, {
-          filter: `grayscale(0) hue-rotate(240deg) brightness(0.4)`,
-          ease: Power4.easeInOut,
-        })
-        .to(el, 0.1, {
-          filter: `grayscale(0) hue-rotate(300deg) brightness(0.4)`,
-          ease: Power4.easeInOut,
-        })
-        .to(el, 0.1, {
-          filter: `grayscale(0) hue-rotate(360deg) brightness(0.4)`,
-          ease: Power4.easeInOut,
-        })
-        .to(el, 0.1, {
-          filter: `grayscale(0) hue-rotate(0) brightness(0.4)`,
-          ease: Power4.easeInOut,
-          onComplete: done,
-        });
+        onComplete: done,
+      });
     },
     leaveImage(el, done) {
       gsap.to(el, {
         duration: 0.4,
-        opacity: 0.5,
         filter: 'grayscale(1) brightness(0.4)',
         scale: 1.05,
         onComplete: done,
