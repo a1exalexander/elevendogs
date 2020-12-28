@@ -1,16 +1,18 @@
 <template>
   <div class="Home" v-swipe="onSwipe" v-wheel="onSwipe">
-    <transition>
-      <dark-image class="Home__bg" :src="slide.image" />
+    <transition
+      appear
+      @before-enter="beforeEnterImage"
+      @enter="enterImage"
+      @leave="leaveImage"
+      :css="false"
+      mode="out-in"
+    >
+      <dark-image :src="slide.image" :key="slide.title" />
     </transition>
     <div class="Home__container">
       <div class="Home__title-container">
-        <transition
-          @beforeEnter="beforeEnterTitle"
-          @enter="enterTitle"
-          @leave="leaveTitle"
-          :css="false"
-        >
+        <transition appear @enter="enterTitle" @leave="leaveTitle" :css="false">
           <h2 class="Home__title" :key="slide.title">{{ slide.title }}</h2>
         </transition>
       </div>
@@ -26,7 +28,7 @@ import AppButton from '../components/common/AppButton.vue';
 
 export default {
   name: 'Home',
-  components: { DarkImage, AppButton },
+  components: { AppButton, DarkImage },
   data() {
     return {
       activeSlide: 0,
@@ -73,11 +75,11 @@ export default {
         .to(el, 0.04, { x: -20 })
         .to(el, 0.04, { x: 0 })
         .add('split', 0)
-        .to(el, 0.08, { className: 'Home__title _red-shadow' }, 'split')
+        .to(el, 0.1, { className: 'Home__title _red-shadow' }, 'split')
         .to(el, 0, { scale: 1.1 }, 'split')
         .to(el, 0, { scale: 1 }, '+=0.02')
         .to(el, 0.08, { className: 'Home__title' }, '+=0.09')
-        .to(el, 0.05, { className: 'Home__title _green-shadow' }, 'split')
+        .to(el, 0.1, { delay: 0.2, className: 'Home__title _green-shadow' }, 'split')
         .to(el, 0.03, { className: 'Home__title' }, '+=0.01')
         .to(el, 0.02, { scaleY: 1.1, ease: Power4.easeInOut })
         .to(el, 0.04, { scaleY: 1, ease: Power4.easeInOut, onComplete: done });
@@ -86,6 +88,52 @@ export default {
       gsap.to(el, {
         duration: 0.4,
         opacity: 0,
+        onComplete: done,
+      });
+    },
+    beforeEnterImage(el) {
+      gsap.set(el, {
+        scale: 1.05,
+        opacity: 0.5,
+        filter: 'grayscale(1) brightness(0.4)',
+      });
+    },
+    enterImage(el, done) {
+      const tl = new TimelineMax();
+      tl.to(el, 0.3, {
+        scale: 1,
+        opacity: 1,
+        filter: `grayscale(0) hue-rotate(0deg) brightness(0.4)`,
+        ease: Power4.easeInOut,
+      })
+        .to(el, 0.1, {
+          filter: `grayscale(0) hue-rotate(200deg) brightness(0.4)`,
+          ease: Power4.easeInOut,
+        })
+        .to(el, 0.1, {
+          filter: `grayscale(0) hue-rotate(240deg) brightness(0.4)`,
+          ease: Power4.easeInOut,
+        })
+        .to(el, 0.1, {
+          filter: `grayscale(0) hue-rotate(300deg) brightness(0.4)`,
+          ease: Power4.easeInOut,
+        })
+        .to(el, 0.1, {
+          filter: `grayscale(0) hue-rotate(360deg) brightness(0.4)`,
+          ease: Power4.easeInOut,
+        })
+        .to(el, 0.1, {
+          filter: `grayscale(0) hue-rotate(0) brightness(0.4)`,
+          ease: Power4.easeInOut,
+          onComplete: done,
+        });
+    },
+    leaveImage(el, done) {
+      gsap.to(el, {
+        duration: 0.4,
+        opacity: 0.5,
+        filter: 'grayscale(1) brightness(0.4)',
+        scale: 1.05,
         onComplete: done,
       });
     },
@@ -98,6 +146,7 @@ export default {
       return slide;
     },
   },
+  mounted() {},
 };
 </script>
 

@@ -62,11 +62,11 @@ export default {
       const symbols = this.$refs?.logoTextText?.children;
       gsap.set(this.$refs.logoText, { strokeDasharray: 80, strokeDashoffset: 80 });
       gsap.to('.LogoText__symbol', { strokeDashoffset: 0, duration: 2, ease: 'ease-in' });
+      gsap.to('.LogoText__symbol', { fill: '#e3e0d8', duration: 2 });
       symbols.forEach((path, idx) => {
         gsap.to(path, { strokeDashoffset: 0, delay: 1 + idx / 5, duration: 1.5, ease: 'ease-in' });
       });
-      gsap.fromTo(this.$refs.logoText, { scale: 1.3 }, { scale: 1, duration: 4 });
-      gsap.to(this.$refs.logoText, { fill: '#e3e0d8', duration: 2, delay: 3 });
+      gsap.to(this.$refs.logoText, { fill: '#e3e0d8', duration: 2, delay: 2 });
     },
   },
   mounted() {
@@ -77,8 +77,8 @@ export default {
 
 <style lang="scss">
 .LogoText {
-  width: 118px;
-  height: 56px;
+  width: 149px;
+  height: 69px;
   fill: transparent;
   stroke: $mocca;
   transform-origin: center center;
