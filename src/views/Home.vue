@@ -31,6 +31,7 @@ export default {
   components: { AppButton, DarkImage },
   data() {
     return {
+      timer: null,
       activeSlide: 0,
       slides: [
         {
@@ -53,16 +54,35 @@ export default {
     };
   },
   methods: {
-    onSwipe(direction) {
+    next() {
+      const { activeSlide, slides } = this;
+      const next = activeSlide + 1;
+      const max = slides.length - 1;
+      this.activeSlide = next > max ? 0 : next;
+    },
+    prev() {
       const { activeSlide, slides } = this;
       const max = slides.length - 1;
+      const next = activeSlide - 1;
+      this.activeSlide = next < 0 ? max : next;
+    },
+    autoplay() {
+      this.stop();
+      this.timer = setInterval(() => {
+        this.next();
+      }, 5000);
+    },
+    stop() {
+      clearInterval(this.timer);
+    },
+    onSwipe(direction) {
+      this.stop();
       if (direction === 'UP') {
-        const next = activeSlide + 1;
-        this.activeSlide = next > max ? 0 : next;
+        this.next();
       } else {
-        const next = activeSlide - 1;
-        this.activeSlide = next < 0 ? max : next;
+        this.prev();
       }
+      this.autoplay();
     },
     enterTitle(el, done) {
       const tl = new TimelineMax();
@@ -146,7 +166,14 @@ export default {
       return slide;
     },
   },
-  mounted() {},
+  mounted() {
+    this.timer = setInterval(() => {
+      this.next();
+    }, 5000);
+  },
+  beforeUnmount() {
+    this.autoplay();
+  },
 };
 </script>
 
