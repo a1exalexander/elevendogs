@@ -5,12 +5,7 @@ import router from './router';
 
 import './scss/style.scss';
 
-const app = createApp({
-  ...App,
-  mounted() {
-    document.dispatchEvent(new Event('render-event'));
-  },
-});
+const app = createApp(App);
 
 app.directive('swipe', swipeDirective);
 app.directive('wheel', wheelDirective);
