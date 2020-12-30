@@ -49,7 +49,9 @@ export default {
 .Services {
   height: 100vh;
   overflow-y: auto;
-  padding-bottom: 120px;
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    padding-bottom: 130px;
+  }
   @include media($screen-tablet-small) {
     padding-bottom: 0;
   }
