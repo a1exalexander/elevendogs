@@ -1,4 +1,7 @@
 <template>
+  <h1 class="invisible">
+    Eleven Dogs | Kremenchuk Barbershop | Барбершоп в центрі Кременчука | Кременчук
+  </h1>
   <the-navigation :scroll-top="scrollTop" />
 
   <router-view ref="routerView" @scroll="onScroll" class="App__view" v-slot="{ Component }">

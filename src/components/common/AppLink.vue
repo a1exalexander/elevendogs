@@ -2,7 +2,9 @@
   <router-link :event="exact" v-if="!!to" :to="to" :class="['AppLink', { _line: line }]"
     ><slot
   /></router-link>
-  <a v-else :href="href" target="_blank" :class="['AppLink', { _line: line }]"><slot /></a>
+  <a v-else :href="href" target="_blank" :class="['AppLink AppLink--selected', { _line: line }]"
+    ><slot
+  /></a>
 </template>
 
 <script>
@@ -27,10 +29,12 @@ export default {
   outline: none;
   @include text(16px, 500, $mocca);
   @include transition(color);
-  -webkit-user-select: all; /* Chrome all / Safari all */
-  -moz-user-select: all; /* Firefox all */
-  -ms-user-select: all; /* IE 10+ */
-  user-select: all;
+  &--selected {
+    -webkit-user-select: all; /* Chrome all / Safari all */
+    -moz-user-select: all; /* Firefox all */
+    -ms-user-select: all; /* IE 10+ */
+    user-select: all;
+  }
   @include hover {
     color: lighten($mocca, 20%);
     &:after,

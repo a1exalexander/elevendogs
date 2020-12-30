@@ -7,7 +7,7 @@
 }
 
 body {
-  background-color: $black;
+background-color: $black;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -18,4 +18,12 @@ code {
 
 body, input, button, textarea, select {
   font-family: $base-font;
+}
+
+.invisible {
+  position: absolute !important;
+  height: 1px; width: 1px; 
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
 }
