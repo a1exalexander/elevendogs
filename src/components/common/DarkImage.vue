@@ -1,5 +1,5 @@
 <template>
-  <img class="DarkImage" :src="src" :alt="alt" />
+  <img class="DarkImage" :src="src" :alt="alt" rel="preload" />
 </template>
 
 <script>
