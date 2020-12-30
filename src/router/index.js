@@ -7,7 +7,7 @@ export const routeTypes = {
   SERVICES: 'Services',
 };
 
-const routes = [
+export const routes = [
   {
     path: '/',
     name: routeTypes.HOME,

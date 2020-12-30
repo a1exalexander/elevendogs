@@ -18,7 +18,7 @@
   </div>
 </template>
 <script>
-import services from '../services.json';
+import services from '../../services.json';
 import DarkImage from '../components/common/DarkImage.vue';
 import Service from '../components/common/Service.vue';
 import AppButton from '../components/common/AppButton.vue';
