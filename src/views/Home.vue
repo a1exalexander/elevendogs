@@ -162,13 +162,14 @@ export default {
 
 <style lang="scss">
 .Home {
+  padding-bottom: 116px;
   @include flex-col(space-between, stretch);
-  // overflow: hidden;
   @include media($screen-tablet-small) {
+    padding-bottom: 0;
     display: block;
   }
   &__container {
-    padding: 220px 34px 34px;
+    padding: 200px 34px 0;
     @include flex-col(space-between, stretch);
     @include media($screen-tablet-small) {
       @include flex(space-between, center);
@@ -183,7 +184,7 @@ export default {
     width: 100%;
     @include flex-col(flex-start, center);
     position: relative;
-    min-height: 180px;
+    min-height: 150px;
     @include media($screen-tablet-small) {
       min-height: auto;
       height: 100%;

@@ -49,6 +49,10 @@ export default {
 .Services {
   height: 100vh;
   overflow-y: auto;
+  padding-bottom: 120px;
+  @include media($screen-tablet-small) {
+    padding-bottom: 0;
+  }
   &__container {
     padding: 200px 34px 34px;
     @include flex-col(center, stretch);
