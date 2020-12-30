@@ -1,0 +1,70 @@
+<template>
+  <li class="Service">
+    <h3 class="Service__name">{{ name }}</h3>
+    <span class="Service__price">{{ animatedNumber }}</span>
+  </li>
+</template>
+<script>
+import gsap from 'gsap';
+
+export default {
+  name: 'Service',
+  props: {
+    name: {
+      type: String,
+      required: true,
+    },
+    price: {
+      type: [Number, String],
+      required: true,
+    },
+  },
+  data() {
+    return {
+      tweenedNumber: 0,
+    };
+  },
+  computed: {
+    animatedNumber() {
+      return this.tweenedNumber.toFixed(0)
+    }
+  },
+  mounted() {
+    gsap.to(this.$data, { duration: 1.3, tweenedNumber: this.price })
+  }
+};
+</script>
+<style lang="scss">
+.Service {
+  @include flex(space-between, center);
+  @include media($screen-tablet-small) {
+    flex-direction: column;
+    justify-content: center;
+  }
+  &__name {
+    text-transform: uppercase;
+    @include text($H18, 600, $mocca);
+    margin-bottom: 16px;
+    line-height: 1;
+    white-space: nowrap;
+    @include media($screen-tablet-small) {
+      font-size: calc(100vw / 40);
+      margin-bottom: 26px;
+    }
+    @include media($screen-desktop-large) {
+      font-size: $H32;
+    }
+  }
+  &__price {
+    @include text(50px, 600, $mocca);
+    line-height: 1;
+    @include media($screen-tablet-small) {
+      font-size: calc(100vw / 8);
+    }
+    @include media($screen-desktop-large) {
+      flex-basis: 33.3%;
+      font-size: $H-PRICE;
+    }
+  }
+}
+</style>

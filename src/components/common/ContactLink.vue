@@ -1,7 +1,12 @@
 <template>
-  <a @mouseleave="visible = false" class="ContactLink" :href="href" target="_blank">
+  <a
+    @mouseleave="visible = false"
+    :class="['ContactLink', { _visible: visible }]"
+    :href="href"
+    target="_blank"
+  >
     <transition @beforeEnter="beforeEnter" @enter="enter" @leave="leave" :css="false">
-      <div v-show="visible" class="ContactLink__expand">{{ text }}</div>
+      <div v-show="visible" class="ContactLink__expand ContactLink__expand--mnone">{{ text }}</div>
     </transition>
     <icon
       @mouseenter="visible = true"
@@ -9,6 +14,7 @@
       class="ContactLink__icon"
       :name="icon"
     />
+    <div class="ContactLink__expand ContactLink__expand--dnone">{{ text }}</div>
   </a>
 </template>
 <script>
@@ -38,7 +44,7 @@ export default {
     beforeEnter(el) {
       gsap.set(el, {
         opacity: 0,
-        translateX: -50,
+        translateX: -25,
       });
     },
     enter(el, done) {
@@ -53,7 +59,7 @@ export default {
       gsap.to(el, {
         duration: 0.3,
         opacity: 0,
-        translateX: -50,
+        translateX: -25,
         onComplete: done,
       });
     },
@@ -68,6 +74,27 @@ $style: ContactLink;
   display: flex;
   align-items: center;
   text-decoration: none;
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    background-color: black;
+    @include position(-6px, -12px, -6px, -12px);
+    z-index: -1;
+    width: 0;
+    opacity: 0;
+    @include transition(width, opacity);
+    transition-duration: 1;
+  }
+  @include media($screen-tablet-small) {
+    &._visible {
+      &:after {
+        width: calc(100% + 24px);
+        opacity: 1;
+      }
+    }
+  }
+
   @include hover {
     .#{$style}__icon {
       transform: scale(1.1);
@@ -76,13 +103,29 @@ $style: ContactLink;
   &__icon {
     @include svg($H24, $mocca);
     @include transition(transform);
-    margin-left: 14px;
+    margin-right: 14px;
+    @include media($screen-tablet-small) {
+      margin-right: 0;
+      margin-left: 14px;
+    }
   }
   &__expand {
     text-decoration: none;
     @include text($H16, 500, $mocca);
     display: inline-flex;
+    align-items: center;
     right: calc(100% + 12px);
+    &--mnone {
+      right: calc(100% + 12px);
+      @media screen and (max-width: $screen-tablet-small) {
+        display: none;
+      }
+    }
+    &--dnone {
+      @include media($screen-tablet-small) {
+        display: none;
+      }
+    }
   }
   &__layer {
     position: absolute;

@@ -18,6 +18,7 @@
       </div>
       <app-button class="Home__button">Записатися</app-button>
     </div>
+    <app-footer />
   </div>
 </template>
 
@@ -25,10 +26,11 @@
 import gsap, { TimelineMax, Power4 } from 'gsap';
 import DarkImage from '../components/common/DarkImage.vue';
 import AppButton from '../components/common/AppButton.vue';
+import AppFooter from '../components/common/AppFooter.vue';
 
 export default {
   name: 'Home',
-  components: { AppButton, DarkImage },
+  components: { AppButton, DarkImage, AppFooter },
   data() {
     return {
       timer: null,
@@ -156,23 +158,50 @@ export default {
 
 <style lang="scss">
 .Home {
+  @include flex-col(space-between, stretch);
+  // overflow: hidden;
+  @include media($screen-tablet-small) {
+    display: block;
+  }
   &__container {
-    padding: 140px 164px 140px 84px;
-    min-height: 100vh;
-    @include flex(space-between, center);
+    padding: 220px 34px 34px;
+    @include flex-col(space-between, stretch);
+    @include media($screen-tablet-small) {
+      @include flex(space-between, center);
+      padding: 120px 64px;
+      min-height: 100vh;
+    }
+    @include media {
+      padding: 80px 164px 140px 84px;
+    }
   }
   &__title-container {
     width: 100%;
-    height: 100%;
-    @include flex(flex-start, center);
+    @include flex-col(flex-start, center);
     position: relative;
+    min-height: 180px;
+    @include media($screen-tablet-small) {
+      min-height: auto;
+      height: 100%;
+      flex: 1 1;
+      @include flex(flex-start, center);
+    }
   }
   &__title {
+    width: 100%;
     position: absolute;
-    @include text(156px, 600, $mocca);
+    @include text($H54, 600, $mocca);
     font-family: $secondary-font;
     text-transform: uppercase;
     line-height: 101%;
+    text-align: center;
+    @include media($screen-tablet-small) {
+      text-align: left;
+      font-size: calc(100vw / 8);
+    }
+    @include media {
+      font-size: 156px;
+    }
     &._red-shadow {
       text-shadow: -3px 0 red;
     }
@@ -181,7 +210,9 @@ export default {
     }
   }
   &__button {
-    align-self: flex-end;
+    @include media($screen-tablet-small) {
+      align-self: flex-end;
+    }
   }
 }
 </style>

@@ -7,9 +7,6 @@
       <li class="Menu__item">
         <app-link class="Menu__link" :to="{ name: routeTypes.SERVICES }">Сервіси</app-link>
       </li>
-      <li class="Menu__item">
-        <app-link class="Menu__link" :to="{ name: routeTypes.CONTACTS }">Контаки</app-link>
-      </li>
     </ul>
   </nav>
 </template>
@@ -21,11 +18,14 @@ import AppLink from './AppLink.vue';
 export default {
   components: { AppLink },
   name: 'AppMenu',
+  props: {
+    opacity: Number,
+  },
   data() {
     return {
-      routeTypes
+      routeTypes,
     };
-  }
+  },
 };
 </script>
 
@@ -50,10 +50,14 @@ $style: Menu;
     @include size(6px, true);
     background-color: $mocca;
     position: absolute;
-    right: -18px;
+    bottom: -12px;
     transform: scale(0);
     visibility: hidden;
     opacity: 0;
+    @include media($screen-tablet-small) {
+      right: -18px;
+      bottom: auto;
+    }
   }
 }
 %link-active {
@@ -66,22 +70,32 @@ $style: Menu;
 .#{$style} {
   &__list {
     list-style: none;
-    @include flex-col(flex-start, flex-end);
+    @include flex(center, center);
+    @include media($screen-tablet-small) {
+      @include flex-col(flex-start, flex-end);
+    }
   }
   &__item {
     &:not(:last-child) {
-      margin-bottom: 12px;
+      margin-right: 24px;
+      @include media($screen-tablet-small) {
+        margin-right: 0;
+        margin-bottom: 12px;
+      }
     }
   }
   &__link {
     letter-spacing: 0.5px;
     text-transform: uppercase;
     position: relative;
-    @include flex(flex-start, center);
+    @include flex(center, center);
     display: inline-flex;
     @extend %link-dot;
     will-change: transform, color;
     @include transition(color, opacity, transform);
+    @include media($screen-tablet-small) {
+      justify-content: start;
+    }
     &.router-link-exact-active {
       @extend %link-active;
     }

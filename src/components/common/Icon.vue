@@ -4,21 +4,23 @@
 <script>
 import IconInstagram from './icons/IconInstagram.vue';
 import IconPhone from './icons/IconPhone.vue';
+import IconEmail from './icons/IconEmail.vue';
 
 export default {
   name: 'Icon',
   components: {
     IconInstagram,
-    IconPhone
+    IconPhone,
+    IconEmail,
   },
   props: {
     name: {
       type: String,
       required: true,
       validator(value) {
-        return ['instagram', 'phone'].indexOf(value) !== -1;
-      }
-    }
-  }
+        return ['instagram', 'phone', 'email'].indexOf(value) !== -1;
+      },
+    },
+  },
 };
 </script>

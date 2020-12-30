@@ -77,8 +77,8 @@ export default {
 
 <style lang="scss">
 .LogoText {
-  width: 149px;
-  height: 69px;
+  width: 116px;
+  height: 53px;
   fill: transparent;
   stroke: $mocca;
   transform-origin: center center;

@@ -22,6 +22,7 @@ export default {
   @include position();
   height: 100%;
   width: 100%;
+  overflow: hidden;
   object-fit: cover;
   z-index: -1;
 }
