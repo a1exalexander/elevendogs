@@ -27,6 +27,10 @@ export default {
   outline: none;
   @include text(16px, 500, $mocca);
   @include transition(color);
+  -webkit-user-select: all; /* Chrome all / Safari all */
+  -moz-user-select: all; /* Firefox all */
+  -ms-user-select: all; /* IE 10+ */
+  user-select: all;
   @include hover {
     color: lighten($mocca, 20%);
     &:after,
