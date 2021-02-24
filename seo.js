@@ -13,7 +13,7 @@ const seo = {
 
 module.exports = {
   ...seo,
-  img: `${seo.url}/mstile-70x70.png`,
+  img: `${seo.url}/elevendogs.png`,
   description: `Барбершоп в центрі Кременчука. Пострижись як в прошлий раз! ${seo.location}, ${seo.phone}.`,
-  hiddenTitle: `Eleven Dogs - ,арбершоп в центрі Кременчука. Пострижись як в прошлий раз! ${seo.location}, ${seo.phone}.`,
+  hiddenTitle: `Eleven Dogs - барбершоп в центрі Кременчука. Пострижись як в прошлий раз! ${seo.location}, ${seo.phone}.`,
 };
