@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 
 <head>
   <meta charset="utf-8">
@@ -13,6 +13,8 @@
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
   <meta name="description" content="<%= htmlWebpackPlugin.options.description %>">
+  <meta property="og:image" content="<%= htmlWebpackPlugin.options.image %>">
+  <meta property="twitter:image" content="<%= htmlWebpackPlugin.options.image %>">
   <title>
     <%= htmlWebpackPlugin.options.title %>
   </title>
@@ -23,6 +25,9 @@
     <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
         Please enable it to continue.</strong>
   </noscript>
+  <h1 class="invisible">
+    <%= htmlWebpackPlugin.options.hiddenTitle %>
+  </h1>
   <div id="app"></div>
   <!-- built files will be auto injected -->
 </body>

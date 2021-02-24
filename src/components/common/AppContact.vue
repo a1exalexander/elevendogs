@@ -3,19 +3,15 @@
     <li class="AppContact__item">
       <contact-link
         icon="instagram"
-        href="https://www.instagram.com/eleven.dogs"
-        text="@eleven.dogs"
+        :href="`https://www.instagram.com/${$seo.instagram}`"
+        :text="`@${$seo.instagram}`"
       />
     </li>
     <li class="AppContact__item">
-      <contact-link icon="phone" href="tel:+3800669960006" text="+380669960006" />
+      <contact-link icon="phone" href="tel:+3800669960006" :text="$seo.phone" />
     </li>
     <li class="AppContact__item AppContact__item--mtless">
-      <contact-link
-        icon="email"
-        href="mailto:hello@elevendogs.com.ua"
-        text="hello@elevendogs.com.ua"
-      />
+      <contact-link icon="email" :href="`mailto:${$seo.email}`" :text="$seo.email" />
     </li>
   </ul>
 </template>
@@ -33,7 +29,7 @@ export default {
 $style: AppContact;
 .#{$style} {
   list-style: none;
-  @include media($screen-tablet-small) {
+  @include media($screen-tablet) {
     @include flex-col(flex-start, flex-end);
   }
   &__item {

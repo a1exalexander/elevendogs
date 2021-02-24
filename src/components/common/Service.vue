@@ -37,7 +37,7 @@ export default {
 <style lang="scss">
 .Service {
   @include flex(space-between, center);
-  @include media($screen-tablet-small) {
+  @include media($screen-tablet) {
     flex-direction: column;
     justify-content: center;
   }
@@ -47,22 +47,40 @@ export default {
     margin-bottom: 16px;
     line-height: 1;
     white-space: nowrap;
-    @include media($screen-tablet-small) {
+    @include media($screen-tablet) {
       font-size: calc(100vw / 40);
-      margin-bottom: 26px;
+      margin-bottom: 18px;
     }
-    @include media($screen-desktop-large) {
+    @include media($screen-desktop) {
+      font-size: calc(100vw / 42);
+      margin-bottom: 18px;
+    }
+    @include media($screen-fullhd) {
       font-size: $H32;
     }
   }
   &__price {
     @include text(50px, 600, $mocca);
     line-height: 1;
-    @include media($screen-tablet-small) {
+    @include media($screen-tablet) {
       font-size: calc(100vw / 8);
     }
+    @include media($screen-tablet-large) {
+      font-size: calc(100vw / 9);
+    }
+    @include media($screen-desktop) {
+      font-size: calc(100vw / 9);
+    }
     @include media($screen-desktop-large) {
-      flex-basis: 33.3%;
+      font-size: calc(100vw / 10);
+    }
+    @include media($screen-hd) {
+      font-size: calc(100vw / 11);
+    }
+     @include media($screen-fullhd) {
+      font-size: calc(100vw / 12);
+    }
+    @include media($screen-retina) {
       font-size: $H-PRICE;
     }
   }

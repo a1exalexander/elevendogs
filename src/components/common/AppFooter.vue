@@ -21,7 +21,7 @@ export default {
 </script>
 <style lang="scss">
 .AppFooter {
-  @include media($screen-tablet-small) {
+  @include media($screen-tablet) {
     display: none;
   }
   &__contact {

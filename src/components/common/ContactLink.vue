@@ -86,7 +86,7 @@ $style: ContactLink;
     @include transition(width, opacity);
     transition-duration: 1;
   }
-  @include media($screen-tablet-small) {
+  @include media($screen-tablet) {
     &._visible {
       &:after {
         width: calc(100% + 24px);
@@ -104,7 +104,7 @@ $style: ContactLink;
     @include svg($H24, $mocca);
     @include transition(transform);
     margin-right: 14px;
-    @include media($screen-tablet-small) {
+    @include media($screen-tablet) {
       margin-right: 0;
       margin-left: 14px;
     }
@@ -121,12 +121,12 @@ $style: ContactLink;
     right: calc(100% + 12px);
     &--mnone {
       right: calc(100% + 12px);
-      @media screen and (max-width: $screen-tablet-small) {
+      @media screen and (max-width: $screen-tablet) {
         display: none;
       }
     }
     &--dnone {
-      @include media($screen-tablet-small) {
+      @include media($screen-tablet) {
         display: none;
       }
     }

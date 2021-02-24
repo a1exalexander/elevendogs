@@ -16,7 +16,7 @@
       line
       class="Navigation__location Navigation__location--mnone"
       href="https://goo.gl/maps/wEtkFJMWqqpxhxMVA"
-      >Кременчук, вул. Івана Мазепи, 28</app-link
+      >{{ $seo.location }}</app-link
     >
   </div>
 </template>
@@ -36,6 +36,7 @@ export default {
   data() {
     return {
       routeTypes,
+      windowWidth: window.innerWidth,
     };
   },
   methods: {
@@ -43,6 +44,7 @@ export default {
       return Math.ceil(opacity) ? 'visible' : 'hidden';
     },
     toOpacity(min, max) {
+      if (this.windowWidth >= 768) return 1;
       if (this.$route.name !== routeTypes.SERVICES) return 1;
       const offset = max - min;
       if (this.scrollTop > max) return 0;
@@ -51,14 +53,26 @@ export default {
       }
       return 1;
     },
+    onResize() {
+      this.windowWidth = window.innerWidth;
+    },
   },
   computed: {
     menuOpacity() {
       return this.toOpacity(0, 60);
     },
     logoOpacity() {
+      if (this.windowWidth >= 600) return this.toOpacity(0, 60);
       return this.toOpacity(60, 120);
     },
+  },
+  mounted() {
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.onResize);
+    });
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.onResize);
   },
 };
 </script>
@@ -73,7 +87,7 @@ $style: Navigation;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  @include media($screen-tablet-small) {
+  @include media($screen-tablet) {
     position: fixed;
     height: 100vh;
   }
@@ -84,7 +98,7 @@ $style: Navigation;
     grid-column: 1 / 3;
     justify-self: center;
     align-self: start;
-    @include media($screen-tablet-small) {
+    @include media($screen-tablet) {
       grid-column: 1 / 2;
       justify-self: start;
     }
@@ -97,7 +111,7 @@ $style: Navigation;
     justify-self: center;
     align-self: start;
     margin-top: 88px;
-    @include media($screen-tablet-small) {
+    @include media($screen-tablet) {
       margin-top: 0;
       grid-column: 2 / 3;
       justify-self: end;
@@ -106,11 +120,11 @@ $style: Navigation;
   &__contact {
     &._mnone {
       display: none;
-      @include media($screen-tablet-small) {
+      @include media($screen-tablet) {
         display: flex;
       }
     }
-    @include media($screen-tablet-small) {
+    @include media($screen-tablet) {
       pointer-events: all;
       grid-row: 1 / 3;
       grid-column: 2 / 3;
@@ -121,7 +135,7 @@ $style: Navigation;
   &__location {
     &--mnone {
       display: none;
-      @include media($screen-tablet-small) {
+      @include media($screen-tablet) {
         display: inline-flex;
       }
     }

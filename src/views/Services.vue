@@ -52,13 +52,13 @@ export default {
   @media screen and (-webkit-min-device-pixel-ratio: 0) {
     padding-bottom: 130px;
   }
-  @include media($screen-tablet-small) {
+  @include media($screen-tablet) {
     padding-bottom: 0;
   }
   &__container {
     padding: 200px 34px 34px;
     @include flex-col(center, stretch);
-    @include media($screen-tablet-small) {
+    @include media($screen-tablet) {
       padding: 128px 64px 64px;
       min-height: 100vh;
     }
@@ -67,10 +67,13 @@ export default {
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
-    margin-bottom: 42px;
-    @include media($screen-tablet-small) {
+    margin-bottom: 24px;
+    @include media($screen-tablet) {
       @include flex(center, center);
       flex-wrap: wrap;
+    }
+    @include media($screen-tablet-large) {
+      margin-bottom: 32px;
     }
   }
   &__item {
@@ -79,20 +82,24 @@ export default {
       margin-bottom: 24px;
     }
     &--middle {
-      @include media($screen-tablet-small) {
+      @include media($screen-tablet) {
         top: -72px;
       }
     }
-    @include media($screen-tablet-small) {
+    @include media($screen-tablet) {
       flex: 1 1 33.3%;
       max-width: 40%;
+      &:not(:last-child) {
+        margin-bottom: 36px;
+      }
+      margin-bottom: 36px;
+    }
+    @include media($screen-fullhd) {
+      flex-basis: 33.3%;
       &:not(:last-child) {
         margin-bottom: 42px;
       }
       margin-bottom: 42px;
-    }
-    @include media($screen-desktop-large) {
-      flex-basis: 33.3%;
     }
     animation-fill-mode: both;
     animation-name: fadeInDown;

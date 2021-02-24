@@ -26,7 +26,6 @@ const productionPlugins = [
       'og:url': seo.url,
       'og:type': seo.type,
       'og:title': seo.title,
-      // 'og:image': seo.img,
       'og:description': seo.description,
       'og:site_name': seo.siteName,
       'og:locale': seo.locale,
@@ -37,7 +36,6 @@ const productionPlugins = [
       'twitter:url': seo.url,
       'twitter:title': seo.title,
       'twitter:description': seo.description,
-      // 'twitter:image': seo.img,
     },
   }),
 ];
@@ -70,6 +68,8 @@ module.exports = {
       entry: 'src/main.js',
       title: seo.title,
       description: seo.description,
+      hiddenTitle: seo.hiddenTitle,
+      image: seo.img,
     },
   },
 };

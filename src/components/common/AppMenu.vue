@@ -54,7 +54,7 @@ $style: Menu;
     transform: scale(0);
     visibility: hidden;
     opacity: 0;
-    @include media($screen-tablet-small) {
+    @include media($screen-tablet) {
       right: -18px;
       bottom: auto;
     }
@@ -71,14 +71,14 @@ $style: Menu;
   &__list {
     list-style: none;
     @include flex(center, center);
-    @include media($screen-tablet-small) {
+    @include media($screen-tablet) {
       @include flex-col(flex-start, flex-end);
     }
   }
   &__item {
     &:not(:last-child) {
       margin-right: 24px;
-      @include media($screen-tablet-small) {
+      @include media($screen-tablet) {
         margin-right: 0;
         margin-bottom: 12px;
       }
@@ -93,7 +93,7 @@ $style: Menu;
     @extend %link-dot;
     will-change: transform, color;
     @include transition(color, opacity, transform);
-    @include media($screen-tablet-small) {
+    @include media($screen-tablet) {
       justify-content: start;
     }
     &.router-link-exact-active {
