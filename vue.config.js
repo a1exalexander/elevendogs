@@ -30,12 +30,14 @@ const productionPlugins = [
       'og:site_name': seo.siteName,
       'og:locale': seo.locale,
       'og:article:author': seo.author,
+      'og:image': './public/elevendogs.png',
     },
     twitter: {
       'twitter:card': 'summary',
       'twitter:url': seo.url,
       'twitter:title': seo.title,
       'twitter:description': seo.description,
+      'twitter:image': './public/elevendogs.png',
     },
   }),
 ];
@@ -69,7 +71,6 @@ module.exports = {
       title: seo.title,
       description: seo.description,
       hiddenTitle: seo.hiddenTitle,
-      image: seo.img,
     },
   },
 };
