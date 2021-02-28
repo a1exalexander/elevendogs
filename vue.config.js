@@ -43,13 +43,6 @@ const productionPlugins = [
 ];
 
 module.exports = {
-  pluginOptions: {
-    sitemap: {
-      baseURL: seo.url,
-      productionOnly: true,
-      routes: routes.map((route) => ({ path: route })),
-    },
-  },
   css: {
     loaderOptions: {
       sass: {
