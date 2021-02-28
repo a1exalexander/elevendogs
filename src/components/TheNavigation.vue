@@ -33,10 +33,10 @@ export default {
   props: {
     scrollTop: Number,
   },
+  inject: ['viewportWidth'],
   data() {
     return {
       routeTypes,
-      windowWidth: window.innerWidth,
     };
   },
   methods: {
@@ -44,7 +44,7 @@ export default {
       return Math.ceil(opacity) ? 'visible' : 'hidden';
     },
     toOpacity(min, max) {
-      if (this.windowWidth >= 768) return 1;
+      if (this.viewportWidth.value >= 768) return 1;
       if (this.$route.name !== routeTypes.SERVICES) return 1;
       const offset = max - min;
       if (this.scrollTop > max) return 0;
@@ -53,26 +53,15 @@ export default {
       }
       return 1;
     },
-    onResize() {
-      this.windowWidth = window.innerWidth;
-    },
   },
   computed: {
     menuOpacity() {
       return this.toOpacity(0, 60);
     },
     logoOpacity() {
-      if (this.windowWidth >= 600) return this.toOpacity(0, 60);
+      if (this.viewportWidth.value >= 600) return this.toOpacity(0, 60);
       return this.toOpacity(60, 120);
     },
-  },
-  mounted() {
-    this.$nextTick(() => {
-      window.addEventListener('resize', this.onResize);
-    });
-  },
-  beforeUnmount() {
-    window.removeEventListener('resize', this.onResize);
   },
 };
 </script>

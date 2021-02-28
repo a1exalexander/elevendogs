@@ -1,7 +1,13 @@
 <template>
   <the-navigation :scroll-top="scrollTop" />
 
-  <router-view ref="routerView" @scroll="onScroll" class="App__view" v-slot="{ Component }">
+  <router-view
+    ref="routerView"
+    @scroll="onScroll"
+    class="App__view"
+    v-slot="{ Component }"
+    :style="{ minHeight: height }"
+  >
     <transition @beforeEnter="beforeEnter" @enter="enter" @leave="leave" :css="false" mode="out-in">
       <component :is="Component" />
     </transition>
@@ -9,6 +15,7 @@
 </template>
 
 <script>
+import { computed } from 'vue';
 import gsap from 'gsap';
 import TheNavigation from './components/TheNavigation.vue';
 import { routeTypes } from './router';
@@ -16,12 +23,32 @@ import { routeTypes } from './router';
 export default {
   components: { TheNavigation },
   name: 'App',
+  provide() {
+    return {
+      viewportHeight: computed(() => this.height),
+      viewportWidth: computed(() => this.width),
+    };
+  },
   data() {
     return {
       scrollTop: 0,
+      height: `100vh`,
+      width: `100vw`,
     };
   },
   methods: {
+    onResize() {
+      const $html = document.documentElement;
+      const $app = document.getElementById('app');
+      const height = window && window.innerHeight ? `${window.innerHeight}px` : '100vh';
+      const width = window && window.innerWidth ? window.innerWidth : 0;
+      if ($html && $app && (this.height !== height || this.width !== width)) {
+        $html.style.height = height;
+        $app.style.height = height;
+        this.height = height;
+        this.width = width;
+      }
+    },
     beforeEnter(el) {
       gsap.set(el, {
         opacity: 0.2,
@@ -55,23 +82,31 @@ export default {
     },
   },
   mounted() {
+    this.onResize();
     document.dispatchEvent(new Event('render-event'));
+  },
+  created() {
+    this.onResize();
+    this.$nextTick(() => {
+      console.log(window);
+      window.addEventListener('resize', this.onResize);
+    });
+  },
+  unmounted() {
+    window.removeEventListener('resize', this.onResize);
   },
 };
 </script>
 
 <style lang="scss">
 html {
-  height: 100vh;
   overflow: hidden;
 }
 #app {
-  height: 100vh;
   overflow: hidden;
   position: relative;
 }
 .App__view {
-  min-height: 100%;
   width: 100%;
 }
 .fade-enter-active,

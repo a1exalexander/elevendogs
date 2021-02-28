@@ -1,5 +1,5 @@
 <template>
-  <div class="Services" @scroll="onScroll">
+  <div class="Services" @scroll="onScroll" :style="{ height: viewportHeight.value }">
     <div class="Services__container">
       <dark-image class="Services__bg" :src="require('@/assets/images/Slide3.png')" />
       <ul class="Services__list">
@@ -27,6 +27,7 @@ import AppFooter from '../components/common/AppFooter.vue';
 export default {
   name: 'Services',
   components: { DarkImage, Service, AppFooter, AppButton },
+  inject: ['viewportHeight'],
   data() {
     return {
       services,
@@ -47,11 +48,11 @@ export default {
   }
 }
 .Services {
-  height: 100vh;
   overflow-y: auto;
-  @media screen and (-webkit-min-device-pixel-ratio: 0) {
-    padding-bottom: 130px;
-  }
+  // padding-bottom: 60px;
+  // @include chromeMobile {
+  //   padding-bottom: 160px;
+  // }
   @include media($screen-tablet) {
     padding-bottom: 0;
   }

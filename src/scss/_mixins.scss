@@ -74,7 +74,7 @@ $z-index: (
   dropdown: 2,
   wrapper: 1,
   default: 0,
-  under: -1
+  under: -1,
 );
 
 @mixin padding-hack($padding: 50%, $size: contain, $dev: false) {
@@ -133,5 +133,11 @@ $screen-retina: 1660px;
     &:hover {
       @content;
     }
+  }
+}
+
+@mixin chromeMobile {
+  @media all and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) and (max-width: 768px) {
+    @content;
   }
 }

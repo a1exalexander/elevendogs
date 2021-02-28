@@ -162,9 +162,9 @@ export default {
 
 <style lang="scss">
 .Home {
-  @media screen and (-webkit-min-device-pixel-ratio: 0) {
-    padding-bottom: 126px;
-  }
+  // @include chromeMobile {
+  //   padding-bottom: 126px;
+  // }
   @include flex-col(space-between, stretch);
   @include media($screen-tablet) {
     padding-bottom: 0;
