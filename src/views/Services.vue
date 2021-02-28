@@ -49,10 +49,6 @@ export default {
 }
 .Services {
   overflow-y: auto;
-  // padding-bottom: 60px;
-  // @include chromeMobile {
-  //   padding-bottom: 160px;
-  // }
   @include media($screen-tablet) {
     padding-bottom: 0;
   }

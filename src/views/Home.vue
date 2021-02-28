@@ -162,9 +162,6 @@ export default {
 
 <style lang="scss">
 .Home {
-  // @include chromeMobile {
-  //   padding-bottom: 126px;
-  // }
   @include flex-col(space-between, stretch);
   @include media($screen-tablet) {
     padding-bottom: 0;

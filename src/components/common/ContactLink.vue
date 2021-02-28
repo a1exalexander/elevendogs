@@ -110,10 +110,10 @@ $style: ContactLink;
     }
   }
   &__expand {
-    -webkit-user-select: all; /* Chrome all / Safari all */
-    -moz-user-select: all; /* Firefox all */
-    -ms-user-select: all; /* IE 10+ */
-    user-select: all;
+    // -webkit-user-select: all; /* Chrome all / Safari all */
+    // -moz-user-select: all; /* Firefox all */
+    // -ms-user-select: all; /* IE 10+ */
+    // user-select: all;
     text-decoration: none;
     @include text($H16, 500, $mocca);
     display: inline-flex;

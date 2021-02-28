@@ -5,7 +5,7 @@
         <app-link exact class="Menu__link" :to="{ name: routeTypes.HOME }">Головна</app-link>
       </li>
       <li class="Menu__item">
-        <app-link class="Menu__link" :to="{ name: routeTypes.SERVICES }">Сервіси</app-link>
+        <app-link class="Menu__link" :to="{ name: routeTypes.SERVICES }">Послуги</app-link>
       </li>
     </ul>
   </nav>
