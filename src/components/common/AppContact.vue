@@ -8,7 +8,7 @@
       />
     </li>
     <li class="AppContact__item">
-      <contact-link icon="phone" href="tel:+3800669960006" :text="$seo.phone" />
+      <contact-link icon="phone" :href="`tel:${$seo.phone}`" :text="$seo.phone" />
     </li>
     <li class="AppContact__item AppContact__item--mtless">
       <contact-link icon="email" :href="`mailto:${$seo.email}`" :text="$seo.email" />
