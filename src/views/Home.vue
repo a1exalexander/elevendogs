@@ -170,6 +170,12 @@ export default {
   &__container {
     padding: 210px 34px 0;
     @include flex-col(space-between, stretch);
+    @include media($screen-iphone-6) {
+      padding: 240px 34px 0;
+    }
+    @include media($screen-iphone-plus) {
+      padding: 260px 34px 0;
+    }
     @include media($screen-tablet-large) {
       @include flex(space-between, center);
       padding: 130px 64px;

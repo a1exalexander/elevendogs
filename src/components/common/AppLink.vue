@@ -1,5 +1,9 @@
 <template>
-  <router-link :event="exact" v-if="!!to" :to="to" :class="['AppLink', { _line: line }]"
+  <router-link
+    :event="exact"
+    v-if="!!to"
+    :to="to"
+    :class="['AppLink', { _line: line, _large: large }]"
     ><slot
   /></router-link>
   <a v-else :href="href" target="_blank" :class="['AppLink AppLink--selected', { _line: line }]"
@@ -15,6 +19,7 @@ export default {
     href: [String],
     exact: Boolean,
     line: Boolean,
+    large: Boolean,
   },
 };
 </script>
@@ -27,7 +32,7 @@ export default {
   border: none;
   position: relative;
   outline: none;
-  @include text($H17, 500, $mocca);
+  @include text($H16, 500, $mocca);
   @include transition(color);
   &--selected {
     -webkit-user-select: all; /* Chrome all / Safari all */
@@ -35,11 +40,14 @@ export default {
     -ms-user-select: all; /* IE 10+ */
     user-select: all;
   }
-  @include media($screen-iphone-plus) {
-    font-size: $H22;
-  }
-  @include media($screen-tablet-large) {
-    font-size: $H16;
+  &._large {
+    font-size: $H17;
+    @include media($screen-iphone-plus) {
+      font-size: $H22;
+    }
+    @include media($screen-tablet-large) {
+      font-size: $H16;
+    }
   }
   @include hover {
     color: lighten($mocca, 20%);

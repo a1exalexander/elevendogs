@@ -101,6 +101,12 @@ $style: Navigation;
     justify-self: center;
     align-self: start;
     margin-top: 130px;
+    @include media($screen-iphone-6) {
+      margin-top: 140px;
+    }
+     @include media($screen-iphone-plus) {
+      margin-top: 150px;
+    }
     @include media($screen-tablet-large) {
       margin-top: 0;
       grid-column: 2 / 3;
