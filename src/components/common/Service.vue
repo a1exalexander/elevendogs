@@ -1,6 +1,6 @@
 <template>
   <li class="Service">
-    <a :href="href">
+    <a class="Service__link" :href="href">
       <h3 class="Service__name">{{ name }}</h3>
       <span class="Service__price">{{ animatedNumber }}</span>
     </a>
@@ -42,12 +42,13 @@ export default {
 </script>
 <style lang="scss">
 .Service {
-  @include flex(space-between, center);
-  @include media($screen-tablet-large) {
-    flex-direction: column;
-    justify-content: center;
-    a {
-      text-decoration: none;
+  display: block;
+  &__link {
+    text-decoration: none;
+    @include flex(space-between, center);
+    @include media($screen-tablet-large) {
+      flex-direction: column;
+      justify-content: center;
     }
   }
   &__name {
