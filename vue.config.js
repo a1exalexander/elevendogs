@@ -43,6 +43,7 @@ const productionPlugins = [
 ];
 
 module.exports = {
+  productionSourceMap: false,
   css: {
     loaderOptions: {
       sass: {
