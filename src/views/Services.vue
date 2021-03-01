@@ -53,7 +53,6 @@ export default {
     padding-bottom: 0;
   }
   &__container {
-    position: relative;
     padding: 200px 34px 34px;
     @include flex-col(center, stretch);
     @include media($screen-tablet-large) {
