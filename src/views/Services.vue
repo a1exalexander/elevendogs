@@ -57,7 +57,7 @@ export default {
     padding: 220px 34px 34px;
     @include flex-col(center, stretch);
     @include media($screen-iphone-6) {
-      padding: 240px 34px 34px;
+      padding: 250px 34px 34px;
     }
     @include media($screen-tablet-large) {
       padding: 130px 64px 64px;
