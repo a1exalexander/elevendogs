@@ -10,7 +10,10 @@ export default {
       type: String,
       required: true,
     },
-    alt: String,
+    alt: {
+      type: String,
+      default: 'Eleven Dogs',
+    },
   },
 };
 </script>
