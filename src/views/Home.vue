@@ -194,11 +194,14 @@ export default {
   &__title {
     width: 100%;
     position: absolute;
-    @include text($H54, 600, $mocca);
+    @include text($H48, 600, $mocca);
     font-family: $secondary-font;
     text-transform: uppercase;
     line-height: 101%;
     text-align: center;
+    @include media($screen-iphone-plus) {
+      font-size: $H54;
+    }
     @include media($screen-tablet-large) {
       text-align: left;
       font-size: calc(100vw / 8);

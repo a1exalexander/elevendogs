@@ -44,7 +44,7 @@ export default {
       return Math.ceil(opacity) ? 'visible' : 'hidden';
     },
     toOpacity(min, max) {
-      if (this.viewportWidth.value >= 768) return 1;
+      if (this.viewportWidth.value >= 860) return 1;
       if (this.$route.name !== routeTypes.SERVICES) return 1;
       const offset = max - min;
       if (this.scrollTop > max) return 0;
@@ -56,11 +56,11 @@ export default {
   },
   computed: {
     menuOpacity() {
-      return this.toOpacity(0, 60);
+      return this.toOpacity(0, 50);
     },
     logoOpacity() {
-      if (this.viewportWidth.value >= 600) return this.toOpacity(0, 60);
-      return this.toOpacity(60, 120);
+      if (this.viewportWidth.value >= 600) return this.toOpacity(0, 40);
+      return this.toOpacity(40, 120);
     },
   },
 };
@@ -72,12 +72,13 @@ $style: Navigation;
   position: absolute;
   z-index: 2;
   pointer-events: none;
-  padding: 36px;
+  padding: 24px 16px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   @include media($screen-tablet-large) {
     position: fixed;
+    padding: 36px;
     height: 100vh;
   }
   &__logo-wrapper {
@@ -99,7 +100,7 @@ $style: Navigation;
     grid-column: 1 / 3;
     justify-self: center;
     align-self: start;
-    margin-top: 88px;
+    margin-top: 120px;
     @include media($screen-tablet-large) {
       margin-top: 0;
       grid-column: 2 / 3;
