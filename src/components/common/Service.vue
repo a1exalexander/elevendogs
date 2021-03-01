@@ -43,8 +43,7 @@ export default {
   }
   &__name {
     text-transform: uppercase;
-    @include text($H18, 600, $mocca);
-    margin-bottom: 16px;
+    @include text(calc(100vw / 24), 600, $mocca);
     line-height: 1;
     white-space: nowrap;
     @include media($screen-tablet-large) {
@@ -60,7 +59,7 @@ export default {
     }
   }
   &__price {
-    @include text(50px, 600, $mocca);
+    @include text(calc(100vw / 9), 600, $mocca);
     line-height: 1;
     @include media($screen-tablet-large) {
       font-size: calc(100vw / 11);

@@ -88,7 +88,6 @@ export default {
   created() {
     this.onResize();
     this.$nextTick(() => {
-      console.log(window);
       window.addEventListener('resize', this.onResize);
     });
   },

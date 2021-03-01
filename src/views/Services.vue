@@ -73,7 +73,7 @@ export default {
   &__item {
     position: relative;
     &:not(:last-child) {
-      margin-bottom: 24px;
+      margin-bottom: 32px;
     }
     &._top {
       @include media($screen-tablet-large) {
