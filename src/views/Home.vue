@@ -168,11 +168,11 @@ export default {
     display: block;
   }
   &__container {
-    padding: 200px 34px 0;
+    padding: 210px 34px 0;
     @include flex-col(space-between, stretch);
     @include media($screen-tablet-large) {
       @include flex(space-between, center);
-      padding: 120px 64px;
+      padding: 130px 64px;
       min-height: 100vh;
     }
     @include media {
@@ -183,7 +183,10 @@ export default {
     width: 100%;
     @include flex-col(flex-start, center);
     position: relative;
-    min-height: 150px;
+    min-height: 130px;
+    @include media($screen-iphone-plus) {
+      min-height: 150px;
+    }
     @include media($screen-tablet-large) {
       min-height: auto;
       height: 100%;

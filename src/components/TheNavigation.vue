@@ -100,7 +100,7 @@ $style: Navigation;
     grid-column: 1 / 3;
     justify-self: center;
     align-self: start;
-    margin-top: 120px;
+    margin-top: 130px;
     @include media($screen-tablet-large) {
       margin-top: 0;
       grid-column: 2 / 3;

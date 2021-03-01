@@ -153,7 +153,7 @@ export default {
         const duration = 1;
         gsap.to(path, { strokeDashoffset: 0, delay, duration, ease: 'ease-in' });
         gsap.to(path, {
-          fill: '#E3E0D8',
+          fill: '#ceccc5',
           delay: delay / 1.5 + duration,
           duration: 1,
           ease: 'ease-in',

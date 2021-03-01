@@ -54,10 +54,10 @@ export default {
     padding-bottom: 0;
   }
   &__container {
-    padding: 200px 34px 34px;
+    padding: 220px 34px 34px;
     @include flex-col(center, stretch);
     @include media($screen-tablet-large) {
-      padding: 128px 64px 64px;
+      padding: 130px 64px 64px;
       min-height: 100vh;
     }
   }
@@ -65,8 +65,9 @@ export default {
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
-    margin-bottom: 24px;
+    margin-bottom: 42px;
     @include media($screen-tablet-large) {
+      margin-bottom: 0;
       @include flex(center, center);
       flex-wrap: wrap;
     }
