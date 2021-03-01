@@ -1,10 +1,42 @@
 [
-  { "name": "стрижка", "price": 250 },
-  { "name": "стрижка бороди", "price": 150 },
-  { "name": "під одну насадку", "price": 100 },
-  { "name": "батько і син", "price": 400 },
-  { "name": "укладка волосся", "price": 100 },
-  { "name": "королівське гоління", "price": 200 },
-  { "name": "камуфлювання", "price": 150 },
-  { "name": "воскова депіляція", "price": 50 }
+  {
+    "name": "стрижка",
+    "price": 250,
+    "href": "https://beauty.dikidi.net/#widget=44791"
+  },
+  {
+    "name": "стрижка бороди",
+    "price": 150,
+    "href": "https://beauty.dikidi.net/#widget=44797"
+  },
+  {
+    "name": "під одну насадку",
+    "price": 100,
+    "href": "https://beauty.dikidi.net/#widget=44795"
+  },
+  {
+    "name": "батько і син",
+    "price": 400,
+    "href": "https://beauty.dikidi.net/#widget=44793"
+  },
+  {
+    "name": "укладка волосся",
+    "price": 100,
+    "href": "https://beauty.dikidi.net/#widget=44803"
+  },
+  {
+    "name": "королівське гоління",
+    "price": 200,
+    "href": "https://beauty.dikidi.net/#widget=44799"
+  },
+  {
+    "name": "камуфлювання",
+    "price": 150,
+    "href": "https://beauty.dikidi.net/#widget=44801"
+  },
+  {
+    "name": "воскова депіляція",
+    "price": 50,
+    "href": "https://beauty.dikidi.net/#widget=44803"
+  }
 ]

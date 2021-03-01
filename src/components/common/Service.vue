@@ -1,7 +1,9 @@
 <template>
   <li class="Service">
-    <h3 class="Service__name">{{ name }}</h3>
-    <span class="Service__price">{{ animatedNumber }}</span>
+    <a :href="href">
+      <h3 class="Service__name">{{ name }}</h3>
+      <span class="Service__price">{{ animatedNumber }}</span>
+    </a>
   </li>
 </template>
 <script>
@@ -17,6 +19,10 @@ export default {
     price: {
       type: [Number, String],
       required: true,
+    },
+    href: {
+      type: String,
+      default: '#',
     },
   },
   data() {
@@ -40,6 +46,9 @@ export default {
   @include media($screen-tablet-large) {
     flex-direction: column;
     justify-content: center;
+    a {
+      text-decoration: none;
+    }
   }
   &__name {
     text-transform: uppercase;

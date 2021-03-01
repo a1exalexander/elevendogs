@@ -9,6 +9,7 @@
           v-for="(item, idx) in services"
           :name="item.name"
           :price="item.price"
+          :href="item.href"
           :key="item.name"
         />
       </ul>
