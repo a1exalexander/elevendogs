@@ -1,7 +1,7 @@
 <template>
   <div class="Services" @scroll="onScroll" :style="{ height: viewportHeight.value }">
     <div class="Services__container">
-      <dark-image class="Services__bg" :src="require('@/assets/images/Slide3.png')" />
+      <dark-image class="Services__bg" :src="require('@/assets/images/Services.jpg')" />
       <ul class="Services__list">
         <service
           :class="['Services__item', { 'Services__item--middle': idx === 1 }]"

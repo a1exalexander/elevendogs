@@ -1,12 +1,18 @@
 <template>
-  <button @click="onClick" :class="['Button', { _animate: animated }]">
+  <a :href="href" @click="onClick" :class="['Button', { _animate: animated }]">
     <span class="Button__wrapper"></span><slot />
-  </button>
+  </a>
 </template>
 
 <script>
 export default {
   name: 'AppButton',
+  props: {
+    href: {
+      type: String,
+      default: 'https://beauty.dikidi.net/#widget=44771',
+    },
+  },
   data() {
     return {
       animated: false,
@@ -54,6 +60,7 @@ $style: Button;
   appearance: none;
   z-index: 2;
   width: 100%;
+  text-decoration: none;
   @include media($screen-tablet) {
     width: auto;
     display: inline-flex;

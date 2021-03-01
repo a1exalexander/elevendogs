@@ -24,10 +24,10 @@
 
 <script>
 import gsap, { TimelineMax, Power4 } from 'gsap';
-import Slide1 from '@/assets/images/Slide1.png';
-import Slide2 from '@/assets/images/Slide2.png';
-import Slide3 from '@/assets/images/Slide3.png';
-import Slide4 from '@/assets/images/Slide4.png';
+import Slide1 from '@/assets/images/Slide1.jpg';
+import Slide2 from '@/assets/images/Slide2.jpg';
+import Slide3 from '@/assets/images/Slide3.jpg';
+import Slide4 from '@/assets/images/Slide4.jpg';
 import DarkImage from '../components/common/DarkImage.vue';
 import AppButton from '../components/common/AppButton.vue';
 import AppFooter from '../components/common/AppFooter.vue';
@@ -49,11 +49,11 @@ export default {
           image: Slide2,
         },
         {
-          title: 'справжні чоловіки',
+          title: 'у нас є смак',
           image: Slide3,
         },
         {
-          title: 'у нас є смак',
+          title: 'справжні чоловіки',
           image: Slide4,
         },
       ],
