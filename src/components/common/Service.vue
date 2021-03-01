@@ -26,18 +26,18 @@ export default {
   },
   computed: {
     animatedNumber() {
-      return this.tweenedNumber.toFixed(0)
-    }
+      return this.tweenedNumber.toFixed(0);
+    },
   },
   mounted() {
-    gsap.to(this.$data, { duration: 1.3, tweenedNumber: this.price })
-  }
+    gsap.to(this.$data, { duration: 1.3, tweenedNumber: this.price });
+  },
 };
 </script>
 <style lang="scss">
 .Service {
   @include flex(space-between, center);
-  @include media($screen-tablet) {
+  @include media($screen-tablet-large) {
     flex-direction: column;
     justify-content: center;
   }
@@ -47,38 +47,35 @@ export default {
     margin-bottom: 16px;
     line-height: 1;
     white-space: nowrap;
-    @include media($screen-tablet) {
-      font-size: calc(100vw / 40);
+    @include media($screen-tablet-large) {
+      font-size: calc(100vw / 54);
       margin-bottom: 18px;
     }
     @include media($screen-desktop) {
-      font-size: calc(100vw / 42);
+      font-size: calc(100vw / 60);
       margin-bottom: 18px;
     }
     @include media($screen-fullhd) {
-      font-size: $H32;
+      font-size: $H24;
     }
   }
   &__price {
     @include text(50px, 600, $mocca);
     line-height: 1;
-    @include media($screen-tablet) {
-      font-size: calc(100vw / 8);
-    }
     @include media($screen-tablet-large) {
-      font-size: calc(100vw / 9);
-    }
-    @include media($screen-desktop) {
-      font-size: calc(100vw / 9);
-    }
-    @include media($screen-desktop-large) {
-      font-size: calc(100vw / 10);
-    }
-    @include media($screen-hd) {
       font-size: calc(100vw / 11);
     }
-     @include media($screen-fullhd) {
+    @include media($screen-desktop) {
       font-size: calc(100vw / 12);
+    }
+    @include media($screen-desktop-large) {
+      font-size: calc(100vw / 13);
+    }
+    @include media($screen-hd) {
+      font-size: calc(100vw / 14);
+    }
+    @include media($screen-fullhd) {
+      font-size: calc(100vw / 15);
     }
     @include media($screen-retina) {
       font-size: $H-PRICE;

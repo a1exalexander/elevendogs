@@ -163,14 +163,14 @@ export default {
 <style lang="scss">
 .Home {
   @include flex-col(space-between, stretch);
-  @include media($screen-tablet) {
+  @include media($screen-tablet-large) {
     padding-bottom: 0;
     display: block;
   }
   &__container {
     padding: 200px 34px 0;
     @include flex-col(space-between, stretch);
-    @include media($screen-tablet) {
+    @include media($screen-tablet-large) {
       @include flex(space-between, center);
       padding: 120px 64px;
       min-height: 100vh;
@@ -184,7 +184,7 @@ export default {
     @include flex-col(flex-start, center);
     position: relative;
     min-height: 150px;
-    @include media($screen-tablet) {
+    @include media($screen-tablet-large) {
       min-height: auto;
       height: 100%;
       flex: 1 1;
@@ -199,7 +199,7 @@ export default {
     text-transform: uppercase;
     line-height: 101%;
     text-align: center;
-    @include media($screen-tablet) {
+    @include media($screen-tablet-large) {
       text-align: left;
       font-size: calc(100vw / 8);
     }
@@ -214,7 +214,7 @@ export default {
     }
   }
   &__button {
-    @include media($screen-tablet) {
+    @include media($screen-tablet-large) {
       align-self: flex-end;
     }
   }

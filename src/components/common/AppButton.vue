@@ -61,7 +61,7 @@ $style: Button;
   z-index: 2;
   width: 100%;
   text-decoration: none;
-  @include media($screen-tablet) {
+  @include media($screen-tablet-large) {
     width: auto;
     display: inline-flex;
   }

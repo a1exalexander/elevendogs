@@ -29,7 +29,7 @@ export default {
 $style: AppContact;
 .#{$style} {
   list-style: none;
-  @include media($screen-tablet) {
+  @include media($screen-tablet-large) {
     @include flex-col(flex-start, flex-end);
   }
   &__item {

@@ -76,7 +76,7 @@ $style: Navigation;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  @include media($screen-tablet) {
+  @include media($screen-tablet-large) {
     position: fixed;
     height: 100vh;
   }
@@ -87,7 +87,7 @@ $style: Navigation;
     grid-column: 1 / 3;
     justify-self: center;
     align-self: start;
-    @include media($screen-tablet) {
+    @include media($screen-tablet-large) {
       grid-column: 1 / 2;
       justify-self: start;
     }
@@ -100,7 +100,7 @@ $style: Navigation;
     justify-self: center;
     align-self: start;
     margin-top: 88px;
-    @include media($screen-tablet) {
+    @include media($screen-tablet-large) {
       margin-top: 0;
       grid-column: 2 / 3;
       justify-self: end;
@@ -109,11 +109,11 @@ $style: Navigation;
   &__contact {
     &._mnone {
       display: none;
-      @include media($screen-tablet) {
+      @include media($screen-tablet-large) {
         display: flex;
       }
     }
-    @include media($screen-tablet) {
+    @include media($screen-tablet-large) {
       pointer-events: all;
       grid-row: 1 / 3;
       grid-column: 2 / 3;
@@ -124,7 +124,7 @@ $style: Navigation;
   &__location {
     &--mnone {
       display: none;
-      @include media($screen-tablet) {
+      @include media($screen-tablet-large) {
         display: inline-flex;
       }
     }

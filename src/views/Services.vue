@@ -4,8 +4,8 @@
       <dark-image class="Services__bg" :src="require('@/assets/images/Services.jpg')" />
       <ul class="Services__list">
         <service
-          :class="['Services__item', { 'Services__item--middle': idx === 1 }]"
-          :style="{ 'animation-delay': `0.${idx * 2}s` }"
+          :class="['Services__item', { _top: [1, 2].includes(idx), _bottom: [5, 6].includes(idx) }]"
+          :style="{ 'animation-delay': `0.${idx * 10}s` }"
           v-for="(item, idx) in services"
           :name="item.name"
           :price="item.price"
@@ -49,13 +49,14 @@ export default {
 }
 .Services {
   overflow-y: auto;
-  @include media($screen-tablet) {
+  @include media($screen-tablet-large) {
     padding-bottom: 0;
   }
   &__container {
+    position: relative;
     padding: 200px 34px 34px;
     @include flex-col(center, stretch);
-    @include media($screen-tablet) {
+    @include media($screen-tablet-large) {
       padding: 128px 64px 64px;
       min-height: 100vh;
     }
@@ -65,12 +66,9 @@ export default {
     width: 100%;
     margin: 0 auto;
     margin-bottom: 24px;
-    @include media($screen-tablet) {
+    @include media($screen-tablet-large) {
       @include flex(center, center);
       flex-wrap: wrap;
-    }
-    @include media($screen-tablet-large) {
-      margin-bottom: 32px;
     }
   }
   &__item {
@@ -78,21 +76,26 @@ export default {
     &:not(:last-child) {
       margin-bottom: 24px;
     }
-    &--middle {
-      @include media($screen-tablet) {
-        top: -72px;
+    &._top {
+      @include media($screen-tablet-large) {
+        top: -82px;
       }
     }
-    @include media($screen-tablet) {
-      flex: 1 1 33.3%;
-      max-width: 40%;
+    &._bottom {
+      @include media($screen-tablet-large) {
+        bottom: -82px;
+      }
+    }
+    @include media($screen-tablet-large) {
+      flex: 1 1 25%;
+      max-width: 25%;
       &:not(:last-child) {
         margin-bottom: 36px;
       }
       margin-bottom: 36px;
     }
     @include media($screen-fullhd) {
-      flex-basis: 33.3%;
+      flex-basis: 25%;
       &:not(:last-child) {
         margin-bottom: 42px;
       }
@@ -100,11 +103,15 @@ export default {
     }
     animation-fill-mode: both;
     animation-name: fadeInDown;
-    animation-duration: 0.4s;
+    animation-duration: 0.5s;
     animation-timing-function: ease-in;
   }
   &__button {
     align-self: center;
+    @include media($screen-tablet-large) {
+      position: absolute;
+      transform: translateY(-42px);
+    }
   }
   &__more {
     position: absolute;

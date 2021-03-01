@@ -86,7 +86,7 @@ $style: ContactLink;
     @include transition(width, opacity);
     transition-duration: 1;
   }
-  @include media($screen-tablet) {
+  @include media($screen-tablet-large) {
     &._visible {
       &:after {
         width: calc(100% + 24px);
@@ -104,7 +104,7 @@ $style: ContactLink;
     @include svg($H24, $mocca);
     @include transition(transform);
     margin-right: 14px;
-    @include media($screen-tablet) {
+    @include media($screen-tablet-large) {
       margin-right: 0;
       margin-left: 14px;
     }
@@ -126,7 +126,7 @@ $style: ContactLink;
       }
     }
     &--dnone {
-      @include media($screen-tablet) {
+      @include media($screen-tablet-large) {
         display: none;
       }
     }
