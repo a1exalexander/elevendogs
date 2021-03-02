@@ -32,6 +32,38 @@ import DarkImage from '../components/common/DarkImage.vue';
 import AppButton from '../components/common/AppButton.vue';
 import AppFooter from '../components/common/AppFooter.vue';
 
+const slidesData = [
+  {
+    title: 'досвідчені барбери',
+    image: Slide1,
+  },
+  {
+    title: 'приємна компанія',
+    image: Slide2,
+  },
+  {
+    title: 'у нас є смак',
+    image: Slide3,
+  },
+  {
+    title: 'справжні чоловіки',
+    image: Slide4,
+  },
+];
+
+const images = slidesData.map(({ image }) => image);
+
+function preload(imageArray, index) {
+  const idx = index || 0;
+  if (imageArray && imageArray.length > idx) {
+    const img = new Image();
+    img.onload = () => {
+      preload(imageArray, idx + 1);
+    };
+    img.src = images[idx];
+  }
+}
+
 export default {
   name: 'Home',
   components: { AppButton, DarkImage, AppFooter },
@@ -39,24 +71,7 @@ export default {
     return {
       timer: null,
       activeSlide: 0,
-      slides: [
-        {
-          title: 'досвідчені барбери',
-          image: Slide1,
-        },
-        {
-          title: 'приємна компанія',
-          image: Slide2,
-        },
-        {
-          title: 'у нас є смак',
-          image: Slide3,
-        },
-        {
-          title: 'справжні чоловіки',
-          image: Slide4,
-        },
-      ],
+      slides: slidesData,
     };
   },
   methods: {
@@ -150,6 +165,7 @@ export default {
     },
   },
   mounted() {
+    preload();
     this.timer = setInterval(() => {
       this.next();
     }, 5000);
