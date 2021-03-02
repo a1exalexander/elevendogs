@@ -88,9 +88,6 @@ export default {
       this.onResize();
     });
   },
-  created() {
-    this.onResize();
-  },
   unmounted() {
     window.removeEventListener('resize', this.onResize);
   },
