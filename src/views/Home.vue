@@ -1,7 +1,7 @@
 <template>
   <div class="Home" v-swipe="onSwipe" v-wheel="onSwipe">
     <div v-show="false">
-      <img v-for="slide in slides" :key="slide.title" :src="slide.image" rel="preload" />
+      <img v-for="item in slides" :key="item.title" :src="item.image" rel="preload" />
     </div>
     <transition
       appear
@@ -128,7 +128,8 @@ export default {
     },
     enterImage(el, done) {
       const tl = new TimelineMax();
-      tl.to(el, 0.5, {
+      tl.to(el, {
+        duration: 0.5,
         scale: 1,
         filter: `grayscale(0) brightness(0.4)`,
         ease: Power4.easeInOut,
