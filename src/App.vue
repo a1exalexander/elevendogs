@@ -82,14 +82,14 @@ export default {
     },
   },
   mounted() {
-    this.onResize();
     document.dispatchEvent(new Event('render-event'));
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.onResize);
+      this.onResize();
+    });
   },
   created() {
     this.onResize();
-    this.$nextTick(() => {
-      window.addEventListener('resize', this.onResize);
-    });
   },
   unmounted() {
     window.removeEventListener('resize', this.onResize);
