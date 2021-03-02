@@ -82,10 +82,13 @@ export default {
     },
   },
   mounted() {
+    this.onResize();
     document.dispatchEvent(new Event('render-event'));
+  },
+  created() {
+    this.onResize();
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize);
-      this.onResize();
     });
   },
   unmounted() {
