@@ -34,7 +34,10 @@ $style: AppContact;
   }
   &__item {
     &:not(:last-child) {
-      margin-bottom: 24px;
+      margin-bottom: 18px;
+      @include media($screen-iphone-plus) {
+        margin-bottom: 24px;
+      }
     }
     &--mtless {
       margin-top: -2px;

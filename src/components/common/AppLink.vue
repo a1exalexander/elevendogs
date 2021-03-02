@@ -41,7 +41,6 @@ export default {
     user-select: all;
   }
   &._large {
-    font-size: $H17;
     @include media($screen-iphone-plus) {
       font-size: $H22;
     }

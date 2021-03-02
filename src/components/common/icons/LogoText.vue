@@ -170,11 +170,15 @@ export default {
 
 <style lang="scss">
 .LogoText {
-  width: 284;
-  height: 96px;
+  width: 231px;
+  height: 78px;
   fill: transparent;
   stroke: darken($mocca, 20%);
   transform-origin: center center;
+  @include media($screen-iphone-plus) {
+    width: 284px;
+    height: 96px;
+  }
   &__white {
     stroke: $white;
   }

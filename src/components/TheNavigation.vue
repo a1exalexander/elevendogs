@@ -100,7 +100,7 @@ $style: Navigation;
     grid-column: 1 / 3;
     justify-self: center;
     align-self: start;
-    margin-top: 130px;
+    margin-top: 100px;
     @include media($screen-iphone-6) {
       margin-top: 140px;
     }

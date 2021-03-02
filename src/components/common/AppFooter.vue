@@ -25,7 +25,14 @@ export default {
     display: none;
   }
   &__contact {
-    margin-bottom: 34px;
+    margin-bottom: 22px;
+    @include media($screen-iphone-plus) {
+      margin-bottom: 34px;
+    }
+  }
+  &__location {
+    display: block;
+    padding-right: 50px;
   }
   padding: 34px;
 }

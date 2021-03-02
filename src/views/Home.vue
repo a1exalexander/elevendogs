@@ -170,7 +170,7 @@ export default {
     display: block;
   }
   &__container {
-    padding: 210px 34px 0;
+    padding: 180px 34px 0;
     @include flex-col(space-between, stretch);
     @include media($screen-iphone-6) {
       padding: 240px 34px 0;
@@ -191,7 +191,10 @@ export default {
     width: 100%;
     @include flex-col(flex-start, center);
     position: relative;
-    min-height: 130px;
+    min-height: 90px;
+    @include media($screen-iphone-6) {
+      min-height: 130px;
+    }
     @include media($screen-iphone-plus) {
       min-height: 150px;
     }
@@ -205,11 +208,14 @@ export default {
   &__title {
     width: 100%;
     position: absolute;
-    @include text($H48, 600, $mocca);
+    @include text($H32, 600, $mocca);
     font-family: $secondary-font;
     text-transform: uppercase;
     line-height: 101%;
     text-align: center;
+    @include media($screen-iphone-6) {
+      font-size: $H48;
+    }
     @include media($screen-iphone-plus) {
       font-size: $H54;
     }
