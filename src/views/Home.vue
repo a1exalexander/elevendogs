@@ -162,6 +162,8 @@ export default {
 
 <style lang="scss">
 .Home {
+  -webkit-overflow-scrolling: touch;
+  touch-action: manipulation;
   @include flex-col(space-between, stretch);
   @include media($screen-tablet-large) {
     padding-bottom: 0;

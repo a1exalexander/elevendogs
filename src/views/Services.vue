@@ -50,6 +50,8 @@ export default {
 }
 .Services {
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: manipulation;
   @include media($screen-tablet-large) {
     padding-bottom: 0;
   }
