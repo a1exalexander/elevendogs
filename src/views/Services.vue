@@ -49,7 +49,8 @@ export default {
   }
 }
 .Services {
-  overflow-y: auto;
+  max-height: 100vh;
+  overflow-y: scroll;
   @include media($screen-tablet-large) {
     padding-bottom: 0;
   }

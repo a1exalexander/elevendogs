@@ -136,7 +136,6 @@ export default {
       const mainText = this.$refs?.logoTextMain?.children;
       gsap.set(this.$refs.logoTextWrapper, { strokeDasharray: 120, strokeDashoffset: 120 });
       mainText.forEach((path, idx) => {
-        console.log(path);
         const delay = idx * 0.2;
         const duration = 1;
         gsap.to(path, { strokeDashoffset: 0, delay, duration, ease: 'ease-in' });

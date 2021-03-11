@@ -6,7 +6,7 @@
     @scroll="onScroll"
     class="App__view"
     v-slot="{ Component }"
-    :style="{ minHeight: height }"
+    :style="{ height }"
   >
     <transition @beforeEnter="beforeEnter" @enter="enter" @leave="leave" :css="false" mode="out-in">
       <component :is="Component" />
@@ -41,7 +41,7 @@ export default {
       const $html = document.documentElement;
       const $app = document.getElementById('app');
       const height = window && window.innerHeight ? `${window.innerHeight}px` : '100vh';
-      const width = window && window.innerWidth ? window.innerWidth : 0;
+      const width = window && window.innerWidth ? `${window.innerWidth}px` : 0;
       if ($html && $app && (this.height !== height || this.width !== width)) {
         $html.style.height = height;
         $app.style.height = height;
@@ -107,6 +107,8 @@ html {
 }
 .App__view {
   width: 100%;
+  max-height: 100vh;
+  overflow-y: scroll;
 }
 .fade-enter-active,
 .fade-leave-active {
