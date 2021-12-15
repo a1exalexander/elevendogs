@@ -69,14 +69,14 @@ export default {
       });
     },
     onScroll(e) {
-      if (this.$route.name === routeTypes.SERVICES) {
+      if (this.$route.name === routeTypes.SERVICES || this.$route.name === routeTypes.COURSES) {
         this.scrollTop = e.target.scrollTop;
       }
     },
   },
   watch: {
     $route() {
-      if (this.$route.name === routeTypes.SERVICES) {
+      if (this.$route.name === routeTypes.SERVICES || this.$route.name === routeTypes.COURSES) {
         this.scrollTop = this.$refs.routerView.scrollTop;
       }
     },

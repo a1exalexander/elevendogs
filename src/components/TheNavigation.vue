@@ -45,7 +45,8 @@ export default {
     },
     toOpacity(min, max) {
       if (this.viewportWidth.value >= 860) return 1;
-      if (this.$route.name !== routeTypes.SERVICES) return 1;
+      if (this.$route.name !== routeTypes.SERVICES && this.$route.name !== routeTypes.COURSES)
+        return 1;
       const offset = max - min;
       if (this.scrollTop > max) return 0;
       if (this.scrollTop >= min) {
@@ -104,7 +105,7 @@ $style: Navigation;
     @include media($screen-iphone-6) {
       margin-top: 140px;
     }
-     @include media($screen-iphone-plus) {
+    @include media($screen-iphone-plus) {
       margin-top: 150px;
     }
     @include media($screen-tablet-large) {

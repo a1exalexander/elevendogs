@@ -7,6 +7,9 @@
       <li class="Menu__item">
         <app-link large class="Menu__link" :to="{ name: routeTypes.SERVICES }">Послуги</app-link>
       </li>
+       <li class="Menu__item">
+        <app-link large class="Menu__link" :to="{ name: routeTypes.COURSES }">Курси</app-link>
+      </li>
     </ul>
   </nav>
 </template>
