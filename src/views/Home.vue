@@ -27,10 +27,11 @@
 
 <script>
 import gsap, { TimelineMax, Power4 } from 'gsap';
-import Slide1 from '@/assets/images/Slide1.jpg';
-import Slide2 from '@/assets/images/Slide2.jpg';
-import Slide3 from '@/assets/images/Slide3.jpg';
-import Slide4 from '@/assets/images/Slide4.jpg';
+// import Slide1 from '@/assets/images/Slide1.jpg';
+// import Slide2 from '@/assets/images/Slide2.jpg';
+// import Slide3 from '@/assets/images/Slide3.jpg';
+// import Slide4 from '@/assets/images/Slide4.jpg';
+import Flag from '@/assets/images/flag.jpeg';
 import DarkImage from '../components/common/DarkImage.vue';
 import AppButton from '../components/common/AppButton.vue';
 import AppFooter from '../components/common/AppFooter.vue';
@@ -45,19 +46,19 @@ export default {
       slides: [
         {
           title: 'досвідчені барбери',
-          image: Slide1,
+          image: Flag,
         },
         {
           title: 'приємна компанія',
-          image: Slide2,
+          image: Flag,
         },
         {
           title: 'у нас є смак',
-          image: Slide3,
+          image: Flag,
         },
         {
           title: 'справжні чоловіки',
-          image: Slide4,
+          image: Flag,
         },
       ],
     };
