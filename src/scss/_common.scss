@@ -6,6 +6,10 @@
   touch-action: manipulation;
 }
 
+html {
+  background-color: $black;
+}
+
 body {
   background-color: $black;
   -webkit-font-smoothing: antialiased;
