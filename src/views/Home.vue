@@ -172,8 +172,6 @@ export default {
 
 <style lang="scss">
 .Home {
-  overflow: hidden;
-  max-width: 100vw;
   flex-grow: 1;
   @include flex-col(space-between, stretch);
   @include media($screen-tablet-large) {
@@ -181,8 +179,10 @@ export default {
     display: block;
   }
   &__container {
+    overflow: hidden;
+    max-width: 100vw;
     flex-grow: 1;
-    padding: 0 32px ;
+    padding: 0 32px;
     @include flex-col(flex-start, stretch);
     @include media($screen-tablet-large) {
       @include flex(space-between, center);
