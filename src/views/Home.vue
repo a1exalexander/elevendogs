@@ -42,11 +42,11 @@ export default {
       activeSlide: 0,
       slides: [
         {
-          title: 'русский корабль',
+          title: 'рускій воєнний корабль',
           image: Flag,
         },
         {
-          title: 'иди нахуй',
+          title: 'іди нах#й',
           image: Flag,
         },
         {
