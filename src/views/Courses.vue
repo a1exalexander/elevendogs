@@ -1,7 +1,7 @@
 <template>
-  <div class="Courses" @scroll="onScroll" :style="{ height: viewportHeight.value }">
+  <div class="Courses">
     <div class="Courses__container">
-      <dark-image class="Services__bg" :src="require('@/assets/images/Courses.jpg')" />
+      <!-- <dark-image class="Services__bg" :src="require('@/assets/images/Courses.jpg')" /> -->
       <div class="Courses__content">
         <div class="Courses__row">
           <div v-for="course in courses" :key="course.name" class="Courses__col">
@@ -22,13 +22,13 @@
   </div>
 </template>
 <script>
-import DarkImage from '../components/common/DarkImage.vue';
+// import DarkImage from '../components/common/DarkImage.vue';
 import AppFooter from '../components/common/AppFooter.vue';
 import courses from '../../courses.json';
 
 export default {
   name: 'Courses',
-  components: { DarkImage, AppFooter },
+  components: { AppFooter },
   inject: ['viewportHeight'],
   data() {
     return {
@@ -40,25 +40,26 @@ export default {
 
 <style lang="scss">
 .Courses {
-  max-height: 100vh;
-  overflow-y: scroll;
+  flex-grow: 1;
+  /* max-height: 100vh; */
+  /* overflow-y: scroll; */
   @include media($screen-tablet-large) {
     padding-bottom: 0;
   }
   &__container {
-    padding: 220px 34px 34px;
+    padding: 34px;
     @include flex-col(center, stretch);
     @include media($screen-iphone-6) {
-      padding: 250px 34px 34px;
+      padding: 34px;
     }
     @include media($screen-tablet-large) {
-      padding: 180px 74px 80px 48px;
+      padding: 0 36px 36px;
       min-height: 100vh;
     }
   }
   &__content {
     @include media {
-      max-height: calc(100vh - 180px - 80px);
+      /* max-height: calc(100vh - 180px - 80px); */
       overflow-y: auto;
     }
   }
@@ -72,7 +73,9 @@ export default {
   &__col {
     flex: 1 1 100%;
     max-width: 100%;
-    margin-bottom: 32px;
+    &:not(:last-child) {
+      margin-bottom: 32px;
+    }
     @include media {
       flex: 1 1 calc(100% / 3);
       max-width: calc(100% / 3);
@@ -81,19 +84,20 @@ export default {
     }
   }
   &__title {
-    @include text($H16, 500, $mocca);
-    margin-bottom: 16px;
+    @include text($H20, 700, $mocca);
+    margin-bottom: 20px;
   }
   &__subtitle {
-    @include text($H14, 500, $mocca);
-    margin-bottom: 12px;
+    @include text($H18, 700, $mocca);
+    margin-bottom: 16px;
   }
   &__list {
     padding-left: 16px;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
   }
   &__item {
-    @include text($H12, 400, $mocca);
+    @include text($H16, 400, $mocca);
+    line-height: 150%;
     margin-bottom: 4px;
     &:last-child {
       margin-bottom: 0;

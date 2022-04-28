@@ -1,5 +1,5 @@
 <template>
-  <img class="DarkImage" :src="src" :alt="alt" rel="preload" />
+  <img class="DarkImage" :src="src" alt="" rel="preload" />
 </template>
 
 <script>
@@ -21,10 +21,10 @@ export default {
 <style lang="scss">
 .DarkImage {
   filter: brightness(0.4);
-  position: absolute;
+  position: fixed;
   @include position();
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   overflow: hidden;
   object-fit: cover;
   z-index: -1;

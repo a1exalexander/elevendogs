@@ -34,6 +34,6 @@ export default {
     display: block;
     padding-right: 50px;
   }
-  padding: 34px;
+  padding: 34px 34px 64px;
 }
 </style>

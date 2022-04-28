@@ -1,6 +1,6 @@
 <template>
-  <div class="Home" v-swipe="onSwipe" v-wheel="onSwipe">
-    <div v-show="false">
+  <div class="Home">
+    <!-- <div v-show="false">
       <img v-for="item in slides" :key="item.title" :src="item.image" rel="preload" />
     </div>
     <transition
@@ -12,7 +12,7 @@
       mode="out-in"
     >
       <dark-image :src="slide.image" :key="slide.title" />
-    </transition>
+    </transition> -->
     <div class="Home__container">
       <div class="Home__title-container">
         <transition appear @enter="enterTitle" @leave="leaveTitle" :css="false">
@@ -27,39 +27,44 @@
 
 <script>
 import gsap, { TimelineMax, Power4 } from 'gsap';
-// import Slide1 from '@/assets/images/Slide1.jpg';
-// import Slide2 from '@/assets/images/Slide2.jpg';
-// import Slide3 from '@/assets/images/Slide3.jpg';
-// import Slide4 from '@/assets/images/Slide4.jpg';
 import Flag from '@/assets/images/flag.jpeg';
-import DarkImage from '../components/common/DarkImage.vue';
 import AppButton from '../components/common/AppButton.vue';
 import AppFooter from '../components/common/AppFooter.vue';
 
+const ANIMATION_DELAY = 4000;
+
 export default {
   name: 'Home',
-  components: { AppButton, DarkImage, AppFooter },
+  components: { AppButton, AppFooter },
   data() {
     return {
       timer: null,
       activeSlide: 0,
       slides: [
         {
-          title: 'досвідчені барбери',
+          title: 'русский корабль',
           image: Flag,
         },
         {
-          title: 'приємна компанія',
+          title: 'иди нахуй',
+          image: Flag,
+        },
+        {
+          title: 'ми досвідчені барбери',
+          image: Flag,
+        },
+        {
+          title: 'і приємна компанія',
           image: Flag,
         },
         {
           title: 'у нас є смак',
           image: Flag,
         },
-        {
-          title: 'справжні чоловіки',
-          image: Flag,
-        },
+        // {
+        //   title: 'ми справжні чоловіки',
+        //   image: Flag,
+        // },
       ],
     };
   },
@@ -80,7 +85,7 @@ export default {
       this.stop();
       this.timer = setInterval(() => {
         this.next();
-      }, 5000);
+      }, ANIMATION_DELAY);
     },
     stop() {
       clearInterval(this.timer);
@@ -157,7 +162,7 @@ export default {
   mounted() {
     this.timer = setInterval(() => {
       this.next();
-    }, 5000);
+    }, ANIMATION_DELAY);
   },
   beforeUnmount() {
     this.autoplay();
@@ -167,24 +172,21 @@ export default {
 
 <style lang="scss">
 .Home {
+  overflow: hidden;
+  max-width: 100vw;
+  flex-grow: 1;
   @include flex-col(space-between, stretch);
   @include media($screen-tablet-large) {
     padding-bottom: 0;
     display: block;
   }
   &__container {
-    padding: 180px 34px 0;
-    @include flex-col(space-between, stretch);
-    @include media($screen-iphone-6) {
-      padding: 240px 34px 0;
-    }
-    @include media($screen-iphone-plus) {
-      padding: 260px 34px 0;
-    }
+    flex-grow: 1;
+    padding: 0 32px ;
+    @include flex-col(flex-start, stretch);
     @include media($screen-tablet-large) {
       @include flex(space-between, center);
-      padding: 130px 64px;
-      min-height: 100vh;
+      padding: 64px;
     }
     @include media {
       padding: 80px 164px 140px 84px;
@@ -192,14 +194,15 @@ export default {
   }
   &__title-container {
     width: 100%;
-    @include flex-col(flex-start, center);
+    @include flex-col(center, center);
     position: relative;
-    min-height: 90px;
+    height: 120px;
+    margin-bottom: 32px;
     @include media($screen-iphone-6) {
-      min-height: 130px;
+      min-height: 200px;
     }
     @include media($screen-iphone-plus) {
-      min-height: 150px;
+      min-height: 200px;
     }
     @include media($screen-tablet-large) {
       min-height: auto;

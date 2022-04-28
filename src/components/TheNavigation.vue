@@ -6,6 +6,7 @@
       :to="{ name: routeTypes.HOME }"
       ><logo-text class="Navigation__logo"
     /></router-link>
+    <!-- <p>vue-global.d.ts</p> -->
     <app-menu
       :style="{ opacity: menuOpacity, pointerEvents: getPointerEvents(menuOpacity) }"
       :opacity="menuOpacity"
@@ -69,79 +70,58 @@ export default {
 <style lang="scss">
 $style: Navigation;
 .#{$style} {
+  position: relative;
   width: 100%;
-  position: absolute;
   z-index: 2;
   pointer-events: none;
   padding: 24px 16px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   @include media($screen-tablet-large) {
-    position: fixed;
     padding: 36px;
-    height: 100vh;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
   }
   &__logo-wrapper {
     @include transition(opacity);
     pointer-events: all;
-    grid-row: 1 / 2;
-    grid-column: 1 / 3;
-    justify-self: center;
-    align-self: start;
-    @include media($screen-tablet-large) {
-      grid-column: 1 / 2;
-      justify-self: start;
-    }
   }
   &__menu {
     @include transition(opacity);
     pointer-events: all;
-    grid-row: 1 / 2;
-    grid-column: 1 / 3;
-    justify-self: center;
-    align-self: start;
-    margin-top: 100px;
-    @include media($screen-iphone-6) {
-      margin-top: 140px;
-    }
-    @include media($screen-iphone-plus) {
-      margin-top: 150px;
-    }
     @include media($screen-tablet-large) {
       margin-top: 0;
-      grid-column: 2 / 3;
-      justify-self: end;
+      order: 4;
     }
   }
   &__contact {
+    @include media($screen-tablet-large) {
+      pointer-events: all;
+      order: 3;
+      position: fixed;
+      right: 32px;
+      top: 50vh;
+      transform: translateY(-50%);
+    }
     &._mnone {
       display: none;
       @include media($screen-tablet-large) {
         display: flex;
       }
     }
-    @include media($screen-tablet-large) {
-      pointer-events: all;
-      grid-row: 1 / 3;
-      grid-column: 2 / 3;
-      justify-self: end;
-      align-self: center;
-    }
   }
   &__location {
+    pointer-events: all;
+    position: relative;
     &--mnone {
       display: none;
       @include media($screen-tablet-large) {
         display: inline-flex;
+        order: 2;
       }
     }
-    pointer-events: all;
-    grid-row: 2 / 3;
-    grid-column: 1 / 3;
-    justify-self: start;
-    align-self: end;
-    position: relative;
   }
   &__link {
     &.router-link-exact-active {
@@ -154,10 +134,7 @@ $style: Navigation;
     }
   }
   &__contact-list {
-    grid-row: 1 / 3;
-    grid-column: 2 / 3;
-    justify-self: end;
-    align-self: center;
+    align-self: flex-start;
   }
 }
 </style>

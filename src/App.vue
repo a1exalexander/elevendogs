@@ -1,13 +1,7 @@
 <template>
-  <the-navigation :scroll-top="scrollTop" />
+  <the-navigation />
 
-  <router-view
-    ref="routerView"
-    @scroll="onScroll"
-    class="App__view"
-    v-slot="{ Component }"
-    :style="{ height }"
-  >
+  <router-view ref="routerView" class="App__view" v-slot="{ Component }">
     <transition @beforeEnter="beforeEnter" @enter="enter" @leave="leave" :css="false" mode="out-in">
       <component :is="Component" />
     </transition>
@@ -82,33 +76,36 @@ export default {
     },
   },
   mounted() {
-    this.onResize();
+    // this.onResize();
     document.dispatchEvent(new Event('render-event'));
   },
-  created() {
-    this.onResize();
-    this.$nextTick(() => {
-      window.addEventListener('resize', this.onResize);
-    });
-  },
-  unmounted() {
-    window.removeEventListener('resize', this.onResize);
-  },
+  // created() {
+  //   this.onResize();
+  //   this.$nextTick(() => {
+  //     window.addEventListener('resize', this.onResize);
+  //   });
+  // },
+  // unmounted() {
+  //   window.removeEventListener('resize', this.onResize);
+  // },
 };
 </script>
 
 <style lang="scss">
-html {
-  overflow: hidden;
-}
 #app {
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 .App__view {
+  flex-grow: 1;
   width: 100%;
-  max-height: 100vh;
-  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  /* height: 100vh; */
+  /* overflow-y: auto; */
 }
 .fade-enter-active,
 .fade-leave-active {

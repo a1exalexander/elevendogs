@@ -1,7 +1,7 @@
 <template>
-  <div class="Services" @scroll="onScroll" :style="{ height: viewportHeight.value }">
+  <div class="Services">
     <div class="Services__container">
-      <dark-image class="Services__bg" :src="require('@/assets/images/Services.jpg')" />
+      <!-- <dark-image class="Services__bg" :src="require('@/assets/images/Services.jpg')" /> -->
       <ul class="Services__list">
         <service
           :class="['Services__item', { _top: [1, 2].includes(idx), _bottom: [5, 6].includes(idx) }]"
@@ -9,7 +9,7 @@
           v-for="(item, idx) in services"
           :name="item.name"
           :price="item.price"
-          :href="item.href"
+          :href="`tel:${$seo.phone}`"
           :key="item.name"
         />
       </ul>
@@ -20,14 +20,13 @@
 </template>
 <script>
 import services from '../../services.json';
-import DarkImage from '../components/common/DarkImage.vue';
 import Service from '../components/common/Service.vue';
 import AppButton from '../components/common/AppButton.vue';
 import AppFooter from '../components/common/AppFooter.vue';
 
 export default {
   name: 'Services',
-  components: { DarkImage, Service, AppFooter, AppButton },
+  components: { Service, AppFooter, AppButton },
   inject: ['viewportHeight'],
   data() {
     return {
@@ -49,20 +48,21 @@ export default {
   }
 }
 .Services {
-  max-height: 100vh;
-  overflow-y: scroll;
+  flex-grow: 1;
+  /* max-height: 100vh; */
+  /* overflow-y: scroll; */
   @include media($screen-tablet-large) {
     padding-bottom: 0;
   }
   &__container {
-    padding: 220px 34px 34px;
+    padding: 34px;
     @include flex-col(center, stretch);
     @include media($screen-iphone-6) {
-      padding: 250px 34px 34px;
+      padding: 34;
     }
     @include media($screen-tablet-large) {
-      padding: 130px 64px 64px;
-      min-height: 100vh;
+      padding: 64px;
+      /* min-height: 100vh; */
     }
   }
   &__list {
