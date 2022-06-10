@@ -3,7 +3,7 @@ const PrerenderSpaPlugin = require('prerender-spa-plugin');
 const SocialTags = require('social-tags-webpack-plugin');
 const seo = require('./seo');
 
-const routes = ['/', '/services'];
+const routes = ['/', '/services', '/courses'];
 
 const productionPlugins = [
   new PrerenderSpaPlugin({
