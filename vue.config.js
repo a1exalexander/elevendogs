@@ -67,4 +67,16 @@ module.exports = {
       hiddenTitle: seo.hiddenTitle,
     },
   },
+  pluginOptions: {
+    sitemap: {
+      outputDir: './dist',
+      baseURL: seo.url,
+      urls: routes,
+      pretty: true,
+      defaults: {
+        lastmod: new Date(),
+        priority: 1,
+      },
+    },
+  },
 };

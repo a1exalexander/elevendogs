@@ -5,7 +5,7 @@ $mocca: #E3E0D8;
 
 /* ---FONT SIZE--- */
 @function calcRem($size) {
-  $remSize: $size / 16px;
+  $remSize: calc($size / 16px);
   @return #{$remSize}rem;
 }
 

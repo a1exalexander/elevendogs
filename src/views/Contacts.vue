@@ -8,7 +8,7 @@ import DarkImage from '../components/common/DarkImage.vue';
 
 export default {
   name: 'Contacts',
-  components: { DarkImage }
+  components: { DarkImage },
 };
 </script>
 

@@ -13,6 +13,6 @@
 </template>
 <script>
 export default {
-  name: 'IconInstagram'
+  name: 'IconInstagram',
 };
 </script>

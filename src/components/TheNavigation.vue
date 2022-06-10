@@ -30,7 +30,9 @@ import { routeTypes } from '../router';
 
 export default {
   name: 'TheNavigation',
-  components: { LogoText, AppMenu, AppLink, AppContact },
+  components: {
+    LogoText, AppMenu, AppLink, AppContact,
+  },
   props: {
     scrollTop: Number,
   },
@@ -46,8 +48,7 @@ export default {
     },
     toOpacity(min, max) {
       if (this.viewportWidth.value >= 860) return 1;
-      if (this.$route.name !== routeTypes.SERVICES && this.$route.name !== routeTypes.COURSES)
-        return 1;
+      if (this.$route.name !== routeTypes.SERVICES && this.$route.name !== routeTypes.COURSES) return 1;
       const offset = max - min;
       if (this.scrollTop > max) return 0;
       if (this.scrollTop >= min) {

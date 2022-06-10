@@ -1,5 +1,5 @@
 const seo = {
-  url: 'https://www.elevendogs.com.ua',
+  url: 'https://elevendogs.com.ua',
   type: 'website',
   title: 'Eleven Dogs | Кременчук Барбершоп',
   siteName: 'Barbershop',

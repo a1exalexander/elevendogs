@@ -26,8 +26,8 @@ export default {
   data() {
     return {
       scrollTop: 0,
-      height: `100vh`,
-      width: `100vw`,
+      height: '100vh',
+      width: '100vw',
     };
   },
   methods: {

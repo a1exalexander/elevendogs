@@ -137,7 +137,7 @@ export default {
       tl.to(el, {
         duration: 0.5,
         scale: 1,
-        filter: `grayscale(0) brightness(0.4)`,
+        filter: 'grayscale(0) brightness(0.4)',
         ease: Power4.easeInOut,
         onComplete: done,
       });

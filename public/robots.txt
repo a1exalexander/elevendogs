@@ -1,4 +1,10 @@
+# *
 User-agent: *
 Allow: /
 
-Sitemap: https://www.elevendogs.com.ua/sitemap.xml
+# Host
+Host: https://merge.academy
+
+# Sitemaps
+Sitemap: https://merge.academy/sitemap.xml
+Sitemap: https://merge.academy/blog/sitemap.xml

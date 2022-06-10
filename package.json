@@ -6,7 +6,8 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "dev": "vue-cli-service serve",
-    "sitemap": "vue-cli-service sitemap"
+    "sitemap": "vue-cli-service sitemap",
+    "postbuild": "npm run sitemap"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -30,9 +31,9 @@
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-prettier": "^3.3.0",
     "eslint-plugin-vue": "^7.0.0-0",
-    "node-sass": "^4.12.0",
     "prerender-spa-plugin": "^3.4.0",
     "prettier": "^2.2.1",
+    "sass": "^1.52.3",
     "sass-loader": "^8.0.2",
     "vue-cli-plugin-sitemap": "~2.3.0"
   }
