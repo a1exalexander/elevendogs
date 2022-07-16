@@ -3,6 +3,10 @@
 $nav_height: 68px;
 
 .page {
+  overflow: hidden;
+  width: 100vw;
+  position: fixed;
+  @include position;
   @include flex-col;
   height: 100vh;
 }
@@ -56,6 +60,7 @@ $nav_height: 68px;
 .footer {
   flex: 0 0 $nav_height;
   padding: 24px;
+  background-color: $MAIN_COLOR;
 }
 
 .nav {
