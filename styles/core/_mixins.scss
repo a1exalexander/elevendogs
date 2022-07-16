@@ -130,7 +130,7 @@ $z-index: (
   z-index: z-index($key);
 }
 
-@mixin media($screen: $screen-desktop, $max: false) {
+@mixin media($screen: $SCREEN-DESKTOP, $max: false) {
   @if $max {
     @media screen and (max-width: calc(#{$screen} - 1px)) {
       @content;
