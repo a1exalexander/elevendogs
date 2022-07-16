@@ -3,38 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "dev": "vue-cli-service serve",
-    "sitemap": "vue-cli-service sitemap",
-    "postbuild": "npm run sitemap"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "core-js": "^3.6.5",
-    "gsap": "^3.5.1",
-    "hammerjs": "^2.0.8",
-    "social-tags-webpack-plugin": "^1.1.0",
-    "vue": "^3.0.0",
-    "vue-3-meta": "^2.4.0",
-    "vue-router": "^4.0.0-0"
+    "next": "12.2.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
-    "@vue/eslint-config-airbnb": "^5.0.2",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-config-prettier": "^7.1.0",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-prettier": "^3.3.0",
-    "eslint-plugin-vue": "^7.0.0-0",
-    "prerender-spa-plugin": "^3.4.0",
-    "prettier": "^2.2.1",
-    "sass": "^1.52.3",
-    "sass-loader": "^8.0.2",
-    "vue-cli-plugin-sitemap": "~2.3.0"
+    "@types/node": "18.0.5",
+    "@types/react": "18.0.15",
+    "@types/react-dom": "18.0.6",
+    "eslint": "8.19.0",
+    "eslint-config-next": "12.2.2",
+    "sass": "^1.53.0",
+    "typescript": "4.7.4"
   }
 }
