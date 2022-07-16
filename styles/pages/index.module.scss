@@ -1,0 +1,36 @@
+@import 'core';
+
+.page {
+  overflow: hidden;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  @include position;
+  @include flex-col;
+}
+
+.barber {
+  flex: 0 0 50%;
+  @include flex-col(space-between);
+  overflow: hidden;
+  position: relative;
+}
+
+.isMain {
+  border: 10px solid $MOCCA;
+}
+
+.isSecondary {
+  border: 10px solid $SECONDARY_YELLOW;
+  box-shadow: inset 5px 5px $SECONDARY_GREEN;
+  & > * {
+    left: 5px;
+    top: 5px;
+  }
+}
+
+.address {
+  text-align: center;
+  padding: 12px;
+  @include text(rem(14px), 500, $MOCCA);
+}
