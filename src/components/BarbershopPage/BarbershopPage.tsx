@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import styles from './BarberShopPage.module.scss';
 import Head from 'next/head';
 import Image from 'next/image';
+import styles from './BarberShopPage.module.scss';
 import { locations } from '../../../data';
 import { Container } from '../Container';
 import { Button } from '../Button';
