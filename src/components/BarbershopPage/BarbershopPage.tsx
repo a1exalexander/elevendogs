@@ -1,18 +1,18 @@
 import React, { FC } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
-import styles from './BarberShopPage.module.scss';
 import { locations } from '../../../data';
 import { Container } from '../Container';
 import { Button } from '../Button';
+import styles from './BarbershopPage.module.scss';
 
-export interface BarberShopPageProps {
+export interface BarbershopPageProps {
   data: typeof locations[keyof typeof locations];
   logo: string;
   color: string;
 }
 
-export const BarberShopPage: FC<BarberShopPageProps> = ({
+export const BarbershopPage: FC<BarbershopPageProps> = ({
   data,
   logo,
   color,
@@ -67,4 +67,4 @@ export const BarberShopPage: FC<BarberShopPageProps> = ({
   );
 };
 
-export default BarberShopPage;
+export default BarbershopPage;
