@@ -6,7 +6,6 @@ $nav_height: 68px;
   overflow: hidden;
   width: 100vw;
   position: fixed;
-  overflow-y: scroll;
   @include position;
   @include flex-col;
   height: calc(100vh - calc(100vh - 100%));
@@ -29,8 +28,16 @@ $nav_height: 68px;
   @include flex-col(space-between);
   overflow: hidden;
   position: relative;
+  & > *:first-child {
+    @include transition(transform);
+  }
   @include media($SCREEN_TABLET_LARGE) {
     justify-content: center;
+  }
+  @include hover {
+    & > *:first-child {
+      transform: scale(0.9);
+    }
   }
 }
 
@@ -51,6 +58,7 @@ $nav_height: 68px;
   text-align: center;
   padding: 0 24px 24px;
   @include text(rem(15px), 500, $MOCCA);
+  line-height: 150%;
   @include media($SCREEN_TABLET_LARGE) {
     font-size: 18px;
     position: absolute;

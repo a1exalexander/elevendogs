@@ -1,0 +1,13 @@
+@import 'core';
+
+.container {
+  padding-left: 16px;
+  padding-right: 16px;
+  max-width: $SCREEN-HD;
+  width: 100%;
+  margin: 0 auto;
+  @include media {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+}

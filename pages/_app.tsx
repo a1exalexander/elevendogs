@@ -32,9 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="og:title" content={seo.title} />
         <meta name="og:description" content={seo.description} />
         <meta name="og:type" content="website" />
-        <meta name="og:url" content={seo.url} />
         <meta name="theme-color" content="#1a1a1a" />
-
       </Head>
       <Component {...pageProps} />
     </>

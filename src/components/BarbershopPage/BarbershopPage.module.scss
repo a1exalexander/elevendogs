@@ -1,0 +1,104 @@
+@import 'core';
+
+.container {
+  padding-top: 80px;
+  min-height: 100vh;
+  @include flex-col;
+  @include media($SCREEN_TABLET_SMALL) {
+    padding-top: 60px;
+  }
+}
+
+.top {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 12px;
+  @include flex(center, center);
+  flex-wrap: wrap;
+  background-color: $MOCCA;
+  @include media($SCREEN_TABLET_LARGE) {
+    flex-direction: row
+  }
+}
+
+.headerContainer {
+  @include flex-col(center, center);
+  @include media($SCREEN_TABLET_LARGE) {
+    flex-direction: row;
+  }
+}
+
+.logo {
+  width: 100%;
+  max-width: 300px;
+  position: relative;
+  @include media($SCREEN_TABLET_LARGE) {
+    margin: 0 32px;
+  }
+}
+
+.address {
+  @include text(rem(16px), 500, $MAIN_COLOR);
+  text-align: center;
+  margin: 0 12px;
+  line-height: 130%;
+  @include media($SCREEN_TABLET_LARGE) {
+    font-size: rem(20px);
+  }
+}
+
+.main {
+  flex-grow: 1;
+  padding: 16px 0;
+}
+
+.mainContainer {
+  @include flex-col;
+}
+
+.button {
+  align-self: center;
+}
+
+.list {
+  width: 100%;
+  max-width: 600px;
+  align-self: center;
+  padding: 60px 0;
+}
+
+.listItem {
+  &:not(:last-of-type) {
+    margin-bottom: 20px;
+  }
+}
+
+.listItem {
+  @include flex(space-between, baseline);
+}
+
+.serviceName {
+  @include text(rem(16px), 500, $MOCCA);
+  &::first-letter {
+    text-transform: uppercase;
+  }
+  @include media($SCREEN_TABLET_SMALL) {
+    font-size: rem(24px);
+  }
+}
+
+.priceValue {
+  @include text(rem(20px), 700, $MOCCA);
+  @include media($SCREEN_TABLET_SMALL) {
+    font-size: rem(32px);
+  }
+}
+
+.priceCurrency {
+  @include text(rem(12px), 700, $MOCCA);
+  @include media($SCREEN_TABLET_SMALL) {
+    font-size: rem(16px);
+  }
+}

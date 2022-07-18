@@ -43,8 +43,9 @@
 }
 
 @mixin title() {
-  @include text(rem(32px), 700, $color-neutral-black);
-  @include media($screen-tablet-large) {
+  @include text(rem(32px), 700, $MOCCA);
+  text-transform: uppercase;
+  @include media($SCREEN-TABLET-LARGE) {
     font-size: rem(40px);
   }
 }
