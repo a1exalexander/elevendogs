@@ -8,12 +8,13 @@ $nav_height: 68px;
   position: fixed;
   @include position;
   @include flex-col;
-  height: 100vh;
+  height: calc(100vh - calc(100vh - 100%))
 }
 
 .barbers {
-  flex: 0 1 calc(100% - $nav_height);
-  max-height: calc(100% - $nav_height);
+  // flex: 0 1 calc(100% - $nav_height);
+  // max-height: calc(100% - $nav_height);
+  flex: 1 1;
   @include flex-col;
   @include media($SCREEN_TABLET_LARGE) {
     flex-direction: row;
