@@ -6,6 +6,7 @@ $nav_height: 68px;
   overflow: hidden;
   width: 100vw;
   position: fixed;
+  overflow-y: scroll;
   @include position;
   @include flex-col;
   height: calc(100vh - calc(100vh - 100%));
