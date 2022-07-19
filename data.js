@@ -14,9 +14,8 @@ export const locations = {
     name: "Eleven Dogs",
     phone: "+380962210799",
     address: "Кременчук, вул. Івана Мазепи, 28",
-    title: "Youngsters - Eleven Dogs | Кременчук Барбершоп",
-    description:
-      "Барбершоп в районі зупинки Водоканал м. Кременчук. Пострижись як в прошлий раз!",
+    title: "Eleven Dogs | Кременчук Барбершоп",
+    description: "Барбершоп в центрі Кременчука. Пострижись як в прошлий раз!",
     services: [
       {
         name: "стрижка",
@@ -55,10 +54,11 @@ export const locations = {
   secondary: {
     instagram: "eleven.dogs",
     name: "Eleven Dogs Youngsters",
-    phone: "+380962210799",
+    phone: "+380678822011",
     address: "Кременчук, проспект Свободы 39/43",
-    title: "Eleven Dogs | Кременчук Барбершоп",
-    description: "Барбершоп в центрі Кременчука. Пострижись як в прошлий раз!",
+    title: "Youngsters - Eleven Dogs | Кременчук Барбершоп",
+    description:
+      "Барбершоп в районі зупинки Водоканал м. Кременчук. Пострижись як в прошлий раз!",
     services: [
       {
         name: "стрижка",
