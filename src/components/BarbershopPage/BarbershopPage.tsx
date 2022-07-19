@@ -1,21 +1,24 @@
-import React, { FC } from 'react';
-import Head from 'next/head';
-import Image from 'next/image';
-import { locations } from '../../../data';
-import { Container } from '../Container';
-import { Button } from '../Button';
-import styles from './BarbershopPage.module.scss';
+import React, { FC, ReactNode } from "react";
+import Head from "next/head";
+import Image from "next/image";
+import { locations } from "../../../data";
+import { Container } from "../Container";
+import { Button } from "../Button";
+import icon from "../../assets/icons8-instagram.svg";
+import styles from "./BarbershopPage.module.scss";
 
 export interface BarbershopPageProps {
   data: typeof locations[keyof typeof locations];
   logo: string;
   color: string;
+  renderMap?: ReactNode;
 }
 
 export const BarbershopPage: FC<BarbershopPageProps> = ({
   data,
   logo,
   color,
+  renderMap,
 }) => {
   return (
     <>
@@ -41,11 +44,32 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
                 alt={data.name}
               />
             </div>
+            <a
+              href={`https://www.instagram.com/${data.instagram}/`}
+              rel="noreferrer"
+              target="_blank"
+              className={styles.instagram}
+            >
+              <span className={styles.icon}>
+                <Image
+                  priority
+                  loading="eager"
+                  layout="responsive"
+                  src={icon}
+                  alt="instagram"
+                />
+              </span>
+              <span className={styles.instaText}>{data.instagram}</span>
+            </a>
           </Container>
         </header>
         <main className={styles.main}>
           <Container className={styles.mainContainer}>
-            <Button className={styles.button} href={`tel:${data.phone}`}>
+            <Button
+              className={styles.button}
+              href={`tel:${data.phone}`}
+              backgroundColor={color}
+            >
               Записатися
             </Button>
             <ul className={styles.list}>
@@ -61,7 +85,11 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
             </ul>
           </Container>
         </main>
-        <footer className={styles.footer}></footer>
+        <footer className={styles.footer}>
+          <Container className={styles.mainContainer}>
+            <div className={styles.map}>{renderMap}</div>
+          </Container>
+        </footer>
       </div>
     </>
   );

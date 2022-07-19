@@ -1,4 +1,4 @@
-@import 'core';
+@import "core";
 
 .container {
   padding-top: 80px;
@@ -20,15 +20,12 @@
   flex-wrap: wrap;
   background-color: $MOCCA;
   @include media($SCREEN_TABLET_LARGE) {
-    flex-direction: row
+    flex-direction: row;
   }
 }
 
 .headerContainer {
   @include flex-col(center, center);
-  @include media($SCREEN_TABLET_LARGE) {
-    flex-direction: row;
-  }
 }
 
 .logo {
@@ -102,4 +99,25 @@
   @include media($SCREEN_TABLET_SMALL) {
     font-size: rem(16px);
   }
+}
+
+.instagram {
+  @include flex(flex-start, center);
+  @include text(rem(12px), 400, $MOCCA);
+  padding-bottom: 16px;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+}
+
+.map {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  height: 300px;
+  @include flex(center, center);
+  padding: 0 0 24px;
 }
