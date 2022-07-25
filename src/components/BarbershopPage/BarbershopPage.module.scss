@@ -1,4 +1,4 @@
-@import "core";
+@import 'core';
 
 .container {
   padding-top: 80px;
@@ -52,8 +52,15 @@
   padding: 16px 0;
 }
 
+.buttonWrapper {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  @include flex-col(flex-start, center);
+}
+
 .mainContainer {
   @include flex-col;
+  margin-bottom: 40px;
 }
 
 .button {
@@ -120,4 +127,8 @@
   height: 300px;
   @include flex(center, center);
   padding: 0 0 24px;
+}
+
+.photoGrid {
+  margin-bottom: 40px;
 }

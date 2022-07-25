@@ -1,17 +1,22 @@
-import React, { FC, ReactNode } from "react";
-import Head from "next/head";
-import Image from "next/image";
-import { locations } from "../../../data";
-import { Container } from "../Container";
-import { Button } from "../Button";
-import icon from "../../assets/icons8-instagram.svg";
-import styles from "./BarbershopPage.module.scss";
+import React, { FC, ReactNode } from 'react';
+import Head from 'next/head';
+import Image from 'next/image';
+import { locations } from '../../../data';
+import { Container } from '../Container';
+import { Button } from '../Button';
+import icon from '../../assets/icons8-instagram.svg';
+import styles from './BarbershopPage.module.scss';
+import clsx from 'clsx';
 
 export interface BarbershopPageProps {
   data: typeof locations[keyof typeof locations];
   logo: string;
   color: string;
   renderMap?: ReactNode;
+  photoGrid?: {
+    src: string;
+    type: 'big' | 'horizontal' | 'vertical' | 'square';
+  }[];
 }
 
 export const BarbershopPage: FC<BarbershopPageProps> = ({
@@ -19,6 +24,7 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
   logo,
   color,
   renderMap,
+  photoGrid,
 }) => {
   return (
     <>
@@ -63,15 +69,31 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
             </a>
           </Container>
         </header>
+        <Container className={styles.buttonWrapper}>
+          <Button
+            className={styles.button}
+            href={`tel:${data.phone}`}
+            backgroundColor={color}
+          >
+            Записатися
+          </Button>
+        </Container>
+        <div className={clsx('grid', styles.photoGrid)}>
+          {(photoGrid || []).map(({ src, type }) => {
+            return (
+              <div key={src} className={type}>
+                <Image
+                  src={src}
+                  alt={data.title}
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </div>
+            );
+          })}
+        </div>
         <main className={styles.main}>
           <Container className={styles.mainContainer}>
-            <Button
-              className={styles.button}
-              href={`tel:${data.phone}`}
-              backgroundColor={color}
-            >
-              Записатися
-            </Button>
             <ul className={styles.list}>
               {data.services.map((service) => (
                 <li key={service.name} className={styles.listItem}>
@@ -83,6 +105,13 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
                 </li>
               ))}
             </ul>
+            <Button
+              className={styles.button}
+              href={`tel:${data.phone}`}
+              backgroundColor={color}
+            >
+              Записатися
+            </Button>
           </Container>
         </main>
         <footer className={styles.footer}>
