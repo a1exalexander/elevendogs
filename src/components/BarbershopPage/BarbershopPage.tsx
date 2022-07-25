@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 import Head from 'next/head';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import { locations } from '../../../data';
 import { Container } from '../Container';
 import { Button } from '../Button';
@@ -14,7 +14,8 @@ export interface BarbershopPageProps {
   color: string;
   renderMap?: ReactNode;
   photoGrid?: {
-    src: string;
+    id: string | number;
+    src: string | StaticImageData;
     type: 'big' | 'horizontal' | 'vertical' | 'square';
   }[];
 }
@@ -79,13 +80,15 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
           </Button>
         </Container>
         <div className={clsx('grid', styles.photoGrid)}>
-          {(photoGrid || []).map(({ src, type }) => {
+          {(photoGrid || []).map(({ src, type, id }) => {
             return (
-              <div key={src} className={type}>
+              <div key={id} className={type}>
                 <Image
                   src={src}
                   alt={data.title}
                   layout="fill"
+                  loading="lazy"
+                  placeholder="blur"
                   objectFit="cover"
                 />
               </div>

@@ -2,6 +2,14 @@ import type { NextPage } from 'next';
 import { locations } from '../data';
 import logo from '../src/assets/eleven_dogs_youngsters.svg';
 import { BarbershopPage } from '../src/components';
+import getRandomId from '../src/utils/getRandomId';
+import image1 from '../src/assets/IMG_1517.jpg';
+import image2 from '../src/assets/IMG_2166.jpg';
+import image3 from '../src/assets/IMG_2168.jpg';
+import image4 from '../src/assets/IMG_2170.jpg';
+import image5 from '../src/assets/IMG_2203.jpeg';
+import image6 from '../src/assets/IMG_2220.jpeg';
+import image7 from '../src/assets/IMG_2224.jpg';
 
 const Youngsters: NextPage = () => {
   return (
@@ -21,37 +29,39 @@ const Youngsters: NextPage = () => {
       color="#fcee21"
       photoGrid={[
         {
-          src: 'https://picsum.photos/800/800',
-          type: 'vertical',
+          id: getRandomId(),
+          src: image1,
+          type: 'big',
         },
         {
-          src: 'https://picsum.photos/800/800',
-          type: 'square',
-        },
-
-        {
-          src: 'https://picsum.photos/800/800',
+          id: getRandomId(),
+          src: image2,
           type: 'horizontal',
         },
         {
-          src: 'https://picsum.photos/800/800',
-          type: 'big',
+          id: getRandomId(),
+          src: image3,
+          type: 'horizontal',
         },
         {
-          src: 'https://picsum.photos/800/800',
+          id: getRandomId(),
+          src: image4,
+          type: 'square',
+        },
+        {
+          id: getRandomId(),
+          src: image5,
           type: 'vertical',
         },
         {
-          src: 'https://picsum.photos/800/800',
-          type: 'square',
+          id: getRandomId(),
+          src: image6,
+          type: 'vertical',
         },
         {
-          src: 'https://picsum.photos/800/800',
-          type: 'square',
-        },
-        {
-          src: 'https://picsum.photos/800/800',
-          type: 'big',
+          id: getRandomId(),
+          src: image7,
+          type: 'horizontal',
         },
       ]}
     />
