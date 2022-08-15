@@ -1,5 +1,14 @@
 @import 'core';
 
+@keyframes arromZoom {
+  from {
+    transform: scale(1) translate(2px, -2px);
+  }
+  to {
+    transform: scale(1.2) translate(0px, 0px);
+  }
+}
+
 $nav_height: 68px;
 
 .page {
@@ -80,14 +89,22 @@ $nav_height: 68px;
 }
 
 .link {
+  @include flex(center, center);
   @include text(rem(16px), 500, $MOCCA);
+  @include transition(color);
   @include media($SCREEN_TABLET_LARGE) {
     font-size: 18px;
   }
   @include hover {
     color: $N0;
   }
-  &:focus {
-    color: $B100;
+  &:focus, &:active {
+    color: $P100;
   }
+}
+
+.arrow {
+  @include svg(28px, $P100);
+  margin-left: 6px;
+  animation: arromZoom 1s ease-in-out infinite alternate both;
 }

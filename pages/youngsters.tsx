@@ -3,13 +3,14 @@ import { locations } from '../data';
 import logo from '../src/assets/eleven_dogs_youngsters.svg';
 import { BarbershopPage } from '../src/components';
 import getRandomId from '../src/utils/getRandomId';
-import image1 from '../src/assets/IMG_1517.jpg';
-import image2 from '../src/assets/IMG_2166.jpg';
-import image3 from '../src/assets/IMG_2168.jpg';
-import image4 from '../src/assets/IMG_2170.jpg';
-import image5 from '../src/assets/IMG_2203.jpeg';
-import image6 from '../src/assets/IMG_2220.jpeg';
-import image7 from '../src/assets/IMG_2224.jpg';
+import image1 from '../src/assets/YAK08821.jpg';
+import image2 from '../src/assets/YAK08833.jpg';
+import image3 from '../src/assets/YAK08844.jpg';
+import image4 from '../src/assets/YAK08878.jpg';
+import image5 from '../src/assets/YAK08904.jpg';
+import image6 from '../src/assets/YAK08952.jpg';
+import image7 from '../src/assets/YAK08972.jpg';
+import image8 from '../src/assets/YAK08988.jpg';
 
 const Youngsters: NextPage = () => {
   return (
@@ -36,7 +37,7 @@ const Youngsters: NextPage = () => {
         {
           id: getRandomId(),
           src: image2,
-          type: 'horizontal',
+          type: 'vertical',
         },
         {
           id: getRandomId(),
@@ -56,12 +57,17 @@ const Youngsters: NextPage = () => {
         {
           id: getRandomId(),
           src: image6,
+          type: 'horizontal',
+        },
+        {
+          id: getRandomId(),
+          src: image8,
           type: 'vertical',
         },
         {
           id: getRandomId(),
           src: image7,
-          type: 'horizontal',
+          type: 'square',
         },
       ]}
     />

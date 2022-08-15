@@ -2,7 +2,7 @@
 
 .button {
   cursor: pointer;
-  padding: 12px 36px 11px;
+  padding: 12px 40px 11px;
   @include inline-flex(center, center);
   background-color: $MOCCA;
   @include text(rem(18px), 500, $MAIN_COLOR);

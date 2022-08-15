@@ -97,7 +97,7 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
         </div>
         <main className={styles.main}>
           <Container className={styles.mainContainer}>
-            <ul className={styles.list}>
+            <ul className={styles.list} style={{ borderColor: color }}>
               {data.services.map((service) => (
                 <li key={service.name} className={styles.listItem}>
                   <span className={styles.serviceName}>{service.name}</span>
@@ -118,9 +118,7 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
           </Container>
         </main>
         <footer className={styles.footer}>
-          <Container className={styles.mainContainer}>
-            <div className={styles.map}>{renderMap}</div>
-          </Container>
+          <div className={styles.map}>{renderMap}</div>
         </footer>
       </div>
     </>
