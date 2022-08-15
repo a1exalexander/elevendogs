@@ -36,6 +36,9 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
         <meta name="description" content={data.description} />
         <meta name="og:title" content={data.title} />
         <meta name="og:description" content={data.description} />
+        <meta name="twitter:title" content={data.title} />
+        <meta name="twitter:description" content={data.description} />
+
         {ogImage && (
           <>
             <meta name="og:image" content={ogImage} />
