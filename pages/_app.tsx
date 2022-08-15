@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { seo, locations } from '../data';
+import { seo } from '../data';
 import '../styles/styles.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -33,6 +33,11 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="og:description" content={seo.description} />
         <meta name="og:type" content="website" />
         <meta name="theme-color" content="#1a1a1a" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={seo.title} />
+        <meta name="twitter:description" content={seo.description} />
+        <meta name="og:image" content="/og.jpg" />
+        <meta name="twitter:image" content="/og.jpg" />
       </Head>
       <Component {...pageProps} />
     </>

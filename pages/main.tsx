@@ -14,6 +14,7 @@ import getRandomId from '../src/utils/getRandomId';
 const Main: NextPage = () => {
   return (
     <BarbershopPage
+      ogImage="/og_main.jpg"
       renderMap={
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1772.6781408255501!2d33.40964255723156!3d49.068934543092396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d75326dbc5734b%3A0x3d66c6d08ca8c9ec!2sIvana%20Mazepy%20St%2C%2028%2C%20Kremenchuk%2C%20Poltavs&#39;ka%20oblast%2C%2039600!5e0!3m2!1sen!2sua!4v1658230066508!5m2!1sen!2sua"
@@ -44,15 +45,13 @@ const Main: NextPage = () => {
           src: image5,
           type: 'vertical',
         },
-        
-        
 
         {
           id: getRandomId(),
           src: image6,
           type: 'vertical',
         },
-        
+
         {
           id: getRandomId(),
           src: image7,

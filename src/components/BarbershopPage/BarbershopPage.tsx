@@ -18,6 +18,7 @@ export interface BarbershopPageProps {
     src: string | StaticImageData;
     type: 'big' | 'horizontal' | 'vertical' | 'square';
   }[];
+  ogImage?: string;
 }
 
 export const BarbershopPage: FC<BarbershopPageProps> = ({
@@ -26,6 +27,7 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
   color,
   renderMap,
   photoGrid,
+  ogImage,
 }) => {
   return (
     <>
@@ -34,6 +36,12 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
         <meta name="description" content={data.description} />
         <meta name="og:title" content={data.title} />
         <meta name="og:description" content={data.description} />
+        {ogImage && (
+          <>
+            <meta name="og:image" content={ogImage} />
+            <meta name="twitter:image" content={ogImage} />
+          </>
+        )}
       </Head>
       <div className={styles.container}>
         <div style={{ backgroundColor: color }} className={styles.top}>
