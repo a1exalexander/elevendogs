@@ -1,0 +1,137 @@
+@import 'core';
+
+.container {
+  padding-top: 80px;
+  min-height: 100vh;
+  @include flex-col;
+  @include media($SCREEN_TABLET_SMALL) {
+    padding-top: 60px;
+  }
+}
+
+.top {
+  z-index: 1;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 12px;
+  @include flex(center, center);
+  flex-wrap: wrap;
+  background-color: $MOCCA;
+  @include media($SCREEN_TABLET_LARGE) {
+    flex-direction: row;
+  }
+}
+
+.headerContainer {
+  @include flex-col(center, center);
+}
+
+.logo {
+  width: 100%;
+  max-width: 300px;
+  position: relative;
+  @include media($SCREEN_TABLET_LARGE) {
+    margin: 0 32px;
+  }
+}
+
+.address {
+  @include text(rem(16px), 500, $MAIN_COLOR);
+  text-align: center;
+  margin: 0 12px;
+  line-height: 130%;
+  @include media($SCREEN_TABLET_LARGE) {
+    font-size: rem(20px);
+  }
+}
+
+.main {
+  flex-grow: 1;
+  padding: 16px 0;
+  margin-bottom: 50px;
+}
+
+.buttonWrapper {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  @include flex-col(flex-start, center);
+}
+
+.mainContainer {
+  @include flex-col;
+}
+
+.button {
+  align-self: center;
+}
+
+.list {
+  width: 100%;
+  max-width: 600px;
+  align-self: center;
+  padding: 40px;
+  margin-bottom: 50px;
+  border-width: 4px;
+  border-style: solid;
+}
+
+.listItem {
+  &:not(:last-of-type) {
+    margin-bottom: 20px;
+  }
+}
+
+.listItem {
+  @include flex(space-between, baseline);
+}
+
+.serviceName {
+  @include text(rem(16px), 500, $MOCCA);
+  &::first-letter {
+    text-transform: uppercase;
+  }
+  @include media($SCREEN_TABLET_SMALL) {
+    font-size: rem(24px);
+  }
+}
+
+.priceValue {
+  @include text(rem(20px), 700, $MOCCA);
+  @include media($SCREEN_TABLET_SMALL) {
+    font-size: rem(32px);
+  }
+}
+
+.priceCurrency {
+  @include text(rem(12px), 700, $MOCCA);
+  @include media($SCREEN_TABLET_SMALL) {
+    font-size: rem(16px);
+  }
+}
+
+.instagram {
+  @include flex(flex-start, center);
+  @include text(rem(14px), 500, $MOCCA);
+  padding-bottom: 16px;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.map {
+  width: 100%;
+  margin: auto;
+  height: 400px;
+  position: relative;
+  @include flex(center, center);
+}
+
+.photoGrid {
+  margin-bottom: 80px;
+}

@@ -1,0 +1,191 @@
+@mixin flex-row($justify: flex-start, $align: stretch) {
+  display: flex;
+  flex-direction: row;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin flex-col($justify: flex-start, $align: stretch) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin flex($justify-content: flex-start, $align-items: stretch, $direction: row, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-wrap: $wrap;
+}
+
+@mixin inline-flex(
+  $justify-content: flex-start,
+  $align-items: stretch,
+  $direction: row,
+  $wrap: nowrap
+) {
+  display: inline-flex;
+  flex-direction: $direction;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-wrap: $wrap;
+}
+
+@mixin text($size, $weight: 400, $color: black) {
+  font: {
+    size: $size;
+    weight: $weight;
+  }
+  color: $color;
+  @content;
+}
+
+@mixin title() {
+  @include text(rem(32px), 700, $MOCCA);
+  text-transform: uppercase;
+  @include media($SCREEN-TABLET-LARGE) {
+    font-size: rem(40px);
+  }
+}
+
+@mixin size($size, $round: false) {
+  width: $size;
+  height: $size;
+  flex-shrink: 0;
+  @if $round {
+    border-radius: 50%;
+  }
+  @content;
+}
+
+@mixin svg($size: 16px, $color: black) {
+  width: $size;
+  height: $size;
+  fill: $color;
+  flex-shrink: 0;
+  transition-property: fill, opacity, stroke, filter;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+  @content;
+}
+
+@mixin position($top: 0, $right: 0, $bottom: 0, $left: 0) {
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin transition($types...) {
+  transition-property: $types;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+  @content;
+}
+
+$z-index: (
+  immortal: 100,
+  superpopup: 20,
+  popup: 15,
+  drawer: 12,
+  navigation: 10,
+  popover: 5,
+  dropdown: 2,
+  wrapper: 1,
+  default: 0,
+  under: -1,
+);
+
+@mixin padding-hack($padding: 50%, $size: contain, $dev: false) {
+  position: relative;
+  height: 0;
+  padding-bottom: $padding;
+  @if $dev {
+    background-color: rgba(255, 0, 0, 0.555);
+  }
+  img,
+  iframe,
+  video {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: $size;
+    @if $dev {
+      object-fit: contain;
+    }
+  }
+}
+
+@function z-index($key) {
+  @return map-get($z-index, $key);
+}
+
+@mixin z-index($key: default) {
+  z-index: z-index($key);
+}
+
+@mixin media($screen: $SCREEN-DESKTOP, $max: false) {
+  @if $max {
+    @media screen and (max-width: calc(#{$screen} - 1px)) {
+      @content;
+    }
+  } @else {
+    @media screen and (min-width: $screen) {
+      @content;
+    }
+  }
+}
+
+@mixin hover($selector: '') {
+  @include media {
+    &:hover#{$selector} {
+      @content;
+    }
+  }
+}
+
+@mixin underline-hover($color: black, $height: 2px) {
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0px;
+    height: $height;
+    background-color: $color;
+    @include transition(width, transform);
+  }
+  @include hover() {
+    &:after {
+      width: 100%;
+    }
+  }
+  &:active {
+    &:after {
+      transform: scaleX(0.9);
+    }
+  }
+}
+
+@mixin color-hover {
+  @include transition(color);
+  @include hover {
+    color: $color-primary-p-1;
+  }
+  &:active {
+    color: $color-primary-p-2;
+  }
+}
+
+@mixin pagePaddingTop($padding) {
+  padding-top: calc(#{$HEADER_HEIGHT} + #{$padding});
+}

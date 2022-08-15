@@ -1,0 +1,108 @@
+@import "core";
+
+.container {
+  padding-top: 20px;
+  min-height: 100vh;
+  @include flex-col;
+  @include media($SCREEN_TABLET_SMALL) {
+    padding-top: 60px;
+  }
+}
+
+.main {
+  flex-grow: 1;
+  padding: 16px 0;
+}
+
+.mainContainer {
+  @include flex-col;
+}
+
+.button {
+  align-self: center;
+  margin-top: 20px;
+}
+
+.list {
+  width: 100%;
+  align-self: center;
+
+  @include media($SCREEN_TABLET_SMALL) {
+    @include flex(space-between, baseline);
+  }
+}
+
+.listItem {
+  &:not(:last-of-type) {
+    margin-bottom: 20px;
+  }
+  @include media($SCREEN_TABLET_SMALL) {
+    flex: 1 1 calc(100% / 3);
+  }
+}
+
+.serviceName {
+  @include text(rem(16px), 500, $MOCCA);
+  &::first-letter {
+    text-transform: uppercase;
+  }
+  @include media($SCREEN_TABLET_SMALL) {
+    font-size: rem(24px);
+  }
+}
+
+.stagesList {
+  padding: 12px 0;
+  @include media($SCREEN_TABLET_SMALL) {
+    padding: 16px 0;
+  }
+}
+
+.stageName {
+  @include text(rem(14px), 500, $MOCCA);
+  display: inline-block;
+  margin-bottom: 10px;
+  &::first-letter {
+    text-transform: uppercase;
+  }
+  @include media($SCREEN_TABLET_SMALL) {
+    font-size: rem(18px);
+    margin-bottom: 0;
+  }
+}
+
+.valuesList {
+  list-style: disc;
+  padding: 0 12px;
+  @include media($SCREEN_TABLET_SMALL) {
+    padding: 12px;
+  }
+}
+
+.valuesItem {
+  @include text(rem(12px), 400, $N50);
+  line-height: 1.4;
+  &::first-letter {
+    text-transform: uppercase;
+  }
+  &:not(:last-of-type) {
+    margin-bottom: 6px;
+  }
+  @include media($SCREEN_TABLET_SMALL) {
+    font-size: rem(14px);
+  }
+}
+
+.priceValue {
+  @include text(rem(20px), 700, $MOCCA);
+  @include media($SCREEN_TABLET_SMALL) {
+    font-size: rem(32px);
+  }
+}
+
+.priceCurrency {
+  @include text(rem(12px), 700, $MOCCA);
+  @include media($SCREEN_TABLET_SMALL) {
+    font-size: rem(16px);
+  }
+}

@@ -3,8 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://merge.academy
+Host: https://elevendogs.com.ua
 
 # Sitemaps
-Sitemap: https://merge.academy/sitemap.xml
-Sitemap: https://merge.academy/blog/sitemap.xml
+Sitemap: https://elevendogs.com.ua/sitemap.xml
