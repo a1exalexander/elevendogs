@@ -22,6 +22,9 @@
   @include media($SCREEN_TABLET_LARGE) {
     flex-direction: row;
   }
+  a {
+    text-decoration: underline;
+  }
 }
 
 .headerContainer {
@@ -127,9 +130,12 @@
 .map {
   width: 100%;
   margin: auto;
-  height: 400px;
+  height: 500px;
   position: relative;
   @include flex(center, center);
+  iframe {
+    filter: invert(94%);
+  }
 }
 
 .photoGrid {

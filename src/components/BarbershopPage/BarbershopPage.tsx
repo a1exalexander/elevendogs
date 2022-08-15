@@ -49,7 +49,9 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
       <div className={styles.container}>
         <div style={{ backgroundColor: color }} className={styles.top}>
           <h1 className={styles.address}>{data.address}</h1>
-          <p className={styles.address}>{data.phone}</p>
+          <a href={`tel:${data.phone}`} className={styles.address}>
+            {data.phone}
+          </a>
         </div>
         <header className={styles.header}>
           <Container className={styles.headerContainer}>
@@ -84,7 +86,7 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
         <Container className={styles.buttonWrapper}>
           <Button
             className={styles.button}
-            href={`tel:${data.phone}`}
+            href={data.booking}
             backgroundColor={color}
           >
             Записатися
@@ -129,7 +131,7 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
             </ul>
             <Button
               className={styles.button}
-              href={`tel:${data.phone}`}
+              href={data.booking}
               backgroundColor={color}
             >
               Записатися
