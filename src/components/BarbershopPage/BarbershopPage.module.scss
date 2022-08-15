@@ -19,6 +19,7 @@
   @include flex(center, center);
   flex-wrap: wrap;
   background-color: $MOCCA;
+  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
   @include media($SCREEN_TABLET_LARGE) {
     flex-direction: row;
   }
