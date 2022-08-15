@@ -51,7 +51,7 @@ code {
   }
 }
 
-.grid > div {
+.grid * div {
   width: 100%;
   height: 100%;
 }
@@ -65,4 +65,15 @@ code {
 .big {
   grid-column: span 2;
   grid-row: span 2;
+}
+
+[data-rmiz-modal-overlay='visible'] {
+  background-color: $MAIN_COLOR;
+}
+
+[data-rmiz-modal-content='true'] {
+  img {
+    object-fit: contain;
+    -o-object-fit: contain;
+  }
 }

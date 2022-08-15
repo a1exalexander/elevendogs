@@ -1,5 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 import Head from 'next/head';
+import Zoom from 'react-medium-image-zoom';
 import Image, { StaticImageData } from 'next/image';
 import { locations } from '../../../data';
 import { Container } from '../Container';
@@ -38,7 +39,6 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
         <meta name="og:description" content={data.description} />
         <meta name="twitter:title" content={data.title} />
         <meta name="twitter:description" content={data.description} />
-
         {ogImage && (
           <>
             <meta name="og:image" content={ogImage} />
@@ -94,14 +94,22 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
           {(photoGrid || []).map(({ src, type, id }) => {
             return (
               <div key={id} className={type}>
-                <Image
-                  src={src}
-                  alt={data.title}
-                  layout="fill"
-                  loading="lazy"
-                  placeholder="blur"
-                  objectFit="cover"
-                />
+                <Zoom
+                  zoomImg={{
+                    src: String(src),
+                    width: '100%',
+                    height: '100%',
+                  }}
+                >
+                  <Image
+                    src={src}
+                    alt={data.title}
+                    layout="fill"
+                    loading="lazy"
+                    placeholder="blur"
+                    objectFit="cover"
+                  />
+                </Zoom>
               </div>
             );
           })}

@@ -1,6 +1,7 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { seo } from '../data';
+import 'react-medium-image-zoom/dist/styles.css'
 import '../styles/styles.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
