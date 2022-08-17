@@ -9,6 +9,13 @@
   }
 }
 
+.nav {
+  width: 100%;
+  @include media($SCREEN_TABLET_SMALL) {
+    width: initial;
+  }
+}
+
 .top {
   z-index: 1;
   width: 100%;
