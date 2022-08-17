@@ -11,6 +11,7 @@ export const seo = {
 export const locations = {
   main: {
     booking: 'https://n764807.alteg.io/',
+    map: "https://goo.gl/maps/EsMCgQhDb5CqBLXGA",
     instagram: 'eleven.dogs',
     name: 'Eleven Dogs',
     phone: '+380962210799',
@@ -54,6 +55,7 @@ export const locations = {
   },
   secondary: {
     booking: 'https://n768560.alteg.io/',
+    map: "https://goo.gl/maps/YHXkYS1L8KS5pwK56",
     instagram: 'eleven.dogs',
     name: 'Eleven Dogs Youngsters',
     phone: '+380678822011',

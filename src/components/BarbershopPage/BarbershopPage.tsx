@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from 'react';
 import Head from 'next/head';
 import Zoom from 'react-medium-image-zoom';
 import Image, { StaticImageData } from 'next/image';
-import NextLink from 'next/link';
+import NextLink, { LinkProps } from 'next/link';
 import { locations } from '../../../data';
 import { Container } from '../Container';
 import { Button } from '../Button';
@@ -26,6 +26,13 @@ export interface BarbershopPageProps {
 
 const CTA = '✂️ Записатися';
 
+interface LinkData {
+  link: string;
+  name: string;
+  blank: boolean;
+  icon: string;
+}
+
 export const BarbershopPage: FC<BarbershopPageProps> = ({
   data,
   logo,
@@ -34,6 +41,19 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
   photoGrid,
   ogImage,
 }) => {
+  const renderLink = ({ link, name, blank, icon }: LinkData) => {
+    return (
+      <NextLink key={name} href={link}>
+        <a
+          target={blank ? '_blank' : '_self'}
+          className={clsx(styles.instagram)}
+        >
+          <span className={styles.icon}>{icon}</span>
+          <span className={styles.instaText}>{name}</span>
+        </a>
+      </NextLink>
+    );
+  };
   return (
     <>
       <Head>
@@ -51,12 +71,6 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
         )}
       </Head>
       <div className={styles.container}>
-        <div style={{ backgroundColor: color }} className={styles.top}>
-          <h1 className={styles.address}>🗺 {data.address}</h1>
-          <a href={`tel:${data.phone}`} className={styles.address}>
-            📞 {data.phone}
-          </a>
-        </div>
         <header className={styles.header}>
           <Container className={styles.headerContainer}>
             <div className={styles.logo}>
@@ -68,29 +82,44 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
                 alt={data.name}
               />
             </div>
-            <NextLink href={Routes.HOME}>
-              <a className={clsx(styles.instagram)}>
-                <span className={styles.icon}>💈</span>
-                <span className={styles.instaText}>Головна сторінка</span>
-              </a>
-            </NextLink>
-            <a
-              href={`https://www.instagram.com/${data.instagram}/`}
-              rel="noreferrer"
-              target="_blank"
-              className={styles.instagram}
-            >
-              <span className={styles.icon}>
-                <Image
-                  priority
-                  loading="eager"
-                  layout="responsive"
-                  src={icon}
-                  alt="instagram"
-                />
-              </span>
-              <span className={styles.instaText}>{data.instagram}</span>
-            </a>
+            <nav className={styles.nav}>
+              {(
+                [
+                  {
+                    blank: false,
+                    icon: '💈',
+                    link: Routes.HOME,
+                    name: 'Головна',
+                  },
+                  {
+                    blank: true,
+                    icon: '🗺',
+                    link: data.map,
+                    name: data.address,
+                  },
+                  {
+                    blank: false,
+                    icon: '📞',
+                    link: `tel:${data.phone}`,
+                    name: data.phone,
+                  },
+                  {
+                    blank: true,
+                    icon: (
+                      <Image
+                        priority
+                        loading="eager"
+                        layout="responsive"
+                        src={icon}
+                        alt="instagram"
+                      />
+                    ),
+                    link: `https://www.instagram.com/${data.instagram}/`,
+                    name: data.instagram,
+                  },
+                ] as LinkData[]
+              ).map(renderLink)}
+            </nav>
           </Container>
         </header>
         <Container className={styles.buttonWrapper}>
@@ -134,7 +163,9 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
                 <li key={service.name} className={styles.listItem}>
                   <span className={styles.serviceName}>{service.name}</span>
                   <div className={styles.price}>
-                    <span className={styles.priceValue}>{service.price}</span>
+                    <span style={{ color }} className={styles.priceValue}>
+                      {service.price}
+                    </span>
                     <span className={styles.priceCurrency}>грн</span>
                   </div>
                 </li>
