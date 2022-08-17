@@ -37,6 +37,11 @@ const Youngsters: NextPage = () => {
         },
         {
           id: getRandomId(),
+          src: image7,
+          type: 'square',
+        },
+        {
+          id: getRandomId(),
           src: image2,
           type: 'vertical',
         },
@@ -64,11 +69,6 @@ const Youngsters: NextPage = () => {
           id: getRandomId(),
           src: image8,
           type: 'vertical',
-        },
-        {
-          id: getRandomId(),
-          src: image7,
-          type: 'square',
         },
       ]}
     />

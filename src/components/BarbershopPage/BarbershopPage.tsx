@@ -2,12 +2,14 @@ import React, { FC, ReactNode } from 'react';
 import Head from 'next/head';
 import Zoom from 'react-medium-image-zoom';
 import Image, { StaticImageData } from 'next/image';
+import NextLink from 'next/link';
 import { locations } from '../../../data';
 import { Container } from '../Container';
 import { Button } from '../Button';
 import icon from '../../assets/icons8-instagram.svg';
 import styles from './BarbershopPage.module.scss';
 import clsx from 'clsx';
+import { Routes } from '../../constants';
 
 export interface BarbershopPageProps {
   data: typeof locations[keyof typeof locations];
@@ -21,6 +23,8 @@ export interface BarbershopPageProps {
   }[];
   ogImage?: string;
 }
+
+const CTA = '✂️ Записатися';
 
 export const BarbershopPage: FC<BarbershopPageProps> = ({
   data,
@@ -48,9 +52,9 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
       </Head>
       <div className={styles.container}>
         <div style={{ backgroundColor: color }} className={styles.top}>
-          <h1 className={styles.address}>{data.address}</h1>
+          <h1 className={styles.address}>🗺 {data.address}</h1>
           <a href={`tel:${data.phone}`} className={styles.address}>
-            {data.phone}
+            📞 {data.phone}
           </a>
         </div>
         <header className={styles.header}>
@@ -64,6 +68,12 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
                 alt={data.name}
               />
             </div>
+            <NextLink href={Routes.HOME}>
+              <a className={clsx(styles.instagram)}>
+                <span className={styles.icon}>💈</span>
+                <span className={styles.instaText}>Головна сторінка</span>
+              </a>
+            </NextLink>
             <a
               href={`https://www.instagram.com/${data.instagram}/`}
               rel="noreferrer"
@@ -89,13 +99,13 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
             href={data.booking}
             backgroundColor={color}
           >
-            Записатися
+            {CTA}
           </Button>
         </Container>
         <div className={clsx('grid', styles.photoGrid)}>
           {(photoGrid || []).map(({ src, type, id }) => {
             return (
-              <div key={id} className={type}>
+              <div key={id} className={clsx('grid__item', type)}>
                 <Zoom
                   zoomImg={{
                     src: String(src),
@@ -110,6 +120,7 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
                     loading="lazy"
                     placeholder="blur"
                     objectFit="cover"
+                    objectPosition="50% 60%"
                   />
                 </Zoom>
               </div>
@@ -134,7 +145,7 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
               href={data.booking}
               backgroundColor={color}
             >
-              Записатися
+              {CTA}
             </Button>
           </Container>
         </main>

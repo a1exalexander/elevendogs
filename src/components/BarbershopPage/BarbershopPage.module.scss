@@ -16,16 +16,8 @@
   top: 0;
   left: 0;
   padding: 12px;
-  @include flex(center, center);
-  flex-wrap: wrap;
   background-color: $MOCCA;
   box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-  @include media($SCREEN_TABLET_LARGE) {
-    flex-direction: row;
-  }
-  a {
-    text-decoration: underline;
-  }
 }
 
 .headerContainer {
@@ -42,12 +34,12 @@
 }
 
 .address {
-  @include text(rem(16px), 500, $MAIN_COLOR);
-  text-align: center;
+  @include text(rem(14px), 500, $MAIN_COLOR);
   margin: 0 12px;
   line-height: 130%;
+  margin-bottom: 8px;
   @include media($SCREEN_TABLET_LARGE) {
-    font-size: rem(20px);
+    font-size: rem(16px);
   }
 }
 
