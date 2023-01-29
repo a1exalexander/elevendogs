@@ -21,19 +21,19 @@ export const locations = {
     services: [
       {
         name: 'стрижка',
-        price: 300,
+        price: 350,
       },
       {
         name: 'стрижка бороди',
-        price: 150,
+        price: 200,
       },
       {
         name: 'під одну насадку',
-        price: 100,
+        price: 150,
       },
       {
         name: 'батько і син',
-        price: 500,
+        price: 600,
       },
       {
         name: 'укладка волосся',
@@ -66,19 +66,19 @@ export const locations = {
     services: [
       {
         name: 'чоловіча стрижка',
-        price: 300,
+        price: 350,
       },
       {
         name: 'стрижка бороди',
-        price: 150,
+        price: 200,
       },
       {
         name: 'під одну насадку',
-        price: 100,
+        price: 150,
       },
       {
         name: 'батько і син',
-        price: 500,
+        price: 600,
       },
       {
         name: 'укладка волосся',
