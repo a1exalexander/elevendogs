@@ -166,3 +166,11 @@
   height: 40px;
   transition: transform 0.2s ease;
 }
+
+@media screen and (max-width: 1024px) {
+  .scissors {
+    // disable all animations
+    animation: none !important;
+    transition: none !important;
+  }
+}

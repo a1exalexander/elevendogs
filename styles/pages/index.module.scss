@@ -21,6 +21,13 @@ $nav_height: 68px;
   max-height: calc(100vh - calc(100vh - 100%));
 }
 
+.image {
+  flex-shrink: 0;
+  position: relative;
+  width: 80%;
+  max-width: 1000px;
+}
+
 .barbers {
   $height: calc(100vh - calc(100vh - 100%));
   flex: 1 1 calc(#{$height} - #{$nav_height});
@@ -34,7 +41,8 @@ $nav_height: 68px;
 
 .barber {
   flex: 0 0 50%;
-  @include flex-col(space-between);
+  display: flex;
+  @include flex-col(center, center);
   overflow: hidden;
   position: relative;
   & > *:first-child {
@@ -51,12 +59,12 @@ $nav_height: 68px;
 }
 
 .isMain {
-  border: 10px solid $MOCCA;
+  // border: 10px solid $MOCCA;
 }
 
 .isSecondary {
-  border: 10px solid $SECONDARY_YELLOW;
-  box-shadow: inset 5px 5px $SECONDARY_GREEN;
+  // border: 10px solid $SECONDARY_YELLOW;
+  // box-shadow: inset 5px 5px $SECONDARY_GREEN;
   & > *:first-child {
     left: 5px;
     top: 5px;
@@ -70,7 +78,7 @@ $nav_height: 68px;
   line-height: 150%;
   @include media($SCREEN_TABLET_LARGE) {
     font-size: 18px;
-    position: absolute;
+    // position: absolute;
     flex-shrink: 0;
     bottom: 0;
     left: 0;

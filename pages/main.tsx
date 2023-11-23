@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import { locations } from '../data';
-import logo from '../src/assets/eleven_dogs.svg';
+import logo from '../src/assets/eleven_dogs_logo_1.png';
 import { BarbershopPage } from '../src/components';
 import image1 from '../src/assets/IMG_1517.jpg';
 import image2 from '../src/assets/IMG_2166.jpg';

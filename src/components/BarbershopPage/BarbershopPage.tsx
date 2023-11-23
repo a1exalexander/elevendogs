@@ -21,7 +21,7 @@ import { Routes } from "../../constants";
 
 export interface BarbershopPageProps {
   data: (typeof locations)[keyof typeof locations];
-  logo: string;
+  logo: string | StaticImageData;
   color: string;
   renderMap?: ReactNode;
   photoGrid?: {

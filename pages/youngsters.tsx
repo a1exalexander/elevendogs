@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import { locations } from '../data';
-import logo from '../src/assets/eleven_dogs_youngsters.svg';
+import logo from '../src/assets/eleven_dogs_logo_2.png';
 import { BarbershopPage } from '../src/components';
 import getRandomId from '../src/utils/getRandomId';
 import image1 from '../src/assets/YAK08821.jpg';
