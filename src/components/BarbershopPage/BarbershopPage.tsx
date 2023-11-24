@@ -1,23 +1,15 @@
-import React, {
-  FC,
-  MouseEvent,
-  MouseEventHandler,
-  ReactNode,
-  useEffect,
-  useRef,
-} from "react";
-import Head from "next/head";
-import Zoom from "react-medium-image-zoom";
-import Image, { StaticImageData } from "next/image";
-import NextLink from "next/link";
-import { locations } from "../../../data";
-import { Container } from "../Container";
-import { Button } from "../Button";
-import icon from "../../assets/icons8-instagram.svg";
-import scissorsIcon from "../../assets/scissors.svg";
-import styles from "./BarbershopPage.module.scss";
-import clsx from "clsx";
-import { Routes } from "../../constants";
+import React, { FC, ReactNode, useEffect, useRef } from 'react';
+import Head from 'next/head';
+import Zoom from 'react-medium-image-zoom';
+import Image, { StaticImageData } from 'next/image';
+import NextLink from 'next/link';
+import { locations } from '../../../data';
+import { Container } from '../Container';
+import { Button } from '../Button';
+import icon from '../../assets/icons8-instagram.svg';
+import styles from './BarbershopPage.module.scss';
+import clsx from 'clsx';
+import { Routes } from '../../constants';
 
 export interface BarbershopPageProps {
   data: (typeof locations)[keyof typeof locations];
@@ -27,12 +19,12 @@ export interface BarbershopPageProps {
   photoGrid?: {
     id: string | number;
     src: string | StaticImageData;
-    type: "big" | "horizontal" | "vertical" | "square";
+    type: 'big' | 'horizontal' | 'vertical' | 'square';
   }[];
   ogImage?: string;
 }
 
-const CTA = "✂️ Записатися";
+const CTA = '✂️ Записатися';
 
 interface LinkData {
   link: string;
@@ -60,7 +52,7 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
     return (
       <NextLink key={name} href={link}>
         <a
-          target={blank ? "_blank" : "_self"}
+          target={blank ? '_blank' : '_self'}
           className={clsx(styles.instagram)}
         >
           <span className={styles.icon}>{icon}</span>
@@ -68,51 +60,6 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
         </a>
       </NextLink>
     );
-  };
-
-  const onMouseEnter = (rotate: string) => (e: MouseEvent<HTMLDivElement>) => {
-    // move element on mouse enter
-    const element = e.currentTarget;
-    const elementRect = element.getBoundingClientRect();
-    const elementCenterX = elementRect.x + elementRect.width / 2;
-    const elementCenterY = elementRect.y + elementRect.height / 2;
-    const mouseX = e.clientX;
-    const mouseY = e.clientY;
-    const deltaX = mouseX - elementCenterX;
-    const deltaY = mouseY - elementCenterY;
-    const angle = Math.atan2(deltaY, deltaX);
-    const distance = Math.sqrt(deltaX ** 2 + deltaY ** 2);
-    const moveX = Math.cos(angle) * distance;
-    const moveY = Math.sin(angle) * distance;
-    element.style.transform = `${rotate} translate(${moveX}px, ${moveY}px)`;
-  };
-
-  const renderScissors = () => {
-    return [...new Array(500)].map((n) => {
-      const uniqLeft = Math.random() * 100;
-      const uniqTop = Math.random() * 100;
-      const rotate = `rotate(${Math.random() * 360}deg)`;
-      return (
-        <div
-          onMouseEnter={onMouseEnter(rotate)}
-          key={n}
-          style={{
-            left: `${uniqLeft}%`,
-            top: `${uniqTop}%`,
-            transform: rotate,
-          }}
-          className={styles.scissors}
-        >
-          <Image
-            className={styles.scissorsImage}
-            loading="lazy"
-            layout="responsive"
-            src={scissorsIcon}
-            alt="scissors"
-          />
-        </div>
-      );
-    });
   };
 
   return (
@@ -132,7 +79,6 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
         )}
       </Head>
       <div className={styles.container}>
-        {renderScissors()}
         <div className={styles.inner}>
           <header className={styles.header}>
             <Container className={styles.headerContainer}>
@@ -150,19 +96,19 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
                   [
                     {
                       blank: false,
-                      icon: "💈",
+                      icon: '💈',
                       link: Routes.HOME,
-                      name: "Головна",
+                      name: 'Головна',
                     },
                     {
                       blank: true,
-                      icon: "🗺",
+                      icon: '🗺',
                       link: data.map,
                       name: data.address,
                     },
                     {
                       blank: false,
-                      icon: "📞",
+                      icon: '📞',
                       link: `tel:${data.phone}`,
                       name: data.phone,
                     },
@@ -194,15 +140,15 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
               {CTA}
             </Button>
           </Container>
-          <div className={clsx("grid", styles.photoGrid)}>
+          <div className={clsx('grid', styles.photoGrid)}>
             {(photoGrid || []).map(({ src, type, id }) => {
               return (
-                <div key={id} className={clsx("grid__item", type)}>
+                <div key={id} className={clsx('grid__item', type)}>
                   <Zoom
                     zoomImg={{
                       src: String(src),
-                      width: "100%",
-                      height: "100%",
+                      width: '100%',
+                      height: '100%',
                     }}
                   >
                     <Image
