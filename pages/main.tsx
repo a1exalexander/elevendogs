@@ -2,14 +2,16 @@ import type { NextPage } from 'next';
 import { locations } from '../data';
 import logo from '../src/assets/eleven_dogs_logo_1.png';
 import { BarbershopPage } from '../src/components';
-import image1 from '../src/assets/IMG_1517.jpg';
-import image2 from '../src/assets/IMG_2166.jpg';
-import image3 from '../src/assets/IMG_2168.jpg';
-import image4 from '../src/assets/IMG_2170.jpg';
-import image5 from '../src/assets/IMG_2203.jpeg';
-import image6 from '../src/assets/IMG_2220.jpeg';
-import image7 from '../src/assets/IMG_2224.jpg';
+import image1 from '../src/assets/ed/a00001.jpg';
+import image2 from '../src/assets/ed/a00002.jpg';
+import image3 from '../src/assets/ed/a00003.jpg';
+import image4 from '../src/assets/ed/a00004.jpg';
+import image5 from '../src/assets/ed/a00005.jpg';
+import image6 from '../src/assets/ed/a00006.jpg';
+import image7 from '../src/assets/ed/a00007.jpg';
+import image8 from '../src/assets/ed/a00008.jpg';
 import getRandomId from '../src/utils/getRandomId';
+
 
 const Main: NextPage = () => {
   return (
@@ -32,12 +34,24 @@ const Main: NextPage = () => {
         {
           id: getRandomId(),
           src: image1,
-          type: 'big',
+          type: 'vertical',
         },
         {
           id: getRandomId(),
           src: image2,
-          type: 'horizontal',
+          type: 'vertical',
+        },
+
+        {
+          id: getRandomId(),
+          src: image3,
+          type: 'vertical',
+        },
+
+        {
+          id: getRandomId(),
+          src: image4,
+          type: 'vertical',
         },
 
         {
@@ -45,27 +59,20 @@ const Main: NextPage = () => {
           src: image5,
           type: 'vertical',
         },
-
         {
           id: getRandomId(),
           src: image6,
           type: 'vertical',
         },
-
         {
           id: getRandomId(),
           src: image7,
-          type: 'horizontal',
+          type: 'vertical',
         },
         {
           id: getRandomId(),
-          src: image4,
-          type: 'square',
-        },
-        {
-          id: getRandomId(),
-          src: image3,
-          type: 'horizontal',
+          src: image8,
+          type: 'vertical',
         },
       ]}
     />

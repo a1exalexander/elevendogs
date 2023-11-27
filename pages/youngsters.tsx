@@ -3,14 +3,14 @@ import { locations } from '../data';
 import logo from '../src/assets/eleven_dogs_logo_2.png';
 import { BarbershopPage } from '../src/components';
 import getRandomId from '../src/utils/getRandomId';
-import image1 from '../src/assets/YAK08821.jpg';
-import image2 from '../src/assets/YAK08833.jpg';
-import image3 from '../src/assets/YAK08844.jpg';
-import image4 from '../src/assets/YAK08878.jpg';
-import image5 from '../src/assets/YAK08904.jpg';
-import image6 from '../src/assets/YAK08952.jpg';
-import image7 from '../src/assets/YAK08972.jpg';
-import image8 from '../src/assets/YAK08988.jpg';
+import image1 from '../src/assets/edy/b00001.jpg';
+import image2 from '../src/assets/edy/b00002.jpg';
+import image3 from '../src/assets/edy/b00003.jpg';
+import image4 from '../src/assets/edy/b00004.jpg';
+import image5 from '../src/assets/edy/b00005.jpg';
+import image6 from '../src/assets/edy/b00006.jpg';
+import image7 from '../src/assets/edy/b00007.jpg';
+import image8 from '../src/assets/edy/b00008.jpg';
 
 const Youngsters: NextPage = () => {
   return (
@@ -33,12 +33,7 @@ const Youngsters: NextPage = () => {
         {
           id: getRandomId(),
           src: image1,
-          type: 'big',
-        },
-        {
-          id: getRandomId(),
-          src: image7,
-          type: 'square',
+          type: 'vertical',
         },
         {
           id: getRandomId(),
@@ -48,12 +43,12 @@ const Youngsters: NextPage = () => {
         {
           id: getRandomId(),
           src: image3,
-          type: 'horizontal',
+          type: 'vertical',
         },
         {
           id: getRandomId(),
           src: image4,
-          type: 'square',
+          type: 'vertical',
         },
         {
           id: getRandomId(),
@@ -63,7 +58,12 @@ const Youngsters: NextPage = () => {
         {
           id: getRandomId(),
           src: image6,
-          type: 'horizontal',
+          type: 'vertical',
+        },
+        {
+          id: getRandomId(),
+          src: image7,
+          type: 'vertical',
         },
         {
           id: getRandomId(),

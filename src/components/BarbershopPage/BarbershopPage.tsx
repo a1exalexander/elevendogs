@@ -175,7 +175,6 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
                       <span style={{ color }} className={styles.priceValue}>
                         {service.price}
                       </span>
-                      <span className={styles.priceCurrency}>грн</span>
                     </div>
                   </li>
                 ))}
