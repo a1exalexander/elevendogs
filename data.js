@@ -21,11 +21,11 @@ export const locations = {
     services: [
       {
         name: 'Чоловіча стрижка',
-        price: 400,
+        price: 450,
       },
       {
         name: 'Cтрижка бороди',
-        price: 200,
+        price: 300,
       },
       {
         name: 'Під одну насадку',
@@ -33,7 +33,7 @@ export const locations = {
       },
       {
         name: 'Батько і син',
-        price: 700,
+        price: 800,
       },
       {
         name: 'Укладка волосся',
@@ -41,11 +41,11 @@ export const locations = {
       },
       {
         name: 'Королівське гоління',
-        price: 200,
+        price: 300,
       },
       {
         name: 'Камуфлювання',
-        price: 150,
+        price: 200,
       },
       {
         name: 'Воскова депіляція',
@@ -66,11 +66,11 @@ export const locations = {
     services: [
       {
         name: 'Чоловіча стрижка',
-        price: 400,
+        price: 450,
       },
       {
         name: 'Стрижка бороди',
-        price: 200,
+        price: 300,
       },
       {
         name: 'Під одну насадку',
@@ -78,7 +78,7 @@ export const locations = {
       },
       {
         name: 'Батько і син',
-        price: 700,
+        price: 800,
       },
       {
         name: 'Укладка волосся',
@@ -86,11 +86,11 @@ export const locations = {
       },
       {
         name: 'Королівське гоління',
-        price: 200,
+        price: 300,
       },
       {
         name: 'Камуфлювання',
-        price: 150,
+        price: 200,
       },
       {
         name: 'Воскова депіляція',

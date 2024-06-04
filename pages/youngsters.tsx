@@ -28,7 +28,7 @@ const Youngsters: NextPage = () => {
       }
       data={locations.secondary}
       logo={logo}
-      color="#fcee21"
+      color="#00c800"
       photoGrid={[
         {
           id: getRandomId(),

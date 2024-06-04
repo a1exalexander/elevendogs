@@ -24,7 +24,7 @@ export interface BarbershopPageProps {
   ogImage?: string;
 }
 
-const CTA = '✂️ Записатися';
+const CTA = 'Записатися';
 
 interface LinkData {
   link: string;
@@ -172,7 +172,7 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
                   <li key={service.name} className={styles.listItem}>
                     <span className={styles.serviceName}>{service.name}</span>
                     <div className={styles.price}>
-                      <span style={{ color }} className={styles.priceValue}>
+                      <span className={styles.priceValue}>
                         {service.price}
                       </span>
                     </div>
