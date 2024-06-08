@@ -11,7 +11,7 @@ export const seo = {
 const services = [
   {
     name: 'Чоловіча стрижка',
-    price: '450 | 500',
+    price: '400 | 450',
   },
   {
     name: 'Батько і син',
