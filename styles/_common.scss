@@ -36,7 +36,7 @@ a {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -49,7 +49,7 @@ code {
   @include media($SCREEN_TABLET) {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-auto-rows: 200px;
+    grid-auto-rows: auto;
     grid-gap: 5px;
     grid-auto-flow: dense;
   }
@@ -58,47 +58,59 @@ code {
 .grid * div {
   width: 100%;
   height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
-.square {
-  height: 60vw;
-}
-
-.horizontal {
-  height: 50vw;
-  @include media($SCREEN_TABLET) {
-    grid-column: span 2;
-  }
-}
-.vertical {
-  height: 100vw;
-  @include media($SCREEN_TABLET) {
-    grid-row: span 2;
-  }
-}
-
-.big {
-  height: 75vw;
-  @include media($SCREEN_TABLET) {
-    grid-column: span 2;
-    grid-row: span 2;
-  }
-}
 .grid__item {
-  width: 100%;
+  position: relative;
   flex-shrink: 0;
-  @include media($SCREEN_TABLET) {
-    height: initial;
-    width: initial;
-    flex-shrink: initial;
+  width: 100%;
+  height: 0;
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  &.square {
+    padding-bottom: 100%;
+  }
+
+  &.horizontal {
+    padding-bottom: 67%;
+
+    @include media($SCREEN_TABLET) {
+      grid-column: span 2;
+    }
+  }
+  &.vertical {
+    padding-bottom: 150%;
+    @include media($SCREEN_TABLET) {
+      grid-row: span 2;
+      grid-column: span 2;
+    }
+  }
+
+  &.big {
+    padding-bottom: 67%;
+    @include media($SCREEN_TABLET) {
+      grid-column: span 3;
+      grid-row: span 2;
+    }
   }
 }
 
-[data-rmiz-modal-overlay='visible'] {
+[data-rmiz-modal-overlay="visible"] {
   background-color: $MAIN_COLOR;
 }
 
-[data-rmiz-modal-content='true'] {
+[data-rmiz-modal-content="true"] {
   img {
     object-fit: contain;
     -o-object-fit: contain;

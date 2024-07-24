@@ -2,16 +2,14 @@ import type { NextPage } from 'next';
 import { locations } from '../data';
 import logo from '../src/assets/eleven_dogs_logo_1.png';
 import { BarbershopPage } from '../src/components';
-import image1 from '../src/assets/ed/a00001.jpg';
-import image2 from '../src/assets/ed/a00002.jpg';
-import image3 from '../src/assets/ed/a00003.jpg';
-import image4 from '../src/assets/ed/a00004.jpg';
-import image5 from '../src/assets/ed/a00005.jpg';
-import image6 from '../src/assets/ed/a00006.jpg';
-import image7 from '../src/assets/ed/a00007.jpg';
-import image8 from '../src/assets/ed/a00008.jpg';
-import getRandomId from '../src/utils/getRandomId';
-
+import image1 from '../src/assets/ed2/DSCF5124-Edit.jpg';
+import image2 from '../src/assets/ed2/DSCF5198-Edit.jpg';
+import image3 from '../src/assets/ed2/DSCF5220-Edit.jpg';
+import image4 from '../src/assets/ed2/DSCF5237-Edit.jpg';
+import image5 from '../src/assets/ed2/DSCF5308-Edit.jpg';
+import image6 from '../src/assets/ed2/DSCF5312-Edit.jpg';
+import image7 from '../src/assets/ed2/DSCF5338-Edit-2.jpg';
+import image8 from '../src/assets/ed2/DSCF5348-Edit.jpg';
 
 const Main: NextPage = () => {
   return (
@@ -32,46 +30,48 @@ const Main: NextPage = () => {
       color="#e6e6e6"
       photoGrid={[
         {
-          id: getRandomId(),
+          id: 1,
           src: image1,
-          type: 'vertical',
+          type: 'horizontal',
         },
         {
-          id: getRandomId(),
+          id: 6,
+          src: image6,
+          type: 'horizontal',
+        },
+        {
+          id: 2,
           src: image2,
           type: 'vertical',
         },
+        
+        
 
         {
-          id: getRandomId(),
-          src: image3,
-          type: 'vertical',
-        },
-
-        {
-          id: getRandomId(),
+          id: 4,
           src: image4,
           type: 'vertical',
         },
-
         {
-          id: getRandomId(),
-          src: image5,
-          type: 'vertical',
-        },
-        {
-          id: getRandomId(),
-          src: image6,
-          type: 'vertical',
-        },
-        {
-          id: getRandomId(),
+          id: 7,
           src: image7,
+          type: 'big',
+        },
+       
+        {
+          id: 3,
+          src: image3,
+          type: 'horizontal',
+        },
+        
+        {
+          id: 8,
+          src: image8,
           type: 'vertical',
         },
         {
-          id: getRandomId(),
-          src: image8,
+          id: 5,
+          src: image5,
           type: 'vertical',
         },
       ]}

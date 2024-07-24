@@ -158,7 +158,7 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
                       loading="lazy"
                       placeholder="blur"
                       objectFit="cover"
-                      objectPosition="50% 60%"
+                      objectPosition="50% 50%"
                     />
                   </Zoom>
                 </div>
