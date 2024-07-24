@@ -2,14 +2,14 @@ import type { NextPage } from 'next';
 import { locations } from '../data';
 import logo from '../src/assets/eleven_dogs_logo_1.png';
 import { BarbershopPage } from '../src/components';
-import image1 from '../src/assets/ed2/DSCF5124-Edit.jpg';
-import image2 from '../src/assets/ed2/DSCF5198-Edit.jpg';
-import image3 from '../src/assets/ed2/DSCF5220-Edit.jpg';
-import image4 from '../src/assets/ed2/DSCF5237-Edit.jpg';
-import image5 from '../src/assets/ed2/DSCF5308-Edit.jpg';
-import image6 from '../src/assets/ed2/DSCF5312-Edit.jpg';
-import image7 from '../src/assets/ed2/DSCF5338-Edit-2.jpg';
-import image8 from '../src/assets/ed2/DSCF5348-Edit.jpg';
+import image1 from '../src/assets/ed2/DSCF5124-Edit-2.jpg';
+import image2 from '../src/assets/ed2/DSCF5198-Edit-2.jpg';
+import image3 from '../src/assets/ed2/DSCF5220-Edit-2.jpg';
+import image4 from '../src/assets/ed2/DSCF5237-Edit-2.jpg';
+import image5 from '../src/assets/ed2/DSCF5308-Edit-2.jpg';
+import image6 from '../src/assets/ed2/DSCF5312-Edit-2.jpg';
+import image7 from '../src/assets/ed2/DSCF5338-Edit-2-2.jpg';
+import image8 from '../src/assets/ed2/DSCF5348-Edit-2.jpg';
 
 const Main: NextPage = () => {
   return (

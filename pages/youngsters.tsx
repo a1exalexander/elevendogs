@@ -2,11 +2,11 @@ import type { NextPage } from 'next';
 import { locations } from '../data';
 import logo from '../src/assets/eleven_dogs_logo_2.png';
 import { BarbershopPage } from '../src/components';
-import image1 from '../src/assets/edy2/DSCF5379.jpg';
-import image2 from '../src/assets/edy2/DSCF5634.jpg';
-import image3 from '../src/assets/edy2/DSCF5406-2.jpg';
+import image1 from '../src/assets/edy2/DSCF5379-2.jpg';
+import image2 from '../src/assets/edy2/DSCF5634-2.jpg';
+import image3 from '../src/assets/edy2/DSCF5406-2-2.jpg';
 import image4 from '../src/assets/edy/b00004.jpg';
-import image5 from '../src/assets/edy2/DSCF5386.jpg';
+import image5 from '../src/assets/edy2/DSCF5386-2.jpg';
 import image6 from '../src/assets/edy/b00006.jpg';
 import image8 from '../src/assets/edy/b00008.jpg';
 
