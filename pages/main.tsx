@@ -35,8 +35,8 @@ const Main: NextPage = () => {
           type: 'horizontal',
         },
         {
-          id: 6,
-          src: image6,
+          id: 3,
+          src: image3,
           type: 'horizontal',
         },
         {
@@ -45,8 +45,11 @@ const Main: NextPage = () => {
           type: 'vertical',
         },
         
-        
-
+        {
+          id: 6,
+          src: image6,
+          type: 'horizontal',
+        },
         {
           id: 4,
           src: image4,
@@ -56,12 +59,6 @@ const Main: NextPage = () => {
           id: 7,
           src: image7,
           type: 'big',
-        },
-       
-        {
-          id: 3,
-          src: image3,
-          type: 'horizontal',
         },
         
         {
