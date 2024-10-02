@@ -1,16 +1,16 @@
-import React, { ReactNode, useEffect, useRef } from 'react';
-import Head from 'next/head';
-import Zoom from 'react-medium-image-zoom';
-import Image, { StaticImageData } from 'next/image';
-import NextLink from 'next/link';
-import { locations } from '../../../data';
-import { Container } from '../Container';
-import { Button } from '../Button';
-import icon from '../../assets/icons8-instagram.svg';
-import styles from './BarbershopPage.module.scss';
-import clsx from 'clsx';
-import { Routes } from '../../constants';
-import { Pricing } from '../../types/Pricing';
+import React, { ReactNode, useEffect, useRef } from "react";
+import Head from "next/head";
+import Zoom from "react-medium-image-zoom";
+import Image, { StaticImageData } from "next/image";
+import NextLink from "next/link";
+import { locations } from "../../../data";
+import { Container } from "../Container";
+import { Button } from "../Button";
+import icon from "../../assets/icons8-instagram.svg";
+import styles from "./BarbershopPage.module.scss";
+import clsx from "clsx";
+import { Routes } from "../../constants";
+import { Pricing } from "../../types/Pricing";
 
 export interface BarbershopPageProps {
   pricing: Pricing[];
@@ -21,12 +21,12 @@ export interface BarbershopPageProps {
   photoGrid?: {
     id: string | number;
     src: string | StaticImageData;
-    type: 'big' | 'horizontal' | 'vertical' | 'square';
+    type: "big" | "horizontal" | "vertical" | "square";
   }[];
   ogImage?: string;
 }
 
-const CTA = 'Записатися';
+const CTA = "Записатися";
 
 interface LinkData {
   link: string;
@@ -53,15 +53,19 @@ export const BarbershopPage = ({
 
   const renderLink = ({ link, name, blank, icon }: LinkData) => {
     return (
-      <NextLink key={name} href={link}>
-        <a
-          target={blank ? '_blank' : '_self'}
-          className={clsx(styles.instagram)}
-        >
-          <span className={styles.icon}>{icon}</span>
-          <span className={styles.instaText}>{name}</span>
-        </a>
-      </NextLink>
+      <>
+        <NextLink key={name} href={link}>
+          <>
+            <a
+              target={blank ? "_blank" : "_self"}
+              className={clsx(styles.instagram)}
+            >
+              <span className={styles.icon}>{icon}</span>
+              <span className={styles.instaText}>{name}</span>
+            </a>
+          </>
+        </NextLink>
+      </>
     );
   };
 
@@ -99,19 +103,19 @@ export const BarbershopPage = ({
                   [
                     {
                       blank: false,
-                      icon: '💈',
+                      icon: "💈",
                       link: Routes.HOME,
-                      name: 'Головна',
+                      name: "Головна",
                     },
                     {
                       blank: true,
-                      icon: '🗺',
+                      icon: "🗺",
                       link: data.map,
                       name: data.address,
                     },
                     {
                       blank: false,
-                      icon: '📞',
+                      icon: "📞",
                       link: `tel:${data.phone}`,
                       name: data.phone,
                     },
@@ -143,15 +147,15 @@ export const BarbershopPage = ({
               {CTA}
             </Button>
           </Container>
-          <div className={clsx('grid', styles.photoGrid)}>
+          <div className={clsx("grid", styles.photoGrid)}>
             {(photoGrid || []).map(({ src, type, id }) => {
               return (
-                <div key={id} className={clsx('grid__item', type)}>
+                <div key={id} className={clsx("grid__item", type)}>
                   <Zoom
                     zoomImg={{
                       src: String(src),
-                      width: '100%',
-                      height: '100%',
+                      width: "100%",
+                      height: "100%",
                     }}
                   >
                     <Image
@@ -175,9 +179,7 @@ export const BarbershopPage = ({
                   <li key={service.id} className={styles.listItem}>
                     <span className={styles.serviceName}>{service.title}</span>
                     <div className={styles.price}>
-                      <span className={styles.priceValue}>
-                        {service.price}
-                      </span>
+                      <span className={styles.priceValue}>{service.price}</span>
                     </div>
                   </li>
                 ))}
