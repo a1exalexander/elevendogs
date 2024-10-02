@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useEffect, useRef } from 'react';
+import React, { ReactNode, useEffect, useRef } from 'react';
 import Head from 'next/head';
 import Zoom from 'react-medium-image-zoom';
 import Image, { StaticImageData } from 'next/image';
@@ -10,8 +10,10 @@ import icon from '../../assets/icons8-instagram.svg';
 import styles from './BarbershopPage.module.scss';
 import clsx from 'clsx';
 import { Routes } from '../../constants';
+import { Pricing } from '../../types/Pricing';
 
 export interface BarbershopPageProps {
+  pricing: Pricing[];
   data: (typeof locations)[keyof typeof locations];
   logo: string | StaticImageData;
   color: string;
@@ -33,14 +35,15 @@ interface LinkData {
   icon: string;
 }
 
-export const BarbershopPage: FC<BarbershopPageProps> = ({
+export const BarbershopPage = ({
+  pricing,
   data,
   logo,
   color,
   renderMap,
   photoGrid,
   ogImage,
-}) => {
+}: BarbershopPageProps) => {
   const itemsRef = useRef([]);
   // you can access the elements with itemsRef.current[n]
 
@@ -168,9 +171,9 @@ export const BarbershopPage: FC<BarbershopPageProps> = ({
           <main className={styles.main}>
             <Container className={styles.mainContainer}>
               <ul className={styles.list} style={{ borderColor: color }}>
-                {data.services.map((service) => (
-                  <li key={service.name} className={styles.listItem}>
-                    <span className={styles.serviceName}>{service.name}</span>
+                {pricing.map((service) => (
+                  <li key={service.id} className={styles.listItem}>
+                    <span className={styles.serviceName}>{service.title}</span>
                     <div className={styles.price}>
                       <span className={styles.priceValue}>
                         {service.price}

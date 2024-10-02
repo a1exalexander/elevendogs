@@ -49,7 +49,6 @@ export const locations = {
     address: 'Кременчук, вул. Івана Мазепи, 28',
     title: 'Eleven Dogs | Кременчук Барбершоп',
     description: 'Барбершоп в центрі Кременчука. Пострижись як в прошлий раз!',
-    services,
   },
   secondary: {
     booking: 'https://n768560.alteg.io/',
@@ -61,7 +60,6 @@ export const locations = {
     title: 'Youngsters - Eleven Dogs | Кременчук Барбершоп',
     description:
       'Барбершоп в районі зупинки Водоканал м. Кременчук. Пострижись як в прошлий раз!',
-    services,
   },
 };
 
