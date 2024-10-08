@@ -1,6 +1,6 @@
 <template>
   <div class="Home">
-    <!-- <div v-show="false">
+    <div v-show="false">
       <img v-for="item in slides" :key="item.title" :src="item.image" rel="preload" />
     </div>
     <transition
@@ -12,7 +12,7 @@
       mode="out-in"
     >
       <dark-image :src="slide.image" :key="slide.title" />
-    </transition> -->
+    </transition>
     <div class="Home__container">
       <div class="Home__title-container">
         <transition appear @enter="enterTitle" @leave="leaveTitle" :css="false">
@@ -27,44 +27,40 @@
 
 <script>
 import gsap, { TimelineMax, Power4 } from 'gsap';
-import Flag from '@/assets/images/flag.jpeg';
+import Slide1 from '@/assets/images/Slide1.jpg';
+import Slide2 from '@/assets/images/Slide2.jpg';
+import Slide3 from '@/assets/images/Slide3.jpg';
+import Slide4 from '@/assets/images/Slide4.jpg';
 import AppButton from '../components/common/AppButton.vue';
 import AppFooter from '../components/common/AppFooter.vue';
+import DarkImage from '../components/common/DarkImage.vue';
 
 const ANIMATION_DELAY = 4000;
 
 export default {
   name: 'Home',
-  components: { AppButton, AppFooter },
+  components: { AppButton, AppFooter, DarkImage },
   data() {
     return {
       timer: null,
       activeSlide: 0,
       slides: [
-        {
-          title: 'рускій воєнний корабль',
-          image: Flag,
+      {
+          title: 'досвідчені барбери',
+          image: Slide1,
         },
         {
-          title: 'іди нах#й',
-          image: Flag,
-        },
-        {
-          title: 'ми досвідчені барбери',
-          image: Flag,
-        },
-        {
-          title: 'і приємна компанія',
-          image: Flag,
+          title: 'приємна компанія',
+          image: Slide2,
         },
         {
           title: 'у нас є смак',
-          image: Flag,
+          image: Slide3,
         },
-        // {
-        //   title: 'ми справжні чоловіки',
-        //   image: Flag,
-        // },
+        {
+          title: 'справжні чоловіки',
+          image: Slide4,
+        },
       ],
     };
   },

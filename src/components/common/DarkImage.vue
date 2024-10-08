@@ -27,6 +27,5 @@ export default {
   width: 100vw;
   overflow: hidden;
   object-fit: cover;
-  z-index: -1;
 }
 </style>
