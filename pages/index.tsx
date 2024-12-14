@@ -4,15 +4,29 @@ import Link from 'next/link';
 import clsx from 'clsx';
 import { locations, seo } from '../data';
 import styles from '../styles/pages/index.module.scss';
+import logo from '../src/assets/new_logo_2024.jpg';
 import mainLogo from '../src/assets/eleven_dogs_logo_1.png';
 import secondaryLogo from '../src/assets/eleven_dogs_logo_2.png';
 import { HiddenTitle } from '../src/components';
 import { Routes } from '../src/constants';
+import imageMain from "../src/assets/ed2/DSCF5124-Edit-2.jpg";
+import imageSecondary from "../src/assets/edy/b00001.jpg";
 
 const Home: NextPage = () => {
   return (
     <div className={styles.page}>
       <HiddenTitle>{`${seo.title} ${seo.description}`}</HiddenTitle>
+      <header className={styles.header}>
+        <Image
+          priority
+          loading="eager"
+          layout="fill"
+          objectFit="contain"
+          objectPosition="center"
+          src={logo}
+          alt={locations.main.name}
+        />
+      </header>
       <main className={styles.barbers}>
         <Link href={Routes.MAIN}>
           <a className={clsx(styles.barber, styles.isMain)}>
@@ -20,8 +34,10 @@ const Home: NextPage = () => {
               <Image
                 priority
                 loading="eager"
-                layout="responsive"
-                src={mainLogo}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="center"
+                src={imageMain}
                 alt={locations.main.name}
               />
             </div>
@@ -34,8 +50,10 @@ const Home: NextPage = () => {
               <Image
                 priority
                 loading="eager"
-                layout="responsive"
-                src={secondaryLogo}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="center"
+                src={imageSecondary}
                 alt={locations.secondary.name}
               />
             </div>

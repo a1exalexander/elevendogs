@@ -1,114 +1,144 @@
 @import 'core';
 
 @keyframes arromZoom {
-  from {
-    transform: scale(1) translate(2px, -2px);
-  }
-  to {
-    transform: scale(1.2) translate(0px, 0px);
-  }
+    from {
+        transform: scale(1) translate(2px, -2px);
+    }
+    to {
+        transform: scale(1.2) translate(0px, 0px);
+    }
 }
 
-$nav_height: 68px;
+$nav_height: 100px;
 
 .page {
-  overflow: hidden;
-  width: 100vw;
-  position: fixed;
-  @include position;
-  @include flex-col;
-  height: calc(100vh - calc(100vh - 100%));
-  max-height: calc(100vh - calc(100vh - 100%));
+    overflow: hidden;
+    width: 100%;
+    position: fixed;
+    @include position;
+    @include flex-col;
+    height: calc(100vh - calc(100vh - 100%));
+    max-height: calc(100vh - calc(100vh - 100%));
+}
+
+.header {
+    position: relative;
+    height: 100px;
+    margin: 0 auto;
+    width: 100%;
+    flex-shrink: 0;
+    flex-grow: 0;
+    @include media($SCREEN_IPHONE_PLUS) {
+        height: 150px;
+    }
 }
 
 .image {
-  flex-shrink: 0;
-  position: relative;
-  width: 80%;
-  max-width: 1000px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    @include transition(filter, transform);
+    transition-duration: 0.5s;
 }
 
 .barbers {
-  $height: calc(100vh - calc(100vh - 100%));
-  flex: 1 1 calc(#{$height} - #{$nav_height});
-  max-height: calc(#{$height} - #{$nav_height});
-  // flex: 1 1;
-  @include flex-col;
-  @include media($SCREEN_TABLET_LARGE) {
-    flex-direction: row;
-  }
+    //$height: calc(100vh - calc(100vh - 100%));
+    //flex: 1 1 calc(#{$height} - #{$nav_height});
+    //max-height: calc(#{$height} - #{$nav_height});
+    //// flex: 1 1;
+    flex-grow: 1;
+    @include flex-col;
+    @include media($SCREEN_TABLET_LARGE) {
+        flex-direction: row;
+    }
 }
 
 .barber {
-  flex: 0 0 50%;
-  display: flex;
-  @include flex-col(center, center);
-  overflow: hidden;
-  position: relative;
-  & > *:first-child {
-    @include transition(transform);
-  }
-  @include media($SCREEN_TABLET_LARGE) {
-    justify-content: center;
-  }
-  @include hover {
-    & > *:first-child {
-      transform: scale(0.9);
+    flex: 0 0 50%;
+    display: flex;
+    @include flex-col(flex-end, center);
+    overflow: hidden;
+    position: relative;
+    @include media($SCREEN_TABLET_LARGE) {
+        .image {
+            filter: grayscale(100%);
+        }
+        &:hover .image {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
     }
-  }
+
+}
+
+.barber::after {
+    content: '';
+    display: block;
+    height: 150px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(180deg, rgba(black, 0) 0%, rgba(black, 1) 100%);
 }
 
 .isSecondary {
-  // border: 10px solid $SECONDARY_YELLOW;
-  // box-shadow: inset 5px 5px $SECONDARY_GREEN;
-  & > *:first-child {
-    left: 5px;
-    top: 5px;
-  }
+    // border: 10px solid $SECONDARY_YELLOW;
+    // box-shadow: inset 5px 5px $SECONDARY_GREEN;
+    & > *:first-child {
+        left: 5px;
+        top: 5px;
+    }
 }
 
 .address {
-  text-align: center;
-  padding: 0 24px 24px;
-  @include text(rem(15px), 500, $MOCCA);
-  line-height: 150%;
-  @include media($SCREEN_TABLET_LARGE) {
-    font-size: 18px;
-    // position: absolute;
-    flex-shrink: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
+    text-align: center;
+    padding: 0 24px 24px;
+    @include text(rem(18px), 500, $MOCCA);
+    line-height: 150%;
+    position: relative;
+    z-index: 2;
+    @include media($SCREEN_TABLET_LARGE) {
+        font-size: 18px;
+        // position: absolute;
+        flex-shrink: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
 }
 
 .footer {
-  flex: 0 0 $nav_height;
-  padding: 24px;
-  background-color: $MAIN_COLOR;
+    flex: 0 0 $nav_height;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: $MAIN_COLOR;
 }
 
 .nav {
-  @include flex(center, center);
+    @include flex(center, center);
 }
 
 .link {
-  @include flex(center, center);
-  @include text(rem(16px), 500, $MOCCA);
-  @include transition(color);
-  @include media($SCREEN_TABLET_LARGE) {
-    font-size: 18px;
-  }
-  @include hover {
-    color: $N0;
-  }
-  &:focus, &:active {
-    color: $P100;
-  }
+    padding: 16px;
+    @include flex(center, center);
+    @include text(rem(16px), 500, $MOCCA);
+    @include transition(color);
+    @include media($SCREEN_TABLET_LARGE) {
+        font-size: 18px;
+    }
+    @include hover {
+        color: $N0;
+    }
+
+    &:focus, &:active {
+        color: $P100;
+    }
 }
 
 .arrow {
-  @include svg(28px, $P100);
-  margin-left: 6px;
-  animation: arromZoom 1s ease-in-out infinite alternate both;
+    @include svg(28px, $P100);
+    margin-left: 6px;
+    animation: arromZoom 1s ease-in-out infinite alternate both;
 }

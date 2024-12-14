@@ -54,16 +54,17 @@ export const BarbershopPage = ({
   const renderLink = ({ link, name, blank, icon }: LinkData) => {
     return (
       <>
-        <NextLink key={name} href={link}>
-          <>
-            <a
-              target={blank ? "_blank" : "_self"}
-              className={clsx(styles.instagram)}
-            >
-              <span className={styles.icon}>{icon}</span>
-              <span className={styles.instaText}>{name}</span>
-            </a>
-          </>
+        <NextLink
+          key={name}
+          href={link}
+        >
+          <a
+            target={blank ? '_blank' : '_self'}
+            className={clsx(styles.instagram)}
+          >
+            <span className={styles.icon}>{icon}</span>
+            <span className={styles.instaText}>{name}</span>
+          </a>
         </NextLink>
       </>
     );
@@ -73,9 +74,18 @@ export const BarbershopPage = ({
     <>
       <Head>
         <title>{data.title}</title>
-        <meta name="description" content={data.description} />
-        <meta name="og:title" content={data.title} />
-        <meta name="og:description" content={data.description} />
+        <meta
+          name="description"
+          content={data.description}
+        />
+        <meta
+          name="og:title"
+          content={data.title}
+        />
+        <meta
+          name="og:description"
+          content={data.description}
+        />
         <meta name="twitter:title" content={data.title} />
         <meta name="twitter:description" content={data.description} />
         {ogImage && (
