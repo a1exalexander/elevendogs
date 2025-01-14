@@ -56,7 +56,7 @@ export const locations = {
     instagram: 'eleven.dogs',
     name: 'Eleven Dogs Youngsters',
     phone: '+380678822011',
-    address: 'Кременчук, проспект Свободи, 39/43',
+    address: 'Кременчук, пр-т Свободи, 39/43',
     title: 'Youngsters - Eleven Dogs | Кременчук Барбершоп',
     description:
       'Барбершоп в районі зупинки Водоканал м. Кременчук. Пострижись як в прошлий раз!',

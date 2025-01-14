@@ -5,12 +5,10 @@ import clsx from 'clsx';
 import { locations, seo } from '../data';
 import styles from '../styles/pages/index.module.scss';
 import logo from '../src/assets/new_logo_2024.jpg';
-import mainLogo from '../src/assets/eleven_dogs_logo_1.png';
-import secondaryLogo from '../src/assets/eleven_dogs_logo_2.png';
 import { HiddenTitle } from '../src/components';
 import { Routes } from '../src/constants';
-import imageMain from "../src/assets/ed2/DSCF5124-Edit-2.jpg";
-import imageSecondary from "../src/assets/edy/b00001.jpg";
+import imageMain from "../src/assets/shop-1.jpg";
+import imageSecondary from "../src/assets/shop-2.jpg";
 
 const Home: NextPage = () => {
   return (

@@ -1,6 +1,6 @@
 import type { GetStaticProps, NextPage } from "next";
 import { locations } from "../data";
-import logo from "../src/assets/eleven_dogs_logo_1.png";
+import logo from "../src/assets/new_logo_2024.jpg";
 import { BarbershopPage } from "../src/components";
 import image1 from "../src/assets/ed2/DSCF5124-Edit-2.jpg";
 import image2 from "../src/assets/ed2/DSCF5198-Edit-2.jpg";
