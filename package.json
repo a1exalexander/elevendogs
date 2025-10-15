@@ -2,6 +2,9 @@
   "name": "elevendogs",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "22"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,19 +15,20 @@
     "@notionhq/client": "^2.2.15",
     "clsx": "^1.2.1",
     "lodash": "^4.17.21",
-    "next": "12.2.2",
+    "next": "14.2.18",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-medium-image-zoom": "^5.0.1"
+    "react-medium-image-zoom": "^5.0.1",
+    "sharp": "^0.34.4"
   },
   "devDependencies": {
-    "@types/node": "18.0.5",
     "@types/lodash": "^4.17.9",
-    "@types/react": "18.0.15",
-    "@types/react-dom": "18.0.6",
-    "eslint": "8.19.0",
-    "eslint-config-next": "12.2.2",
+    "@types/node": "22.10.2",
+    "@types/react": "18.2.79",
+    "@types/react-dom": "18.2.25",
+    "eslint": "8.57.1",
+    "eslint-config-next": "14.2.18",
     "sass": "^1.53.0",
-    "typescript": "4.7.4"
+    "typescript": "5.7.2"
   }
 }
