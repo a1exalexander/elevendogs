@@ -4,12 +4,13 @@ import { locations } from "../data";
 import logo from "../src/assets/eleven_dogs_logo_2.png";
 import { BarbershopPage } from "../src/components";
 import image1 from "../src/assets/edy2/DSCF5379-2.jpg";
-import image2 from "../src/assets/edy2/DSCF5634-2.jpg";
+import image2 from "../src/assets/new2025/IMG_3516.jpg";
 import image3 from "../src/assets/edy2/DSCF5406-2-2.jpg";
 import image4 from "../src/assets/edy/b00004.jpg";
-import image5 from "../src/assets/edy2/DSCF5386-2.jpg";
-import image6 from "../src/assets/edy/b00006.jpg";
-import image8 from "../src/assets/edy/b00008.jpg";
+import image5 from "../src/assets/new2025/IMG_3539.jpg";
+import image6 from "../src/assets/new2025/IMG_9791.jpg";
+import image8 from "../src/assets/new2025/IMG_9793.jpg";
+import image9 from "../src/assets/new2025/IMG_9649.jpg";
 import { Client } from "@notionhq/client";
 import { Pricing } from "../src/types/Pricing";
 import { ApiService } from "../src/services/ApiService";
@@ -41,33 +42,40 @@ const Youngsters: NextPage<YoungstersProps> = ({ pricing }) => {
           {
             id: 2,
             src: image2,
-            type: "big",
-          },
-          {
-            id: 3,
-            src: image3,
             type: "vertical",
           },
+          {
+            id: 5,
+            src: image5,
+            type: "horizontal",
+          },          
           {
             id: 1,
             src: image1,
             type: "vertical",
           },
-
           {
-            id: 4,
-            src: image4,
+            id: 9,
+            src: image9,
             type: "vertical",
           },
-
-          {
-            id: 5,
-            src: image5,
-            type: "vertical",
-          },
+          
           {
             id: 6,
             src: image6,
+            type: "vertical",
+          },
+
+          {
+            id: 3,
+            src: image3,
+            type: "horizontal",
+          },
+          
+          
+          {
+            id: 4,
+            src: image4,
             type: "vertical",
           },
           {

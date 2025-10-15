@@ -6,10 +6,9 @@ import image1 from "../src/assets/ed2/DSCF5124-Edit-2.jpg";
 import image2 from "../src/assets/ed2/DSCF5198-Edit-2.jpg";
 import image3 from "../src/assets/ed2/DSCF5220-Edit-2.jpg";
 import image4 from "../src/assets/ed2/DSCF5237-Edit-2.jpg";
-import image5 from "../src/assets/ed2/DSCF5308-Edit-2.jpg";
-import image6 from "../src/assets/ed2/DSCF5312-Edit-2.jpg";
-import image7 from "../src/assets/ed2/DSCF5338-Edit-2-2.jpg";
-import image8 from "../src/assets/ed2/DSCF5348-Edit-2.jpg";
+import image5 from "../src/assets/new2025/IMG_3466.jpg";
+import image6 from "../src/assets/new2025/IMG_3540.jpg";
+import image7 from "../src/assets/new2025/IMG_3542.jpg";
 import { Client } from "@notionhq/client";
 import { ApiService } from "../src/services/ApiService";
 import { Pricing } from "../src/types/Pricing";
@@ -52,31 +51,25 @@ const Main: NextPage<MainProps> = ({ pricing }) => {
           src: image2,
           type: "vertical",
         },
-
-        {
-          id: 6,
-          src: image6,
-          type: "horizontal",
-        },
+        
         {
           id: 4,
           src: image4,
           type: "vertical",
         },
         {
-          id: 7,
-          src: image7,
-          type: "big",
-        },
-
-        {
-          id: 8,
-          src: image8,
-          type: "vertical",
+          id: 6,
+          src: image6,
+          type: "horizontal",
         },
         {
           id: 5,
           src: image5,
+          type: "vertical",
+        },
+        {
+          id: 7,
+          src:image7,
           type: "vertical",
         },
       ]}
