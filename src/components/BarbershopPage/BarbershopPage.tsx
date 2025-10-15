@@ -53,20 +53,15 @@ export const BarbershopPage = ({
 
   const renderLink = ({ link, name, blank, icon }: LinkData) => {
     return (
-      <>
-        <NextLink
-          key={name}
-          href={link}
-        >
-          <a
-            target={blank ? '_blank' : '_self'}
-            className={clsx(styles.instagram)}
-          >
-            <span className={styles.icon}>{icon}</span>
-            <span className={styles.instaText}>{name}</span>
-          </a>
-        </NextLink>
-      </>
+      <NextLink
+        key={name}
+        href={link}
+        target={blank ? '_blank' : '_self'}
+        className={clsx(styles.instagram)}
+      >
+        <span className={styles.icon}>{icon}</span>
+        <span className={styles.instaText}>{name}</span>
+      </NextLink>
     );
   };
 
@@ -102,10 +97,12 @@ export const BarbershopPage = ({
               <div className={styles.logo}>
                 <Image
                   priority
-                  loading="eager"
-                  layout="responsive"
                   src={logo}
                   alt={data.name}
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  style={{ width: '100%', height: 'auto' }}
                 />
               </div>
               <nav className={styles.nav}>
@@ -134,10 +131,12 @@ export const BarbershopPage = ({
                       icon: (
                         <Image
                           priority
-                          loading="eager"
-                          layout="responsive"
                           src={icon}
                           alt="instagram"
+                          width={0}
+                          height={0}
+                          sizes="100vw"
+                          style={{ width: '100%', height: 'auto' }}
                         />
                       ),
                       link: `https://www.instagram.com/${data.instagram}/`,
@@ -171,11 +170,9 @@ export const BarbershopPage = ({
                     <Image
                       src={src}
                       alt={data.title}
-                      layout="fill"
+                      fill
                       loading="lazy"
-                      placeholder="blur"
-                      objectFit="cover"
-                      objectPosition="50% 50%"
+                      style={{ objectFit: 'cover', objectPosition: '50% 50%' }}
                     />
                   </Zoom>
                 </div>

@@ -40,10 +40,11 @@ const Youngsters: NextPage<YoungstersProps> = ({ pricing }) => {
         color="#00c800"
         photoGrid={[
           {
-            id: 2,
-            src: image2,
+            id: 4,
+            src: image4,
             type: "vertical",
           },
+          
           {
             id: 5,
             src: image5,
@@ -72,12 +73,12 @@ const Youngsters: NextPage<YoungstersProps> = ({ pricing }) => {
             type: "horizontal",
           },
           
-          
           {
-            id: 4,
-            src: image4,
+            id: 2,
+            src: image2,
             type: "vertical",
           },
+          
           {
             id: 8,
             src: image8,
