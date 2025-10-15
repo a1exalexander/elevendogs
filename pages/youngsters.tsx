@@ -10,7 +10,6 @@ import image4 from "../src/assets/edy/b00004.jpg";
 import image5 from "../src/assets/new2025/1IMG_3539.JPG";
 import image6 from "../src/assets/new2025/1IMG_9791.JPG";
 import image8 from "../src/assets/new2025/1IMG_9793.JPG";
-import image9 from "../src/assets/new2025/1IMG_9649.JPG";
 import { Client } from "@notionhq/client";
 import { Pricing } from "../src/types/Pricing";
 import { ApiService } from "../src/services/ApiService";
@@ -55,12 +54,6 @@ const Youngsters: NextPage<YoungstersProps> = ({ pricing }) => {
             src: image1,
             type: "vertical",
           },
-          {
-            id: 9,
-            src: image9,
-            type: "vertical",
-          },
-          
           {
             id: 6,
             src: image6,

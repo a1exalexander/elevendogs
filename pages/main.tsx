@@ -9,6 +9,7 @@ import image4 from "../src/assets/ed2/DSCF5237-Edit-2.jpg";
 import image5 from "../src/assets/new2025/1IMG_3466.JPG";
 import image6 from "../src/assets/new2025/1IMG_3540.JPG";
 import image7 from "../src/assets/new2025/1IMG_3542.JPG";
+import image8 from "../src/assets/new2025/1IMG_9649.JPG";
 import { Client } from "@notionhq/client";
 import { ApiService } from "../src/services/ApiService";
 import { Pricing } from "../src/types/Pricing";
@@ -55,6 +56,11 @@ const Main: NextPage<MainProps> = ({ pricing }) => {
         {
           id: 4,
           src: image4,
+          type: "vertical",
+        },
+        {
+          id: 8,
+          src: image8,
           type: "vertical",
         },
         {
