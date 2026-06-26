@@ -1,15 +1,19 @@
 import React from "react";
 import type { GetStaticProps, NextPage } from "next";
 import { locations } from "../data";
-import logo from "../src/assets/eleven_dogs_logo_2.png";
 import { BarbershopPage } from "../src/components";
+import { Routes } from "../src/constants";
+import heroLogo from "../src/assets/eleven_dogs_youngsters.svg";
+import heroImage from "../src/assets/new2025/1IMG_3516.JPG";
+import contactImage from "../src/assets/edy/b00002.jpg";
 import image1 from "../src/assets/edy2/DSCF5379-2.jpg";
-import image2 from "../src/assets/new2025/1IMG_3516.JPG";
-import image3 from "../src/assets/edy2/DSCF5406-2-2.jpg";
-import image4 from "../src/assets/edy/b00004.jpg";
-import image5 from "../src/assets/new2025/1IMG_3539.JPG";
-import image6 from "../src/assets/new2025/1IMG_9791.JPG";
-import image8 from "../src/assets/new2025/1IMG_9793.JPG";
+import image2 from "../src/assets/edy2/DSCF5406-2-2.jpg";
+import image3 from "../src/assets/edy/b00004.jpg";
+import image4 from "../src/assets/new2025/1IMG_3539.JPG";
+import image5 from "../src/assets/new2025/1IMG_9791.JPG";
+import image6 from "../src/assets/edy2/DSCF5634-2.jpg";
+import image7 from "../src/assets/new2025/1IMG_9793.JPG";
+import image8 from "../src/assets/edy2/DSCF5386-2.jpg";
 import { Client } from "@notionhq/client";
 import { Pricing } from "../src/types/Pricing";
 import { ApiService } from "../src/services/ApiService";
@@ -18,77 +22,39 @@ export interface YoungstersProps {
   pricing: Pricing[];
 }
 
+const gallery = [image1, image2, image3, image4, image5, image6, image7, image8];
+const barberPhotos = [image1, image3, image5];
+
 const Youngsters: NextPage<YoungstersProps> = ({ pricing }) => {
   return (
-    <>
-      <BarbershopPage
-        ogImage="/og_youngsters.jpg"
-        renderMap={
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2613.041752248158!2d33.4244195155907!3d49.085846879310346!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d752fdf4d39067%3A0xacc45b86accd9370!2sSvobody%20Ave%2C%2039%2F43%2C%20Kremenchuk%2C%20Poltavs&#39;ka%20oblast%2C%2039600!5e0!3m2!1sen!2sua!4v1658230504480!5m2!1sen!2sua"
-            width="100%"
-            height="100%"
-            style={{ border: "none" }}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
-        }
-        data={locations.secondary}
-        pricing={pricing}
-        logo={logo}
-        color="#00c800"
-        photoGrid={[
-          {
-            id: 4,
-            src: image4,
-            type: "vertical",
-          },
-          
-          {
-            id: 5,
-            src: image5,
-            type: "horizontal",
-          },          
-          {
-            id: 1,
-            src: image1,
-            type: "vertical",
-          },
-          {
-            id: 6,
-            src: image6,
-            type: "vertical",
-          },
-
-          {
-            id: 3,
-            src: image3,
-            type: "horizontal",
-          },
-          
-          {
-            id: 2,
-            src: image2,
-            type: "vertical",
-          },
-          
-          {
-            id: 8,
-            src: image8,
-            type: "vertical",
-          },
-        ]}
-      />
-    </>
+    <BarbershopPage
+      variant="loud"
+      ogImage="/og_youngsters.jpg"
+      data={locations.secondary}
+      pricing={pricing}
+      heroLogo={heroLogo}
+      heroImage={heroImage}
+      gallery={gallery}
+      contactImage={contactImage}
+      barbers={locations.secondary.barbers.map((barber, index) => ({
+        ...barber,
+        photo: barberPhotos[index % barberPhotos.length],
+      }))}
+      crossLink={{ label: "Eleven Dogs", href: Routes.MAIN }}
+    />
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const notion = new Client({
-    auth: process.env.NOTION_SECRET,
-  });
-  const apiService = new ApiService("Свободи", notion);
-  const pricing = await apiService.fetchPricing();
+  let pricing: Pricing[] = [];
+
+  try {
+    const notion = new Client({ auth: process.env.NOTION_SECRET });
+    const apiService = new ApiService("Свободи", notion);
+    pricing = await apiService.fetchPricing();
+  } catch (error) {
+    console.error("Failed to fetch pricing from Notion", error);
+  }
 
   return {
     props: { pricing },

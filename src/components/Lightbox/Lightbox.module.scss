@@ -1,0 +1,69 @@
+@import '../../../styles/core';
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  @include z-index(immortal);
+  @include flex(center, center);
+  background: rgba(6, 7, 9, 0.96);
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  cursor: zoom-out;
+}
+
+.imageWrap {
+  position: relative;
+  width: 92vw;
+  height: 84vh;
+  pointer-events: none;
+  filter: drop-shadow(0 30px 90px rgba(0, 0, 0, 0.7));
+}
+
+.navButton {
+  position: fixed;
+  @include flex(center, center);
+  color: #fff;
+  line-height: 1;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(20, 21, 25, 0.7);
+  border-radius: 999px;
+  @include transition(background);
+
+  &:hover {
+    background: rgba(60, 62, 70, 0.9);
+  }
+}
+
+.chevron {
+  display: block;
+  // The ‹/› glyphs sit on the math axis, below the line-box center,
+  // so nudge them up to read as optically centered.
+  transform: translateY(-0.08em);
+}
+
+.prev,
+.next {
+  top: 50%;
+  transform: translateY(-50%);
+  @include size(52px);
+  font-size: 24px;
+}
+
+.prev {
+  left: clamp(10px, 3vw, 32px);
+}
+
+.next {
+  right: clamp(10px, 3vw, 32px);
+}
+
+.close {
+  top: clamp(12px, 3vw, 28px);
+  right: clamp(12px, 3vw, 28px);
+  @include size(46px);
+  font-size: 18px;
+}

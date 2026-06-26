@@ -1,160 +1,880 @@
 @import '../../../styles/core';
 
-.container {
-  overflow: hidden;
-  position: relative;
-  // padding-top: 80px;
+$shell: 1240px;
+
+@mixin shell {
+  max-width: $shell;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@mixin gutters {
+  padding-left: clamp(16px, 4vw, 40px);
+  padding-right: clamp(16px, 4vw, 40px);
+}
+
+@mixin block {
+  @include shell;
+  @include gutters;
+  padding-top: clamp(48px, 7vw, 104px);
+  padding-bottom: clamp(48px, 7vw, 104px);
+}
+
+.page {
+  background: $ED_BG;
+  color: $ED_TEXT;
   min-height: 100vh;
-  @include flex-col;
-  @include media($SCREEN_TABLET_SMALL) {
-    // padding-top: 60px;
+  font-family: $FONT_BODY;
+  -webkit-font-smoothing: antialiased;
+
+  &.loud {
+    background: $Y_BG;
+    color: $Y_TEXT;
   }
 }
 
-.inner {
-  pointer-events: none;
-  position: relative;
-  z-index: 1;
+/* ---------- shared atoms ---------- */
+.kicker {
+  font-family: $FONT_MONO;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $ED_MUTED;
+
+  .loud & {
+    color: $Y_GREEN;
+    letter-spacing: 0.16em;
+  }
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 46px;
+  border-radius: 999px;
+  background: $ED_TEXT;
+  color: $ED_BG;
+  font-family: $FONT_DISPLAY;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 13px;
+  padding: 0 26px;
+  white-space: nowrap;
+  @include transition(transform);
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  .loud & {
+    // Youngsters keeps the sharp rectangle look.
+    border-radius: 0;
+    background: $Y_YELLOW;
+    color: $Y_BG;
+    font-family: $FONT_LOUD;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+
+    &:hover {
+      transform: rotate(-2deg) scale(1.04);
+    }
+  }
+}
+
+.ctaGhost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 46px;
+  border-radius: 999px;
+  background: none;
+  color: $ED_TEXT;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-family: $FONT_DISPLAY;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 13px;
+  padding: 0 24px;
+  white-space: nowrap;
+  @include transition(border-color, background, color);
+
+  &:hover {
+    border-color: $ED_TEXT;
+  }
+
+  .loud & {
+    // Youngsters keeps the sharp rectangle look.
+    border-radius: 0;
+    color: $Y_YELLOW;
+    border: 2px solid $Y_GREEN;
+    font-family: $FONT_LOUD;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+
+    &:hover {
+      background: $Y_GREEN;
+      color: $Y_BG;
+    }
+  }
+}
+
+/* ---------- header ---------- */
+.header {
+  position: sticky;
+  top: 0;
+  @include z-index(navigation);
+  background: rgba(10, 11, 13, 0.82);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid $ED_BORDER;
+
+  .loud & {
+    background: rgba(12, 13, 10, 0.85);
+    border-bottom: 2px solid $Y_GREEN;
+  }
+}
+
+.headerInner {
+  @include shell;
+  @include gutters;
+  @include flex(space-between, center);
+  gap: 16px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.brand {
+  @include flex(flex-start, center);
+  color: $ED_TEXT;
+  cursor: pointer;
+  font-family: $FONT_DISPLAY;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: clamp(15px, 2.4vw, 20px);
+  white-space: nowrap;
+
+  .loud & {
+    color: $Y_YELLOW;
+    font-family: $FONT_LOUD;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+  }
 }
 
 .nav {
-  width: 100%;
-  pointer-events: auto;
-  background-color: $MAIN_COLOR;
-  @include media($SCREEN_TABLET_SMALL) {
-    width: initial;
+  @include shell;
+  @include gutters;
+  display: flex;
+  gap: 8px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  // Slim, themed horizontal scrollbar (mostly visible on mobile where the
+  // pills overflow) instead of the chunky default gray bar.
+  scrollbar-width: thin;
+  scrollbar-color: rgba(140, 140, 150, 0.35) transparent;
+
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(140, 140, 150, 0.35);
+    border-radius: 6px;
+  }
+
+  .loud & {
+    scrollbar-color: rgba(0, 177, 64, 0.6) transparent;
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(0, 177, 64, 0.6);
+    }
   }
 }
 
-.top {
-  z-index: 1;
-  width: 100%;
-  // position: fixed;
-  top: 0;
-  left: 0;
-  padding: 12px;
-  background-color: $MOCCA;
-  // box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+.navLink {
+  flex: none;
+  font-family: $FONT_MONO;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $ED_TEXT_SOFT;
+  border: 1px solid $ED_BORDER_SOFT;
+  padding: 8px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+  @include transition(color, background, border-color);
+
+  &:hover {
+    color: $ED_BG;
+    background: $ED_TEXT;
+  }
+
+  .loud & {
+    color: $Y_YELLOW;
+    border: 1px solid $Y_GREEN;
+    border-radius: 0;
+
+    &:hover {
+      color: $Y_BG;
+      background: $Y_YELLOW;
+    }
+  }
 }
 
-.headerContainer {
-  @include flex-col(center, center);
+.navCross {
+  color: $ED_BG;
+  background: $Y_YELLOW;
+  border-color: $Y_YELLOW;
+
+  &:hover {
+    background: $Y_YELLOW;
+    color: $ED_BG;
+  }
+
+  .loud & {
+    color: $Y_TEXT;
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: $Y_TEXT;
+    }
+  }
 }
 
-.logo {
-  width: 100%;
-  max-width: 300px;
+/* ---------- hero ---------- */
+.hero {
   position: relative;
-  margin-bottom: 40px;
-  @include media($SCREEN_TABLET_LARGE) {
-    margin: 0 32px 40px;
+  min-height: clamp(540px, 86vh, 840px); // fallback for browsers without dvh
+  min-height: clamp(540px, 86dvh, 840px);
+  overflow: hidden;
+  @include flex(flex-start, flex-end);
+}
+
+.heroImage {
+  opacity: 0.5;
+
+  .loud & {
+    opacity: 0.82;
   }
 }
 
-.address {
-  @include text(rem(14px), 500, $MAIN_COLOR);
-  margin: 0 12px;
-  line-height: 130%;
-  margin-bottom: 8px;
-  @include media($SCREEN_TABLET_LARGE) {
-    font-size: rem(16px);
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 11, 13, 0.4),
+    rgba(10, 11, 13, 0.35) 38%,
+    rgba(10, 11, 13, 0.96)
+  );
+
+  .loud & {
+    background: linear-gradient(
+      180deg,
+      rgba(12, 13, 10, 0.1),
+      rgba(12, 13, 10, 0.35) 45%,
+      rgba(12, 13, 10, 0.92)
+    );
   }
 }
 
-.main {
-  flex-grow: 1;
-  padding: 16px 0;
-  margin-bottom: 50px;
+.heroContent {
+  position: relative;
+  @include shell;
+  @include gutters;
+  padding-top: clamp(28px, 5vw, 64px);
+  padding-bottom: clamp(28px, 5vw, 64px);
 }
 
-.buttonWrapper {
-  padding-top: 60px;
-  padding-bottom: 40px;
-  margin-bottom: 40px;
-  @include flex-col(flex-start, center);
-}
+.heroLogo {
+  display: block;
+  height: clamp(92px, 12vw, 136px);
+  width: auto;
+  margin-bottom: 18px;
 
-.mainContainer {
-  @include flex-col;
-}
-
-.button {
-  min-width: 290px;
-  align-self: center;
-  pointer-events: auto;
-}
-
-.list {
-  width: 100%;
-  max-width: 600px;
-  align-self: center;
-  padding: 40px;
-  margin-bottom: 50px;
-  border-width: 4px;
-  border-style: solid;
-  background-color: currentColor;
-  box-shadow: 0 0 24px 12px rgba(0, 0, 0, 0.2);
-  pointer-events: auto;
-}
-
-.listItem {
-  &:not(:last-of-type) {
-    margin-bottom: 20px;
+  .loud & {
+    height: clamp(112px, 16vw, 172px);
+    margin-bottom: 16px;
   }
 }
 
-.listItem {
-  @include flex(space-between, baseline);
+.heroAddress {
+  font-family: $FONT_MONO;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $ED_MUTED;
+
+  .loud & {
+    color: $Y_YELLOW;
+  }
 }
 
-.serviceName {
-  @include text(rem(16px), 500, $MOCCA);
-  @include media($SCREEN_TABLET_SMALL) {
-    font-size: rem(24px);
+.heroTitle {
+  font-family: $FONT_DISPLAY;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-size: clamp(50px, 13vw, 158px);
+  line-height: 0.9;
+  margin: 0.16em 0 0.12em;
+
+  .loud & {
+    font-family: $FONT_LOUD;
+    font-weight: 900;
+    font-size: clamp(46px, 13vw, 168px);
+    line-height: 0.86;
+    margin: 0.12em 0 0.14em;
+    color: $Y_YELLOW;
+    text-shadow: 5px 5px 0 $Y_GREEN;
+  }
+}
+
+.heroSubtitle {
+  font-family: $FONT_DISPLAY;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: $ED_TEXT_SOFT;
+  font-size: clamp(11px, 2.2vw, 16px);
+
+  .loud & {
+    letter-spacing: 0.26em;
+    color: $Y_TEXT_SOFT;
+  }
+}
+
+.heroActions {
+  margin-top: clamp(22px, 3vw, 36px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.sticker {
+  position: absolute;
+  top: clamp(80px, 12vw, 130px);
+  right: clamp(16px, 5vw, 60px);
+  background: $Y_YELLOW;
+  color: $Y_BG;
+  font-family: $FONT_MONO;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  transform: rotate(6deg);
+  box-shadow: 4px 4px 0 $Y_GREEN;
+  @include z-index(popover);
+}
+
+/* ---------- ticker (loud) ---------- */
+.ticker {
+  background: $Y_YELLOW;
+  color: $Y_BG;
+  overflow: hidden;
+  border-top: 3px solid $Y_GREEN;
+  border-bottom: 3px solid $Y_GREEN;
+  white-space: nowrap;
+}
+
+.tickerTrack {
+  display: inline-flex;
+  animation: edMarquee 22s linear infinite;
+  font-family: $FONT_LOUD;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(16px, 2.6vw, 28px);
+  padding: 12px 0;
+
+  span {
+    padding: 0 18px;
+  }
+}
+
+@keyframes edMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------- about (minimal) ---------- */
+.about {
+  @include block;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(28px, 5vw, 72px);
+}
+
+.aboutHead {
+  .aboutTitle {
+    font-family: $FONT_DISPLAY;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: clamp(30px, 5vw, 60px);
+    line-height: 1;
+    margin: 18px 0 0;
+  }
+}
+
+.aboutBody {
+  @include flex(flex-end, stretch, column);
+  color: $ED_TEXT_SOFT;
+  font-size: clamp(16px, 1.9vw, 20px);
+  line-height: 1.65;
+  max-width: 48ch;
+
+  p {
+    margin: 0 0 1em;
+  }
+}
+
+.aboutMail {
+  font-family: $FONT_MONO;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: $ED_MUTED_DARK;
+  margin: 0 !important;
+}
+
+/* ---------- generic section ---------- */
+.section {
+  @include block;
+  border-top: 1px solid $ED_BORDER;
+
+  .loud & {
+    border-top: 3px solid $Y_GREEN;
+  }
+}
+
+.sectionHead {
+  @include flex(space-between, baseline, row, wrap);
+  gap: 16px;
+  margin-bottom: clamp(18px, 3vw, 40px);
+}
+
+.sectionTitle {
+  font-family: $FONT_DISPLAY;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: clamp(32px, 6.5vw, 74px);
+  margin: 0;
+
+  .loud & {
+    font-family: $FONT_LOUD;
+    font-weight: 800;
+    font-size: clamp(30px, 6vw, 68px);
+    color: $Y_YELLOW;
+    text-shadow: 3px 3px 0 $Y_GREEN;
+  }
+}
+
+.sectionActions {
+  margin-top: clamp(28px, 4vw, 52px);
+}
+
+/* ---------- services ---------- */
+.priceList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.priceRow {
+  @include flex(flex-start, baseline);
+  gap: 16px;
+  padding: clamp(15px, 2vw, 22px) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.priceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+  gap: 12px;
+}
+
+.priceCard {
+  background: $Y_SURFACE;
+  border: 1px solid $Y_BORDER;
+  padding: clamp(18px, 2.5vw, 26px);
+  @include flex(flex-start, stretch, column);
+  gap: 12px;
+  @include transition(transform, border-color);
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: $Y_GREEN;
+  }
+}
+
+.priceNum {
+  font-family: $FONT_MONO;
+  color: $ED_MUTED_DARK;
+  font-size: 12px;
+  min-width: 26px;
+
+  .loud & {
+    color: $Y_GREEN;
+    letter-spacing: 0.1em;
+    min-width: 0;
+  }
+}
+
+.priceName {
+  flex: 1;
+  font-family: $FONT_DISPLAY;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: clamp(16px, 2.6vw, 25px);
+
+  .loud & {
+    flex: none;
+    font-family: $FONT_LOUD;
+    font-weight: 600;
+    text-transform: none;
+    font-size: clamp(16px, 2vw, 21px);
+    line-height: 1.15;
+    color: $Y_TEXT;
   }
 }
 
 .priceValue {
-  @include text(rem(20px), 700, $MOCCA);
-  @include media($SCREEN_TABLET_SMALL) {
-    font-size: rem(32px);
+  font-family: $FONT_DISPLAY;
+  font-weight: 600;
+  font-size: clamp(16px, 2.6vw, 25px);
+  white-space: nowrap;
+
+  .loud & {
+    font-family: $FONT_LOUD;
+    font-weight: 800;
+    font-size: clamp(22px, 3vw, 30px);
+    color: $Y_YELLOW;
+    margin-top: auto;
   }
 }
 
-.priceCurrency {
-  @include text(rem(12px), 700, $MOCCA);
-  @include media($SCREEN_TABLET_SMALL) {
-    font-size: rem(16px);
+/* ---------- gallery ---------- */
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr));
+  gap: 8px;
+
+  .loud & {
+    gap: 10px;
   }
 }
 
-.instagram {
-  @include flex(flex-start, center);
-  @include text(rem(14px), 500, $MOCCA);
-  padding-bottom: 16px;
-}
-
-.icon {
-  width: 24px;
-  margin-right: 8px;
-}
-
-.map {
-  width: 100%;
-  margin: auto;
-  height: 500px;
+.galleryItem {
   position: relative;
-  pointer-events: auto;
-  @include flex(center, center);
-  iframe {
-    filter: invert(94%);
+  aspect-ratio: 4 / 5;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+  background: $ED_SURFACE;
+  @include transition(filter, transform, border-color);
+
+  &:hover {
+    filter: brightness(1.12);
+  }
+
+  .loud & {
+    border: 2px solid $Y_GREEN;
+    background: $Y_SURFACE;
+
+    &:hover {
+      filter: none;
+      transform: translateY(-4px);
+      border-color: $Y_YELLOW;
+    }
   }
 }
 
-.photoGrid {
-  margin-bottom: 80px;
+.galleryNum {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: $FONT_MONO;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: $ED_TEXT;
+  background: rgba(10, 11, 13, 0.55);
+  padding: 3px 7px;
+
+  .loud & {
+    top: 8px;
+    left: 8px;
+    color: $Y_BG;
+    background: $Y_YELLOW;
+  }
 }
 
-.photoGrid > * {
-  pointer-events: auto;
+/* ---------- team / barbers ---------- */
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: clamp(16px, 2.5vw, 30px);
+
+  .loud & {
+    gap: clamp(14px, 2vw, 22px);
+  }
+}
+
+.barberCard {
+  @include flex(flex-start, stretch, column);
+  gap: 14px;
+
+  .loud & {
+    background: $Y_SURFACE;
+    border: 1px solid $Y_BORDER;
+    padding: 14px;
+    @include transition(transform, border-color);
+
+    &:hover {
+      transform: translateY(-4px);
+      border-color: $Y_GREEN;
+    }
+  }
+}
+
+.barberPhoto {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: $ED_SURFACE;
+  border: 1px solid $ED_BORDER;
+  border-radius: 4px;
+  overflow: hidden;
+
+  .loud & {
+    background: $Y_BG;
+    border: none;
+    border-radius: 3px;
+  }
+}
+
+.barberName {
+  font-family: $FONT_DISPLAY;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: clamp(18px, 2.4vw, 24px);
+
+  .loud & {
+    font-family: $FONT_LOUD;
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: clamp(16px, 2vw, 20px);
+    color: $Y_YELLOW;
+  }
+}
+
+.barberRole {
+  font-family: $FONT_MONO;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $ED_MUTED;
+  margin-top: 5px;
+
+  .loud & {
+    letter-spacing: 0.1em;
+    color: $Y_GREEN;
+    margin-top: 6px;
+  }
+}
+
+.barberBio {
+  color: $ED_TEXT_SOFT;
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 11px 0 0;
+
+  .loud & {
+    color: $Y_TEXT_SOFT;
+  }
+}
+
+/* ---------- contacts ---------- */
+.contacts {
+  @include block;
+  border-top: 1px solid $ED_BORDER;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(24px, 4vw, 56px);
+
+  .loud & {
+    border-top: 3px solid $Y_YELLOW;
+    background: $Y_GREEN;
+    color: $Y_BG;
+  }
+}
+
+.contactsTitle {
+  font-family: $FONT_DISPLAY;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: clamp(26px, 4vw, 46px);
+  line-height: 1.05;
+  margin: 18px 0 24px;
+
+  .loud & {
+    font-family: $FONT_LOUD;
+    font-weight: 800;
+    font-size: clamp(26px, 4.4vw, 50px);
+    line-height: 1;
+  }
+}
+
+.contactRows {
+  @include flex(flex-start, stretch, column);
+  gap: 14px;
+  font-size: clamp(15px, 1.8vw, 18px);
+
+  .loud & {
+    font-weight: 600;
+  }
+}
+
+.contactRow {
+  @include flex(flex-start, center);
+  gap: 12px;
+  color: $ED_TEXT;
+
+  .loud & {
+    color: $Y_BG;
+  }
+}
+
+.contactLabel {
+  font-family: $FONT_MONO;
+  font-size: 11px;
+  color: $ED_MUTED;
+  min-width: 84px;
+
+  .loud & {
+    font-weight: 400;
+    color: $Y_BG;
+    opacity: 0.7;
+  }
+}
+
+.contactsActions {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  // On the green Youngsters background the buttons invert.
+  .loud & .cta {
+    background: $Y_BG;
+    color: $Y_YELLOW;
+  }
+
+  .loud & .ctaGhost {
+    color: $Y_BG;
+    border: 2px solid $Y_BG;
+
+    &:hover {
+      background: $Y_BG;
+      color: $Y_YELLOW;
+    }
+  }
+}
+
+.contactsPhoto {
+  position: relative;
+  min-height: 280px;
+  overflow: hidden;
+  background: $ED_SURFACE;
+
+  .loud & {
+    border: 3px solid $Y_BG;
+  }
+}
+
+/* ---------- footer ---------- */
+.footer {
+  @include shell;
+  @include gutters;
+  @include flex(space-between, center, row, wrap);
+  gap: 16px;
+  padding-top: 26px;
+  padding-bottom: 26px;
+  border-top: 1px solid $ED_BORDER;
+
+  .loud & {
+    border-top: 3px solid $Y_YELLOW;
+  }
+}
+
+.footerBrand {
+  font-family: $FONT_DISPLAY;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 15px;
+
+  .loud & {
+    font-family: $FONT_LOUD;
+    font-weight: 800;
+    letter-spacing: 0;
+    font-size: 16px;
+    color: $Y_YELLOW;
+  }
+}
+
+.footerLinks {
+  @include flex(flex-start, center, row, wrap);
+  gap: 18px;
+  font-family: $FONT_MONO;
+  font-size: 12px;
+  color: $ED_MUTED;
+
+  .loud & {
+    color: $Y_MUTED;
+  }
+}
+
+.footerLink {
+  color: $ED_MUTED;
+  cursor: pointer;
+  @include transition(color);
+
+  &:hover {
+    color: $ED_TEXT;
+  }
+
+  .loud & {
+    color: $Y_MUTED;
+
+    &:hover {
+      color: $Y_YELLOW;
+    }
+  }
+}
+
+.footerCopy {
+  color: inherit;
 }

@@ -3,3 +3,4 @@ export * from "./BarbershopPage";
 export * from "./EducationPage";
 export * from "./Container";
 export * from "./Button";
+export * from "./Lightbox";
