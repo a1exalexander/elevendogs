@@ -38,7 +38,7 @@
 
 .intro {
   @include gutters;
-  padding-top: clamp(24px, 5vw, 52px);
+  padding-top: 24px;
   padding-bottom: clamp(10px, 2vw, 18px);
 }
 
@@ -54,11 +54,11 @@
 .title {
   font-family: $FONT_DISPLAY;
   font-weight: 600;
-  font-size: clamp(36px, 8vw, 92px);
+  font-size: clamp(24px, 6vw, 60px);
   line-height: 0.98;
   letter-spacing: -0.01em;
   margin: 0;
-  max-width: 13ch;
+  max-width: 75%;
 }
 
 .cards {

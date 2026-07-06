@@ -18,7 +18,7 @@ const Home: NextPage = () => {
 
       <div className={styles.intro}>
         <div className={styles.kicker}>Барбершоп · 2 локації</div>
-        <h1 className={styles.title}>Пострижись як в&nbsp;прошлий раз</h1>
+        <h1 className={styles.title}>Мережа барбершопів в Кременчуці</h1>
       </div>
 
       <div className={styles.cards}>
@@ -60,7 +60,6 @@ const Home: NextPage = () => {
             style={{ objectFit: 'cover' }}
           />
           <div className={styles.cardOverlayYoung} />
-          <div className={styles.badge}>для своїх</div>
           <div className={styles.cardContent}>
             <div className={styles.cardIndexYoung}>02 — Водоканал</div>
             <div className={styles.cardNameYoung}>Youngsters</div>
