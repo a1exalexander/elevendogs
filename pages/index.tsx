@@ -5,9 +5,9 @@ import clsx from 'clsx';
 import { locations } from '../data';
 import { Routes } from '../src/constants';
 import styles from '../styles/pages/index.module.scss';
-import imageMain from '../src/assets/shop-1.jpg';
-import imageSecondary from '../src/assets/shop-2.jpg';
-import imageEducation from '../src/assets/ed/a00001.jpg';
+import imageMain from '../src/assets/ed2/DSCF5198-Edit-2.jpg';
+import imageSecondary from '../src/assets/new2025/1IMG_3516.JPG';
+import imageEducation from '../src/assets/ed2/DSCF5220-Edit-2.jpg';
 
 const Home: NextPage = () => {
   return (
@@ -77,7 +77,7 @@ const Home: NextPage = () => {
           fill
           sizes="100vw"
           className={styles.eduImage}
-          style={{ objectFit: 'cover' }}
+          style={{ objectFit: 'cover', objectPosition: '50% 15%' }}
         />
         <div className={styles.eduOverlay} />
         <div className={styles.eduContent}>
