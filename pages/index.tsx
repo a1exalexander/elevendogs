@@ -7,6 +7,7 @@ import { Routes } from '../src/constants';
 import styles from '../styles/pages/index.module.scss';
 import imageMain from '../src/assets/shop-1.jpg';
 import imageSecondary from '../src/assets/shop-2.jpg';
+import imageEducation from '../src/assets/ed/a00001.jpg';
 
 const Home: NextPage = () => {
   return (
@@ -69,10 +70,29 @@ const Home: NextPage = () => {
         </Link>
       </div>
 
+      <Link href={Routes.EDUCATION} className={styles.edu}>
+        <Image
+          src={imageEducation}
+          alt=""
+          fill
+          sizes="100vw"
+          className={styles.eduImage}
+          style={{ objectFit: 'cover' }}
+        />
+        <div className={styles.eduOverlay} />
+        <div className={styles.eduContent}>
+          <div className={styles.eduText}>
+            <div className={styles.eduIndex}>03 — Академія</div>
+            <div className={styles.eduName}>Навчання барберів</div>
+            <div className={styles.eduDesc}>
+              Барбер з нуля · Інтенсив · Підвищення кваліфікації
+            </div>
+          </div>
+          <div className={styles.eduCta}>Дізнатися більше →</div>
+        </div>
+      </Link>
+
       <footer className={styles.footer}>
-        <Link href={Routes.EDUCATION} className={styles.eduButton}>
-          Навчання →
-        </Link>
         <div className={styles.footerMeta}>
           <a
             href="https://www.instagram.com/eleven.dogs/"

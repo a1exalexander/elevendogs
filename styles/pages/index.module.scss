@@ -217,6 +217,86 @@
   @include z-index(popover);
 }
 
+.edu {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0 clamp(16px, 4vw, 40px) clamp(20px, 3vw, 36px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #101114;
+  color: $ED_TEXT;
+  cursor: pointer;
+  @include transition(filter);
+
+  &:hover {
+    filter: brightness(1.15);
+  }
+}
+
+.eduImage {
+  opacity: 0.35;
+}
+
+.eduOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(10, 11, 13, 0.92),
+    rgba(10, 11, 13, 0.55)
+  );
+}
+
+.eduContent {
+  position: relative;
+  @include flex(flex-start, center, row, wrap);
+  gap: clamp(14px, 3vw, 32px);
+  padding: clamp(22px, 3.5vw, 40px) clamp(22px, 3vw, 40px);
+}
+
+.eduText {
+  flex: 1 1 320px;
+  @include flex(flex-start, stretch, column);
+  gap: 8px;
+}
+
+.eduIndex {
+  font-family: $FONT_MONO;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #9a9ca1;
+}
+
+.eduName {
+  font-family: $FONT_DISPLAY;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: clamp(26px, 4vw, 44px);
+  line-height: 1;
+}
+
+.eduDesc {
+  color: $ED_TEXT_SOFT;
+  font-size: clamp(14px, 1.6vw, 16px);
+}
+
+.eduCta {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: $ED_TEXT;
+  color: $ED_BG;
+  font-family: $FONT_DISPLAY;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 13px;
+  padding: 14px 24px;
+}
+
 .footer {
   @include flex(space-between, center, row, wrap);
   @include gutters;
@@ -224,24 +304,6 @@
   padding-top: 20px;
   padding-bottom: 20px;
   border-top: 1px solid $ED_BORDER;
-}
-
-.eduButton {
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  color: $ED_TEXT;
-  cursor: pointer;
-  font-family: $FONT_MONO;
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: 10px 16px;
-  border-radius: 999px;
-  @include transition(background, color);
-
-  &:hover {
-    background: $ED_TEXT;
-    color: $ED_BG;
-  }
 }
 
 .footerMeta {
