@@ -2,6 +2,7 @@ import type { GetStaticProps, NextPage } from "next";
 import { locations } from "../data";
 import { BarbershopPage } from "../src/components";
 import { Routes } from "../src/constants";
+import logo from "../src/assets/new_logo_2024.jpg";
 import heroLogo from "../src/assets/eleven_dogs.svg";
 import heroImage from "../src/assets/ed2/DSCF5124-Edit-2.jpg";
 import contactImage from "../src/assets/ed2/DSCF5312-Edit-2.jpg";
@@ -31,6 +32,7 @@ const Main: NextPage<MainProps> = ({ pricing }) => {
       ogImage="/og_main.jpg"
       data={locations.main}
       pricing={pricing}
+      logo={logo}
       heroLogo={heroLogo}
       heroImage={heroImage}
       gallery={gallery}

@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import { locations } from '../data';
 import { Routes } from '../src/constants';
 import styles from '../styles/pages/index.module.scss';
+import logo from '../src/assets/new_logo_2024.jpg';
 import imageMain from '../src/assets/ed2/DSCF5198-Edit-2.jpg';
 import imageSecondary from '../src/assets/new2025/1IMG_3516.JPG';
 import imageEducation from '../src/assets/ed2/DSCF5220-Edit-2.jpg';
@@ -13,7 +14,13 @@ const Home: NextPage = () => {
   return (
     <div className={styles.page}>
       <div className={styles.topbar}>
-        <div className={styles.wordmark}>Eleven Dogs</div>
+        <Image
+          priority
+          src={logo}
+          alt={locations.main.name}
+          className={styles.topbarLogo}
+          style={{ width: 'auto' }}
+        />
         <div className={styles.city}>Кременчук</div>
       </div>
 

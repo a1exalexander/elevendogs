@@ -20,12 +20,10 @@
   padding-bottom: 22px;
 }
 
-.wordmark {
-  font-family: $FONT_DISPLAY;
-  font-weight: 600;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  font-size: clamp(15px, 2.4vw, 21px);
+.topbarLogo {
+  display: block;
+  height: clamp(32px, 5vw, 46px);
+  width: auto;
 }
 
 .city {

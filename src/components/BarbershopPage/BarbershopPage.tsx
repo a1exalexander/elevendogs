@@ -21,6 +21,7 @@ export interface BarbershopPageProps {
   variant: "minimal" | "loud";
   data: (typeof locations)[keyof typeof locations];
   pricing: Pricing[];
+  logo: string | StaticImageData;
   heroImage: string | StaticImageData;
   heroLogo: string | StaticImageData;
   gallery: (string | StaticImageData)[];
@@ -39,6 +40,7 @@ export const BarbershopPage = ({
   variant,
   data,
   pricing,
+  logo,
   heroImage,
   heroLogo,
   gallery,
@@ -78,7 +80,13 @@ export const BarbershopPage = ({
               className={styles.brand}
               aria-label={data.name}
             >
-              ELEVEN DOGS
+              <Image
+                priority
+                src={logo}
+                alt={data.name}
+                className={styles.brandLogo}
+                style={{ width: "auto" }}
+              />
             </Link>
             <a
               href={data.booking}
