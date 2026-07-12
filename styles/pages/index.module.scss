@@ -150,16 +150,6 @@
   color: $Y_YELLOW;
 }
 
-.cardName {
-  font-family: $FONT_DISPLAY;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-size: clamp(30px, 4.5vw, 52px);
-  line-height: 1;
-  margin: 8px 0 4px;
-}
-
 .cardNameYoung {
   font-family: $FONT_LOUD;
   font-weight: 800;
@@ -178,26 +168,6 @@
 .cardAddressYoung {
   color: #e7e7e2;
   font-size: clamp(14px, 1.6vw, 17px);
-}
-
-.cardTag {
-  margin-top: 18px;
-  font-family: $FONT_DISPLAY;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-size: 12px;
-  color: $ED_TEXT;
-}
-
-.cardTagYoung {
-  margin-top: 18px;
-  font-family: $FONT_LOUD;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  font-size: 12px;
-  color: $Y_TEXT;
 }
 
 .badge {
@@ -359,13 +329,7 @@
     padding: 16px;
   }
 
-  .cardName,
   .cardNameYoung {
     font-size: 26px;
-  }
-
-  .cardTag,
-  .cardTagYoung {
-    margin-top: 10px;
   }
 }

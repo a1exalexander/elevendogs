@@ -47,9 +47,7 @@ const Home: NextPage = () => {
           <div className={styles.cardOverlay} />
           <div className={styles.cardContent}>
             <div className={styles.cardIndex}>01 — Центр</div>
-            <div className={styles.cardName}>Eleven Dogs</div>
             <div className={styles.cardAddress}>вул. Івана Мазепи, 28</div>
-            <div className={styles.cardTag}>Мінімалізм · men&apos;s club →</div>
           </div>
         </Link>
 
@@ -72,7 +70,6 @@ const Home: NextPage = () => {
             <div className={styles.cardIndexYoung}>02 — Водоканал</div>
             <div className={styles.cardNameYoung}>Youngsters</div>
             <div className={styles.cardAddressYoung}>пр-т Свободи, 39/43</div>
-            <div className={styles.cardTagYoung}>Комфорт · вайб →</div>
           </div>
         </Link>
       </div>
