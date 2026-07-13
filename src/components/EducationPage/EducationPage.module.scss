@@ -97,21 +97,13 @@ $shell: 1240px;
 
 .brand {
   @include flex(flex-start, center);
-  gap: 10px;
-  color: $ED_TEXT;
-  font-family: $FONT_DISPLAY;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  font-size: clamp(14px, 2vw, 18px);
   cursor: pointer;
 }
 
-.brandDash {
-  display: inline-block;
-  width: 22px;
-  height: 1px;
-  background: $ED_TEXT;
+.brandLogo {
+  display: block;
+  height: clamp(30px, 5vw, 44px);
+  width: auto;
 }
 
 /* ---------- hero ---------- */

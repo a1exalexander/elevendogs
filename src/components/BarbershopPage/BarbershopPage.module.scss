@@ -164,21 +164,13 @@ $shell: 1240px;
 
 .brand {
   @include flex(flex-start, center);
-  color: $ED_TEXT;
   cursor: pointer;
-  font-family: $FONT_DISPLAY;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  font-size: clamp(15px, 2.4vw, 20px);
-  white-space: nowrap;
+}
 
-  .loud & {
-    color: $Y_YELLOW;
-    font-family: $FONT_LOUD;
-    font-weight: 800;
-    letter-spacing: 0.04em;
-  }
+.brandLogo {
+  display: block;
+  height: clamp(30px, 5vw, 44px);
+  width: auto;
 }
 
 .nav {

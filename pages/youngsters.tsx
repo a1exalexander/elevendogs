@@ -3,6 +3,7 @@ import type { GetStaticProps, NextPage } from "next";
 import { locations } from "../data";
 import { BarbershopPage } from "../src/components";
 import { Routes } from "../src/constants";
+import logo from "../src/assets/eleven_dogs_logo_2_trimmed.png";
 import heroLogo from "../src/assets/eleven_dogs_youngsters.svg";
 import heroImage from "../src/assets/new2025/1IMG_3516.JPG";
 import contactImage from "../src/assets/edy/b00002.jpg";
@@ -31,6 +32,7 @@ const Youngsters: NextPage<YoungstersProps> = ({ pricing }) => {
       ogImage="/og_youngsters.jpg"
       data={locations.secondary}
       pricing={pricing}
+      logo={logo}
       heroLogo={heroLogo}
       heroImage={heroImage}
       gallery={gallery}
