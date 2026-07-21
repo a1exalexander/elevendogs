@@ -6,6 +6,8 @@ import clsx from "clsx";
 import { locations } from "../../../data";
 import { Routes } from "../../constants";
 import { Pricing } from "../../types/Pricing";
+import { GalleryCarousel } from "../GalleryCarousel";
+import { HiddenTitle } from "../HiddenTitle";
 import { Lightbox } from "../Lightbox";
 import styles from "./BarbershopPage.module.scss";
 
@@ -23,7 +25,8 @@ export interface BarbershopPageProps {
   pricing: Pricing[];
   logo: string | StaticImageData;
   heroImage: string | StaticImageData;
-  heroLogo: string | StaticImageData;
+  heroLogo?: string | StaticImageData;
+  heroTitleImage?: string | StaticImageData;
   gallery: (string | StaticImageData)[];
   barbers: Barber[];
   contactImage: string | StaticImageData;
@@ -43,6 +46,7 @@ export const BarbershopPage = ({
   logo,
   heroImage,
   heroLogo,
+  heroTitleImage,
   gallery,
   barbers,
   contactImage,
@@ -134,29 +138,51 @@ export const BarbershopPage = ({
             <div className={styles.sticker}>COLOR IS LIFE</div>
           )}
           <div className={styles.heroContent}>
-            <Image
-              src={heroLogo}
-              alt={data.name}
-              priority
-              className={styles.heroLogo}
-              style={{ width: "auto" }}
-            />
-            <div className={styles.heroAddress}>{data.address}</div>
-            <h1 className={styles.heroTitle}>
-              {isLoud ? (
-                <>
-                  Young
-                  <br />
-                  sters
-                </>
-              ) : (
-                <>
-                  Eleven
-                  <br />
-                  Dogs
-                </>
-              )}
-            </h1>
+            {heroLogo && (
+              <Image
+                src={heroLogo}
+                alt={data.name}
+                priority
+                className={styles.heroLogo}
+                style={{ width: "auto" }}
+              />
+            )}
+            <div className={styles.heroAddress}>
+              <span>{data.address}</span>
+              <span className={styles.heroDot} aria-hidden="true">
+                ·
+              </span>
+              <a href={`tel:${data.phone}`} className={styles.heroPhone}>
+                {data.phone}
+              </a>
+            </div>
+            {heroTitleImage ? (
+              <>
+                <HiddenTitle>{isLoud ? "Youngsters" : "Eleven Dogs"}</HiddenTitle>
+                <Image
+                  src={heroTitleImage}
+                  alt=""
+                  priority
+                  className={styles.heroTitleImage}
+                />
+              </>
+            ) : (
+              <h1 className={styles.heroTitle}>
+                {isLoud ? (
+                  <>
+                    Young
+                    <br />
+                    sters
+                  </>
+                ) : (
+                  <>
+                    Eleven
+                    <br />
+                    Dogs
+                  </>
+                )}
+              </h1>
+            )}
             <div className={styles.heroSubtitle}>
               {isLoud
                 ? "Eleven Dogs · район Водоканал"
@@ -215,31 +241,17 @@ export const BarbershopPage = ({
             </div>
           </div>
 
-          {isLoud ? (
-            <div className={styles.priceGrid}>
-              {pricing.map((service, index) => (
-                <div key={service.id} className={styles.priceCard}>
-                  <span className={styles.priceNum}>
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span className={styles.priceName}>{service.title}</span>
-                  <span className={styles.priceValue}>{service.price}</span>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <ul className={styles.priceList}>
-              {pricing.map((service, index) => (
-                <li key={service.id} className={styles.priceRow}>
-                  <span className={styles.priceNum}>
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span className={styles.priceName}>{service.title}</span>
-                  <span className={styles.priceValue}>{service.price}</span>
-                </li>
-              ))}
-            </ul>
-          )}
+          <ul className={styles.priceList}>
+            {pricing.map((service, index) => (
+              <li key={service.id} className={styles.priceRow}>
+                <span className={styles.priceNum}>
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className={styles.priceName}>{service.title}</span>
+                <span className={styles.priceValue}>{service.price}</span>
+              </li>
+            ))}
+          </ul>
 
           <div className={styles.sectionActions}>
             <a
@@ -260,29 +272,11 @@ export const BarbershopPage = ({
               {isLoud ? "вайб · стиль" : "Інтер'єр · роботи"}
             </div>
           </div>
-          <div className={styles.galleryGrid}>
-            {gallery.map((src, index) => (
-              <button
-                type="button"
-                key={index}
-                className={styles.galleryItem}
-                onClick={() => setLightboxIndex(index)}
-                aria-label={`Відкрити фото ${index + 1}`}
-              >
-                <Image
-                  src={src}
-                  alt=""
-                  fill
-                  loading="lazy"
-                  sizes="(max-width: 600px) 50vw, 210px"
-                  style={{ objectFit: "cover" }}
-                />
-                <span className={styles.galleryNum}>
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-              </button>
-            ))}
-          </div>
+          <GalleryCarousel
+            images={gallery}
+            variant={variant}
+            onImageClick={setLightboxIndex}
+          />
         </section>
 
         <section id="team" className={styles.section}>
@@ -302,7 +296,7 @@ export const BarbershopPage = ({
                     fill
                     loading="lazy"
                     sizes="(max-width: 600px) 100vw, 240px"
-                    style={{ objectFit: "cover" }}
+                    style={{ objectFit: "cover", objectPosition: "50% 25%" }}
                   />
                 </div>
                 <div className={styles.barberInfo}>

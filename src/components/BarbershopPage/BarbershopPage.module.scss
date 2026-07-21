@@ -320,6 +320,8 @@ $shell: 1240px;
 }
 
 .heroAddress {
+  @include flex(flex-start, baseline, row, wrap);
+  gap: 4px 10px;
   font-family: $FONT_MONO;
   font-size: 12px;
   letter-spacing: 0.2em;
@@ -328,6 +330,39 @@ $shell: 1240px;
 
   .loud & {
     color: $Y_YELLOW;
+  }
+}
+
+.heroDot {
+  @media (max-width: 479px) {
+    // Address and phone stack on narrow screens — the dot is noise there.
+    display: none;
+  }
+}
+
+.heroPhone {
+  color: inherit;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+  @include transition(color);
+
+  &:hover {
+    color: $ED_TEXT;
+  }
+
+  .loud &:hover {
+    color: $Y_TEXT;
+  }
+}
+
+.heroTitleImage {
+  display: block;
+  width: min(100%, clamp(300px, 46vw, 560px));
+  height: auto;
+  margin: clamp(20px, 3.5vw, 40px) 0 clamp(14px, 2.4vw, 26px);
+
+  .loud & {
+    width: min(100%, clamp(320px, 52vw, 640px));
   }
 }
 
@@ -510,25 +545,14 @@ $shell: 1240px;
   gap: 16px;
   padding: clamp(15px, 2vw, 22px) 0;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
-}
 
-.priceGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 160px), 1fr));
-  gap: 10px;
-}
+  .loud & {
+    border-top: 1px solid $Y_BORDER;
+    @include transition(border-color);
 
-.priceCard {
-  background: $Y_SURFACE;
-  border: 1px solid $Y_BORDER;
-  padding: clamp(14px, 2vw, 20px);
-  @include flex(flex-start, stretch, column);
-  gap: 8px;
-  @include transition(transform, border-color);
-
-  &:hover {
-    transform: translateY(-4px);
-    border-color: $Y_GREEN;
+    &:hover {
+      border-top-color: $Y_GREEN;
+    }
   }
 }
 
@@ -541,7 +565,6 @@ $shell: 1240px;
   .loud & {
     color: $Y_GREEN;
     letter-spacing: 0.1em;
-    min-width: 0;
   }
 }
 
@@ -554,11 +577,10 @@ $shell: 1240px;
   font-size: clamp(16px, 2.6vw, 25px);
 
   .loud & {
-    flex: none;
     font-family: $FONT_LOUD;
     font-weight: 600;
     text-transform: none;
-    font-size: clamp(15px, 1.8vw, 19px);
+    font-size: clamp(16px, 2.2vw, 22px);
     line-height: 1.15;
     color: $Y_TEXT;
   }
@@ -573,65 +595,7 @@ $shell: 1240px;
   .loud & {
     font-family: $FONT_LOUD;
     font-weight: 800;
-    font-size: clamp(17px, 2.4vw, 25px);
     color: $Y_YELLOW;
-    margin-top: auto;
-  }
-}
-
-/* ---------- gallery ---------- */
-.galleryGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr));
-  gap: 8px;
-
-  .loud & {
-    gap: 10px;
-  }
-}
-
-.galleryItem {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  overflow: hidden;
-  background: $ED_SURFACE;
-  @include transition(filter, transform, border-color);
-
-  &:hover {
-    filter: brightness(1.12);
-  }
-
-  .loud & {
-    border: 2px solid $Y_GREEN;
-    background: $Y_SURFACE;
-
-    &:hover {
-      filter: none;
-      transform: translateY(-4px);
-      border-color: $Y_YELLOW;
-    }
-  }
-}
-
-.galleryNum {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-family: $FONT_MONO;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: $ED_TEXT;
-  background: rgba(10, 11, 13, 0.55);
-  padding: 3px 7px;
-
-  .loud & {
-    top: 8px;
-    left: 8px;
-    color: $Y_BG;
-    background: $Y_YELLOW;
   }
 }
 

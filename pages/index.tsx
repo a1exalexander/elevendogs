@@ -5,10 +5,11 @@ import clsx from 'clsx';
 import { locations } from '../data';
 import { Routes } from '../src/constants';
 import styles from '../styles/pages/index.module.scss';
-import logo from '../src/assets/new_logo_2024.jpg';
-import imageMain from '../src/assets/ed2/DSCF5198-Edit-2.jpg';
-import imageSecondary from '../src/assets/new2025/1IMG_3516.JPG';
-import imageEducation from '../src/assets/ed2/DSCF5220-Edit-2.jpg';
+import logo from '../src/assets/2026/logo_main.png';
+import logoYoungstersText from '../src/assets/2026/logo_youngsters_text.png';
+import imageMain from '../src/assets/2026/main/IMG_3468.JPG';
+import imageSecondary from '../src/assets/2026/youngsters/IMG_3516.JPG';
+import imageEducation from '../src/assets/2026/main/IMG_6628.jpg';
 
 const Home: NextPage = () => {
   return (
@@ -68,7 +69,11 @@ const Home: NextPage = () => {
           <div className={styles.cardOverlayYoung} />
           <div className={styles.cardContent}>
             <div className={styles.cardIndexYoung}>02 — Водоканал</div>
-            <div className={styles.cardNameYoung}>Youngsters</div>
+            <Image
+              src={logoYoungstersText}
+              alt="Youngsters"
+              className={styles.cardLogoYoung}
+            />
             <div className={styles.cardAddressYoung}>пр-т Свободи, 39/43</div>
           </div>
         </Link>
