@@ -1,0 +1,116 @@
+@import '../../../styles/core';
+
+$slide-gap: 8px;
+
+.viewport {
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+  margin-left: -$slide-gap;
+}
+
+.slide {
+  flex: 0 0 min(78%, 320px);
+  min-width: 0;
+  padding-left: $slide-gap;
+}
+
+.slideButton {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+  background: $ED_SURFACE;
+  @include transition(filter, transform, border-color);
+
+  &:hover {
+    filter: brightness(1.12);
+  }
+
+  .loud & {
+    border: 2px solid $Y_GREEN;
+    background: $Y_SURFACE;
+
+    &:hover {
+      filter: none;
+      border-color: $Y_YELLOW;
+    }
+  }
+}
+
+.slideNum {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: $FONT_MONO;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: $ED_TEXT;
+  background: rgba(10, 11, 13, 0.55);
+  padding: 3px 7px;
+
+  .loud & {
+    top: 8px;
+    left: 8px;
+    color: $Y_BG;
+    background: $Y_YELLOW;
+  }
+}
+
+.controls {
+  @include flex(flex-start, center);
+  gap: 10px;
+  margin-top: clamp(14px, 2vw, 20px);
+}
+
+.arrow {
+  @include flex(center, center);
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid $ED_BORDER_SOFT;
+  background: none;
+  color: $ED_TEXT;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  @include transition(color, background, border-color);
+
+  &:hover {
+    color: $ED_BG;
+    background: $ED_TEXT;
+    border-color: $ED_TEXT;
+  }
+
+  .loud & {
+    // Youngsters keeps the sharp rectangle look.
+    border-radius: 0;
+    border: 2px solid $Y_GREEN;
+    color: $Y_YELLOW;
+
+    &:hover {
+      color: $Y_BG;
+      background: $Y_YELLOW;
+      border-color: $Y_YELLOW;
+    }
+  }
+}
+
+.counter {
+  margin-left: 6px;
+  font-family: $FONT_MONO;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: $ED_MUTED;
+
+  .loud & {
+    color: $Y_GREEN;
+  }
+}

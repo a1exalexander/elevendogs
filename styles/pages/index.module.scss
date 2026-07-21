@@ -150,14 +150,11 @@
   color: $Y_YELLOW;
 }
 
-.cardNameYoung {
-  font-family: $FONT_LOUD;
-  font-weight: 800;
-  font-size: clamp(28px, 4.4vw, 50px);
-  line-height: 0.95;
-  margin: 8px 0 4px;
-  color: $Y_YELLOW;
-  text-shadow: 3px 3px 0 $Y_GREEN;
+.cardLogoYoung {
+  display: block;
+  width: min(100%, clamp(180px, 24vw, 280px));
+  height: auto;
+  margin: 10px 0 6px;
 }
 
 .cardAddress {
@@ -329,7 +326,7 @@
     padding: 16px;
   }
 
-  .cardNameYoung {
-    font-size: 26px;
+  .cardLogoYoung {
+    width: 170px;
   }
 }
