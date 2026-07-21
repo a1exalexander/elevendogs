@@ -20,12 +20,10 @@
   padding-bottom: 22px;
 }
 
-.wordmark {
-  font-family: $FONT_DISPLAY;
-  font-weight: 600;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  font-size: clamp(15px, 2.4vw, 21px);
+.topbarLogo {
+  display: block;
+  height: clamp(32px, 5vw, 46px);
+  width: auto;
 }
 
 .city {
@@ -152,16 +150,6 @@
   color: $Y_YELLOW;
 }
 
-.cardName {
-  font-family: $FONT_DISPLAY;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-size: clamp(30px, 4.5vw, 52px);
-  line-height: 1;
-  margin: 8px 0 4px;
-}
-
 .cardNameYoung {
   font-family: $FONT_LOUD;
   font-weight: 800;
@@ -180,26 +168,6 @@
 .cardAddressYoung {
   color: #e7e7e2;
   font-size: clamp(14px, 1.6vw, 17px);
-}
-
-.cardTag {
-  margin-top: 18px;
-  font-family: $FONT_DISPLAY;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-size: 12px;
-  color: $ED_TEXT;
-}
-
-.cardTagYoung {
-  margin-top: 18px;
-  font-family: $FONT_LOUD;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  font-size: 12px;
-  color: $Y_TEXT;
 }
 
 .badge {
@@ -320,5 +288,48 @@
     &:hover {
       color: $ED_TEXT;
     }
+  }
+}
+
+// Mobile: both location cards must fit the first screen without scrolling.
+@media (max-width: 759px) {
+  .topbar {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .intro {
+    padding-top: 10px;
+    padding-bottom: 6px;
+  }
+
+  .kicker {
+    margin-bottom: 10px;
+  }
+
+  .title {
+    max-width: 100%;
+  }
+
+  .cards {
+    padding-top: 12px;
+    padding-bottom: 16px;
+    gap: 8px;
+  }
+
+  .card {
+    // Viewport minus topbar/intro/paddings, split between the two cards.
+    min-height: 180px;
+    height: calc((100vh - 215px) / 2);
+    height: calc((100svh - 215px) / 2);
+    max-height: 340px;
+  }
+
+  .cardContent {
+    padding: 16px;
+  }
+
+  .cardNameYoung {
+    font-size: 26px;
   }
 }

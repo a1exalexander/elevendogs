@@ -3,6 +3,7 @@ import type { GetStaticProps, NextPage } from "next";
 import { locations } from "../data";
 import { BarbershopPage } from "../src/components";
 import { Routes } from "../src/constants";
+import logo from "../src/assets/eleven_dogs_logo_2_trimmed.png";
 import heroLogo from "../src/assets/eleven_dogs_youngsters.svg";
 import heroImage from "../src/assets/new2025/1IMG_3516.JPG";
 import contactImage from "../src/assets/edy/b00002.jpg";
@@ -11,9 +12,7 @@ import image2 from "../src/assets/edy2/DSCF5406-2-2.jpg";
 import image3 from "../src/assets/edy/b00004.jpg";
 import image4 from "../src/assets/new2025/1IMG_3539.JPG";
 import image5 from "../src/assets/new2025/1IMG_9791.JPG";
-import image6 from "../src/assets/edy2/DSCF5634-2.jpg";
 import image7 from "../src/assets/new2025/1IMG_9793.JPG";
-import image8 from "../src/assets/edy2/DSCF5386-2.jpg";
 import { Client } from "@notionhq/client";
 import { Pricing } from "../src/types/Pricing";
 import { ApiService } from "../src/services/ApiService";
@@ -22,7 +21,8 @@ export interface YoungstersProps {
   pricing: Pricing[];
 }
 
-const gallery = [image1, image2, image3, image4, image5, image6, image7, image8];
+// Same photo set and order as the master-branch gallery.
+const gallery = [image3, image4, image1, image5, image2, heroImage, image7];
 const barberPhotos = [image1, image3, image5];
 
 const Youngsters: NextPage<YoungstersProps> = ({ pricing }) => {
@@ -32,6 +32,7 @@ const Youngsters: NextPage<YoungstersProps> = ({ pricing }) => {
       ogImage="/og_youngsters.jpg"
       data={locations.secondary}
       pricing={pricing}
+      logo={logo}
       heroLogo={heroLogo}
       heroImage={heroImage}
       gallery={gallery}

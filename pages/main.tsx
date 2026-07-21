@@ -2,6 +2,7 @@ import type { GetStaticProps, NextPage } from "next";
 import { locations } from "../data";
 import { BarbershopPage } from "../src/components";
 import { Routes } from "../src/constants";
+import logo from "../src/assets/new_logo_2024.jpg";
 import heroLogo from "../src/assets/eleven_dogs.svg";
 import heroImage from "../src/assets/ed2/DSCF5124-Edit-2.jpg";
 import contactImage from "../src/assets/ed2/DSCF5312-Edit-2.jpg";
@@ -12,7 +13,6 @@ import image4 from "../src/assets/new2025/1IMG_3466.JPG";
 import image5 from "../src/assets/new2025/1IMG_3540.JPG";
 import image6 from "../src/assets/new2025/1IMG_3542.JPG";
 import image7 from "../src/assets/new2025/1IMG_9649.JPG";
-import image8 from "../src/assets/ed2/DSCF5308-Edit-2.jpg";
 import { Client } from "@notionhq/client";
 import { ApiService } from "../src/services/ApiService";
 import { Pricing } from "../src/types/Pricing";
@@ -21,7 +21,8 @@ export interface MainProps {
   pricing: Pricing[];
 }
 
-const gallery = [image1, image2, image3, image4, image5, image6, image7, image8];
+// Same photo set and order as the master-branch gallery.
+const gallery = [heroImage, image2, image1, image3, image7, image5, image4, image6];
 const barberPhotos = [image1, image2, image5];
 
 const Main: NextPage<MainProps> = ({ pricing }) => {
@@ -31,6 +32,7 @@ const Main: NextPage<MainProps> = ({ pricing }) => {
       ogImage="/og_main.jpg"
       data={locations.main}
       pricing={pricing}
+      logo={logo}
       heroLogo={heroLogo}
       heroImage={heroImage}
       gallery={gallery}

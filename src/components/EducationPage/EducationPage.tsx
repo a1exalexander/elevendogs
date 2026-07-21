@@ -6,6 +6,7 @@ import { education } from "../../../data";
 import { Routes } from "../../constants";
 import { Lightbox } from "../Lightbox";
 import styles from "./EducationPage.module.scss";
+import logo from "../../assets/new_logo_2024.jpg";
 import photo1 from "../../assets/ed/a00001.jpg";
 import photo2 from "../../assets/ed/a00003.jpg";
 import photo3 from "../../assets/ed/a00005.jpg";
@@ -32,9 +33,18 @@ export const EducationPage: FC<EducationPageProps> = ({ data }) => {
       <div className={styles.page}>
         <header className={styles.header}>
           <div className={styles.headerInner}>
-            <Link href={Routes.HOME} className={styles.brand}>
-              <span className={styles.brandDash} />
-              Eleven Dogs
+            <Link
+              href={Routes.HOME}
+              className={styles.brand}
+              aria-label="Eleven Dogs"
+            >
+              <Image
+                priority
+                src={logo}
+                alt="Eleven Dogs"
+                className={styles.brandLogo}
+                style={{ width: "auto" }}
+              />
             </Link>
             <a href={`tel:${data.phone}`} className={styles.cta}>
               Зв&apos;язатися
