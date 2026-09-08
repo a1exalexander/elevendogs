@@ -1,12 +1,8 @@
 import type { GetStaticProps, NextPage } from "next";
-import { StaticImageData } from "next/image";
 import { locations } from "../data";
 import { BarbershopPage } from "../src/components";
 import { Routes } from "../src/constants";
 import logo from "../src/assets/2026/logo_main.png";
-import eugenePhoto from "../src/assets/2026/main_masters/eugene.JPG";
-import glibPhoto from "../src/assets/2026/main_masters/glib.jpg";
-import ivanPhoto from "../src/assets/2026/main_masters/ivan.JPG";
 import image3466 from "../src/assets/2026/main/IMG_3466.JPG";
 import image3468 from "../src/assets/2026/main/IMG_3468.JPG";
 import image5748 from "../src/assets/2026/main/IMG_5748.JPG";
@@ -31,10 +27,12 @@ import image9406 from "../src/assets/2026/main/IMG_9406.JPG";
 import image9649 from "../src/assets/2026/main/IMG_9649.JPG";
 import { Client } from "@notionhq/client";
 import { ApiService } from "../src/services/ApiService";
+import { Barber } from "../src/types/Barber";
 import { Pricing } from "../src/types/Pricing";
 
 export interface MainProps {
   pricing: Pricing[];
+  barbers: Barber[];
 }
 
 const heroImage = image3468;
@@ -66,14 +64,7 @@ const gallery = [
   image9649,
 ];
 
-// Explicit portrait per barber id (data.js): 1 Євгеній, 2 Іван, 3 Гліб.
-const barberPhotosById: Record<number, StaticImageData> = {
-  1: eugenePhoto,
-  2: ivanPhoto,
-  3: glibPhoto,
-};
-
-const Main: NextPage<MainProps> = ({ pricing }) => {
+const Main: NextPage<MainProps> = ({ pricing, barbers }) => {
   return (
     <BarbershopPage
       variant="minimal"
@@ -85,10 +76,7 @@ const Main: NextPage<MainProps> = ({ pricing }) => {
       heroImage={heroImage}
       gallery={gallery}
       contactImage={contactImage}
-      barbers={locations.main.barbers.map((barber) => ({
-        ...barber,
-        photo: barberPhotosById[barber.id],
-      }))}
+      barbers={barbers}
       crossLink={{ label: "Youngsters", href: Routes.SECONDARY }}
     />
   );
@@ -96,17 +84,21 @@ const Main: NextPage<MainProps> = ({ pricing }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   let pricing: Pricing[] = [];
+  let barbers: Barber[] = [];
 
   try {
     const notion = new Client({ auth: process.env.NOTION_SECRET });
     const apiService = new ApiService("Мазепи", notion);
-    pricing = await apiService.fetchPricing();
+    [pricing, barbers] = await Promise.all([
+      apiService.fetchPricing(),
+      apiService.fetchBarbers(),
+    ]);
   } catch (error) {
-    console.error("Failed to fetch pricing from Notion", error);
+    console.error("Failed to fetch data from Notion", error);
   }
 
   return {
-    props: { pricing },
+    props: { pricing, barbers },
     revalidate: 3600,
   };
 };

@@ -5,18 +5,12 @@ import Link from "next/link";
 import clsx from "clsx";
 import { locations } from "../../../data";
 import { Routes } from "../../constants";
+import { Barber } from "../../types/Barber";
 import { Pricing } from "../../types/Pricing";
 import { GalleryCarousel } from "../GalleryCarousel";
 import { HiddenTitle } from "../HiddenTitle";
 import { Lightbox } from "../Lightbox";
 import styles from "./BarbershopPage.module.scss";
-
-export interface Barber {
-  id: string | number;
-  name: string;
-  role: string;
-  photo: string | StaticImageData;
-}
 
 export interface BarbershopPageProps {
   variant: "minimal" | "loud";
@@ -107,9 +101,11 @@ export const BarbershopPage = ({
             <a href="#gallery" className={styles.navLink}>
               Галерея
             </a>
-            <a href="#team" className={styles.navLink}>
-              Майстри
-            </a>
+            {barbers.length > 0 && (
+              <a href="#team" className={styles.navLink}>
+                Майстри
+              </a>
+            )}
             <a href="#contacts" className={styles.navLink}>
               Контакти
             </a>
@@ -278,34 +274,39 @@ export const BarbershopPage = ({
           />
         </section>
 
-        <section id="team" className={styles.section}>
-          <div className={styles.sectionHead}>
-            <h2 className={styles.sectionTitle}>Майстри</h2>
-            <div className={styles.kicker}>
-              {isLoud ? "команда · Youngsters" : "Команда · Eleven Dogs"}
+        {barbers.length > 0 && (
+          <section id="team" className={styles.section}>
+            <div className={styles.sectionHead}>
+              <h2 className={styles.sectionTitle}>Майстри</h2>
+              <div className={styles.kicker}>
+                {isLoud ? "команда · Youngsters" : "Команда · Eleven Dogs"}
+              </div>
             </div>
-          </div>
-          <div className={styles.teamGrid}>
-            {barbers.map((barber) => (
-              <article key={barber.id} className={styles.barberCard}>
-                <div className={styles.barberPhoto}>
-                  <Image
-                    src={barber.photo}
-                    alt={barber.name}
-                    fill
-                    loading="lazy"
-                    sizes="(max-width: 600px) 100vw, 240px"
-                    style={{ objectFit: "cover", objectPosition: "50% 25%" }}
-                  />
-                </div>
-                <div className={styles.barberInfo}>
-                  <div className={styles.barberName}>{barber.name}</div>
-                  <div className={styles.barberRole}>{barber.role}</div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
+            <div className={styles.teamGrid}>
+              {barbers.map((barber) => (
+                <article key={barber.id} className={styles.barberCard}>
+                  <div className={styles.barberPhoto}>
+                    <Image
+                      src={barber.photo}
+                      alt={barber.name}
+                      fill
+                      loading="lazy"
+                      sizes="(max-width: 600px) 100vw, 240px"
+                      style={{ objectFit: "cover", objectPosition: "50% 25%" }}
+                    />
+                  </div>
+                  <div className={styles.barberInfo}>
+                    <div className={styles.barberName}>{barber.name}</div>
+                    <div className={styles.barberRole}>{barber.role}</div>
+                    {barber.bio && (
+                      <p className={styles.barberBio}>{barber.bio}</p>
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
 
         <section id="contacts" className={styles.contacts}>
           <div className={styles.contactsInfo}>
