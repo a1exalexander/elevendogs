@@ -675,17 +675,6 @@ $shell: 1240px;
   }
 }
 
-.barberBio {
-  color: $ED_TEXT_SOFT;
-  font-size: 14px;
-  line-height: 1.55;
-  margin: 11px 0 0;
-
-  .loud & {
-    color: $Y_TEXT_SOFT;
-  }
-}
-
 /* ---------- contacts ---------- */
 .contacts {
   @include block;

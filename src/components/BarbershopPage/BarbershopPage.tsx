@@ -15,7 +15,6 @@ export interface Barber {
   id: string | number;
   name: string;
   role: string;
-  bio: string;
   photo: string | StaticImageData;
 }
 
@@ -302,7 +301,6 @@ export const BarbershopPage = ({
                 <div className={styles.barberInfo}>
                   <div className={styles.barberName}>{barber.name}</div>
                   <div className={styles.barberRole}>{barber.role}</div>
-                  <p className={styles.barberBio}>{barber.bio}</p>
                 </div>
               </article>
             ))}
