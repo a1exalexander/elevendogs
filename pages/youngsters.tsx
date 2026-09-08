@@ -1,14 +1,10 @@
 import React from "react";
 import type { GetStaticProps, NextPage } from "next";
-import { StaticImageData } from "next/image";
 import { locations } from "../data";
 import { BarbershopPage } from "../src/components";
 import { Routes } from "../src/constants";
 import logo from "../src/assets/2026/logo_youngsters_text.png";
 import heroLogo from "../src/assets/eleven_dogs_youngsters.svg";
-import dmytroPhoto from "../src/assets/2026/youngsters_masters/dmytro.JPG";
-import jaroslavPhoto from "../src/assets/2026/youngsters_masters/jaroslav.JPG";
-import olegPhoto from "../src/assets/2026/youngsters_masters/oleg.JPG";
 import image0528 from "../src/assets/2026/youngsters/IMG_0528.JPG";
 import image3516 from "../src/assets/2026/youngsters/IMG_3516.JPG";
 import image3530 from "../src/assets/2026/youngsters/IMG_3530.JPG";
@@ -23,11 +19,13 @@ import image6869 from "../src/assets/2026/youngsters/IMG_6869.jpg";
 import image9402 from "../src/assets/2026/youngsters/IMG_9402.JPG";
 import image9796 from "../src/assets/2026/youngsters/IMG_9796.JPG";
 import { Client } from "@notionhq/client";
+import { Barber } from "../src/types/Barber";
 import { Pricing } from "../src/types/Pricing";
 import { ApiService } from "../src/services/ApiService";
 
 export interface YoungstersProps {
   pricing: Pricing[];
+  barbers: Barber[];
 }
 
 const heroImage = image3516;
@@ -50,14 +48,7 @@ const gallery = [
   image9796,
 ];
 
-// Explicit portrait per barber id (data.js): 1 Олег, 2 Дмитро, 3 Ярослав.
-const barberPhotosById: Record<number, StaticImageData> = {
-  1: olegPhoto,
-  2: dmytroPhoto,
-  3: jaroslavPhoto,
-};
-
-const Youngsters: NextPage<YoungstersProps> = ({ pricing }) => {
+const Youngsters: NextPage<YoungstersProps> = ({ pricing, barbers }) => {
   return (
     <BarbershopPage
       variant="loud"
@@ -70,10 +61,7 @@ const Youngsters: NextPage<YoungstersProps> = ({ pricing }) => {
       heroImage={heroImage}
       gallery={gallery}
       contactImage={contactImage}
-      barbers={locations.secondary.barbers.map((barber) => ({
-        ...barber,
-        photo: barberPhotosById[barber.id],
-      }))}
+      barbers={barbers}
       crossLink={{ label: "Eleven Dogs", href: Routes.MAIN }}
     />
   );
@@ -81,17 +69,21 @@ const Youngsters: NextPage<YoungstersProps> = ({ pricing }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   let pricing: Pricing[] = [];
+  let barbers: Barber[] = [];
 
   try {
     const notion = new Client({ auth: process.env.NOTION_SECRET });
     const apiService = new ApiService("Свободи", notion);
-    pricing = await apiService.fetchPricing();
+    [pricing, barbers] = await Promise.all([
+      apiService.fetchPricing(),
+      apiService.fetchBarbers(),
+    ]);
   } catch (error) {
-    console.error("Failed to fetch pricing from Notion", error);
+    console.error("Failed to fetch data from Notion", error);
   }
 
   return {
-    props: { pricing },
+    props: { pricing, barbers },
     revalidate: 3600,
   };
 };
