@@ -1,6 +1,13 @@
 $BASE_FONT: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 
+// Design v3 font stacks. CSS vars are provided by next/font in pages/_app.tsx.
+// Saira ships no Cyrillic subset, so it falls back to Manrope for Cyrillic glyphs.
+$FONT_BODY: var(--font-manrope), #{$BASE_FONT};
+$FONT_DISPLAY: var(--font-saira), var(--font-manrope), #{$BASE_FONT};
+$FONT_LOUD: var(--font-unbounded), var(--font-manrope), #{$BASE_FONT};
+$FONT_MONO: var(--font-mono), 'JetBrains Mono', monospace;
+
 /* FONT SIZE */
 $BASE_FONT_SIZE: 10px;
 

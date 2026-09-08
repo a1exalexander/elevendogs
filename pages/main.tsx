@@ -1,15 +1,34 @@
 import type { GetStaticProps, NextPage } from "next";
+import { StaticImageData } from "next/image";
 import { locations } from "../data";
-import logo from "../src/assets/new_logo_2024.jpg";
 import { BarbershopPage } from "../src/components";
-import image1 from "../src/assets/ed2/DSCF5124-Edit-2.jpg";
-import image2 from "../src/assets/ed2/DSCF5198-Edit-2.jpg";
-import image3 from "../src/assets/ed2/DSCF5220-Edit-2.jpg";
-import image4 from "../src/assets/ed2/DSCF5237-Edit-2.jpg";
-import image5 from "../src/assets/new2025/1IMG_3466.JPG";
-import image6 from "../src/assets/new2025/1IMG_3540.JPG";
-import image7 from "../src/assets/new2025/1IMG_3542.JPG";
-import image8 from "../src/assets/new2025/1IMG_9649.JPG";
+import { Routes } from "../src/constants";
+import logo from "../src/assets/2026/logo_main.png";
+import eugenePhoto from "../src/assets/2026/main_masters/eugene.JPG";
+import glibPhoto from "../src/assets/2026/main_masters/glib.jpg";
+import ivanPhoto from "../src/assets/2026/main_masters/ivan.JPG";
+import image3466 from "../src/assets/2026/main/IMG_3466.JPG";
+import image3468 from "../src/assets/2026/main/IMG_3468.JPG";
+import image5748 from "../src/assets/2026/main/IMG_5748.JPG";
+import image6248 from "../src/assets/2026/main/IMG_6248.JPG";
+import image6275 from "../src/assets/2026/main/IMG_6275.JPG";
+import image6278 from "../src/assets/2026/main/IMG_6278.JPG";
+import image6287 from "../src/assets/2026/main/IMG_6287.JPG";
+import image6294 from "../src/assets/2026/main/IMG_6294.JPG";
+import image6339 from "../src/assets/2026/main/IMG_6339.jpg";
+import image6561 from "../src/assets/2026/main/IMG_6561.JPG";
+import image6628 from "../src/assets/2026/main/IMG_6628.jpg";
+import image6766 from "../src/assets/2026/main/IMG_6766.PNG";
+import image7563 from "../src/assets/2026/main/IMG_7563.JPG";
+import image7570 from "../src/assets/2026/main/IMG_7570.JPG";
+import image7573 from "../src/assets/2026/main/IMG_7573.JPG";
+import image7579 from "../src/assets/2026/main/IMG_7579.JPG";
+import image7587 from "../src/assets/2026/main/IMG_7587.JPG";
+import image9119 from "../src/assets/2026/main/IMG_9119.JPG";
+import image9121 from "../src/assets/2026/main/IMG_9121.JPG";
+import image9123 from "../src/assets/2026/main/IMG_9123.JPG";
+import image9406 from "../src/assets/2026/main/IMG_9406.JPG";
+import image9649 from "../src/assets/2026/main/IMG_9649.JPG";
 import { Client } from "@notionhq/client";
 import { ApiService } from "../src/services/ApiService";
 import { Pricing } from "../src/types/Pricing";
@@ -18,77 +37,73 @@ export interface MainProps {
   pricing: Pricing[];
 }
 
+const heroImage = image3468;
+const contactImage = image6287;
+
+// All 2026 main-location photos; interior/signage shots lead the set.
+const gallery = [
+  image3468,
+  image6287,
+  image5748,
+  image6628,
+  image6766,
+  image9406,
+  image3466,
+  image6248,
+  image6275,
+  image6278,
+  image6294,
+  image6339,
+  image6561,
+  image7563,
+  image7570,
+  image7573,
+  image7579,
+  image7587,
+  image9119,
+  image9121,
+  image9123,
+  image9649,
+];
+
+// Explicit portrait per barber id (data.js): 1 Євгеній, 2 Іван, 3 Гліб.
+const barberPhotosById: Record<number, StaticImageData> = {
+  1: eugenePhoto,
+  2: ivanPhoto,
+  3: glibPhoto,
+};
+
 const Main: NextPage<MainProps> = ({ pricing }) => {
   return (
     <BarbershopPage
+      variant="minimal"
       ogImage="/og_main.jpg"
-      renderMap={
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1772.6781408255501!2d33.40964255723156!3d49.068934543092396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d75326dbc5734b%3A0x3d66c6d08ca8c9ec!2sIvana%20Mazepy%20St%2C%2028%2C%20Kremenchuk%2C%20Poltavs&#39;ka%20oblast%2C%2039600!5e0!3m2!1sen!2sua!4v1658230066508!5m2!1sen!2sua"
-          width="100%"
-          height="100%"
-          style={{ border: "none" }}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        ></iframe>
-      }
       data={locations.main}
       pricing={pricing}
       logo={logo}
-      color="#e6e6e6"
-      photoGrid={[
-        {
-          id: 1,
-          src: image1,
-          type: "horizontal",
-        },
-        {
-          id: 3,
-          src: image3,
-          type: "horizontal",
-        },
-        {
-          id: 2,
-          src: image2,
-          type: "vertical",
-        },
-        
-        {
-          id: 4,
-          src: image4,
-          type: "vertical",
-        },
-        {
-          id: 8,
-          src: image8,
-          type: "vertical",
-        },
-        {
-          id: 6,
-          src: image6,
-          type: "horizontal",
-        },
-        {
-          id: 5,
-          src: image5,
-          type: "vertical",
-        },
-        {
-          id: 7,
-          src:image7,
-          type: "vertical",
-        },
-      ]}
+      heroTitleImage={logo}
+      heroImage={heroImage}
+      gallery={gallery}
+      contactImage={contactImage}
+      barbers={locations.main.barbers.map((barber) => ({
+        ...barber,
+        photo: barberPhotosById[barber.id],
+      }))}
+      crossLink={{ label: "Youngsters", href: Routes.SECONDARY }}
     />
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const notion = new Client({
-    auth: process.env.NOTION_SECRET,
-  });
-  const apiService = new ApiService("Мазепи", notion);
-  const pricing = await apiService.fetchPricing();
+  let pricing: Pricing[] = [];
+
+  try {
+    const notion = new Client({ auth: process.env.NOTION_SECRET });
+    const apiService = new ApiService("Мазепи", notion);
+    pricing = await apiService.fetchPricing();
+  } catch (error) {
+    console.error("Failed to fetch pricing from Notion", error);
+  }
 
   return {
     props: { pricing },

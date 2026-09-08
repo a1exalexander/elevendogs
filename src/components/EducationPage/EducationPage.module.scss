@@ -1,108 +1,297 @@
 @import 'core';
 
-.container {
-  padding-top: 20px;
-  min-height: 100vh;
-  @include flex-col;
-  @include media($SCREEN_TABLET_SMALL) {
-    padding-top: 60px;
-  }
-}
+$shell: 1240px;
 
-.main {
-  flex-grow: 1;
-  padding: 16px 0;
-}
-
-.mainContainer {
-  @include flex-col;
-}
-
-.button {
-  align-self: center;
-  margin-top: 20px;
-}
-
-.list {
+@mixin shell {
+  max-width: $shell;
+  margin: 0 auto;
   width: 100%;
-  align-self: center;
+}
 
-  @include media($SCREEN_TABLET_SMALL) {
-    @include flex(space-between, baseline);
+@mixin gutters {
+  padding-left: clamp(16px, 4vw, 40px);
+  padding-right: clamp(16px, 4vw, 40px);
+}
+
+.page {
+  background: $ED_BG;
+  color: $ED_TEXT;
+  min-height: 100vh;
+  font-family: $FONT_BODY;
+  -webkit-font-smoothing: antialiased;
+}
+
+.kicker {
+  font-family: $FONT_MONO;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $ED_MUTED;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 46px;
+  border-radius: 999px;
+  background: $ED_TEXT;
+  color: $ED_BG;
+  font-family: $FONT_DISPLAY;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 13px;
+  padding: 0 24px;
+  white-space: nowrap;
+  @include transition(transform);
+
+  &:hover {
+    transform: translateY(-2px);
   }
 }
 
-.listItem {
-  &:not(:last-of-type) {
-    margin-bottom: 20px;
-  }
-  @include media($SCREEN_TABLET_SMALL) {
-    flex: 1 1 calc(100% / 3);
+.ctaGhost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 46px;
+  border-radius: 999px;
+  background: none;
+  color: $ED_TEXT;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-family: $FONT_DISPLAY;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 13px;
+  padding: 0 23px;
+  white-space: nowrap;
+  @include transition(border-color);
+
+  &:hover {
+    border-color: $ED_TEXT;
   }
 }
 
-.serviceName {
-  @include text(rem(16px), 500, $MOCCA);
-  &::first-letter {
-    text-transform: uppercase;
-  }
-  @include media($SCREEN_TABLET_SMALL) {
-    font-size: rem(24px);
+/* ---------- header ---------- */
+.header {
+  position: sticky;
+  top: 0;
+  @include z-index(navigation);
+  background: rgba(10, 11, 13, 0.82);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid $ED_BORDER;
+}
+
+.headerInner {
+  @include shell;
+  @include gutters;
+  @include flex(space-between, center);
+  gap: 16px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.brand {
+  @include flex(flex-start, center);
+  cursor: pointer;
+}
+
+.brandLogo {
+  display: block;
+  height: clamp(30px, 5vw, 44px);
+  width: auto;
+}
+
+/* ---------- hero ---------- */
+.hero {
+  @include shell;
+  @include gutters;
+  padding-top: clamp(40px, 7vw, 96px);
+  padding-bottom: clamp(28px, 4vw, 48px);
+}
+
+.heroTitle {
+  font-family: $FONT_DISPLAY;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: clamp(46px, 11vw, 138px);
+  line-height: 0.92;
+  margin: 0.14em 0 0.2em;
+}
+
+.heroText {
+  max-width: 60ch;
+  color: $ED_TEXT_SOFT;
+  font-size: clamp(16px, 1.9vw, 20px);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ---------- gallery ---------- */
+.gallerySection {
+  border-top: 1px solid $ED_BORDER;
+}
+
+.galleryGrid {
+  @include shell;
+  @include gutters;
+  padding-top: clamp(20px, 3vw, 40px);
+  padding-bottom: clamp(20px, 3vw, 40px);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+  gap: 8px;
+}
+
+.galleryItem {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+  background: $ED_SURFACE;
+  @include transition(filter);
+
+  &:hover {
+    filter: brightness(1.12);
   }
 }
 
-.stagesList {
-  padding: 12px 0;
-  @include media($SCREEN_TABLET_SMALL) {
-    padding: 16px 0;
-  }
+/* ---------- programs ---------- */
+.programsSection {
+  @include shell;
+  @include gutters;
+  border-top: 1px solid $ED_BORDER;
+  padding-top: clamp(40px, 6vw, 88px);
+  padding-bottom: clamp(40px, 6vw, 88px);
+  @include flex(flex-start, stretch, column);
+  gap: clamp(40px, 6vw, 80px);
+}
+
+.program {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(20px, 3vw, 56px);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: clamp(24px, 3vw, 44px);
+}
+
+.programTitle {
+  font-family: $FONT_DISPLAY;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: clamp(24px, 3.4vw, 42px);
+  line-height: 1.05;
+  margin: 14px 0 0;
+}
+
+.programStages {
+  @include flex(flex-start, stretch, column);
+  gap: clamp(18px, 2.5vw, 30px);
 }
 
 .stageName {
-  @include text(rem(14px), 500, $MOCCA);
-  display: inline-block;
-  margin-bottom: 10px;
-  &::first-letter {
-    text-transform: uppercase;
-  }
-  @include media($SCREEN_TABLET_SMALL) {
-    font-size: rem(18px);
-    margin-bottom: 0;
-  }
+  font-family: $FONT_DISPLAY;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 14px;
+  color: #f0f0f1;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .valuesList {
-  list-style: disc;
-  padding: 0 12px;
-  @include media($SCREEN_TABLET_SMALL) {
-    padding: 12px;
-  }
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  @include flex(flex-start, stretch, column);
+  gap: 9px;
 }
 
 .valuesItem {
-  @include text(rem(12px), 400, $N50);
-  line-height: 1.4;
-  &::first-letter {
-    text-transform: uppercase;
-  }
-  &:not(:last-of-type) {
-    margin-bottom: 6px;
-  }
-  @include media($SCREEN_TABLET_SMALL) {
-    font-size: rem(14px);
+  display: flex;
+  gap: 12px;
+  color: $ED_TEXT_SOFT;
+  font-size: clamp(14px, 1.6vw, 16px);
+  line-height: 1.5;
+}
+
+.dash {
+  color: $ED_MUTED_DARK;
+  flex: none;
+}
+
+/* ---------- cta ---------- */
+.ctaSection {
+  @include shell;
+  @include gutters;
+  border-top: 1px solid $ED_BORDER;
+  padding-top: clamp(40px, 6vw, 88px);
+  padding-bottom: clamp(40px, 6vw, 88px);
+  text-align: center;
+}
+
+.ctaTitle {
+  font-family: $FONT_DISPLAY;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: clamp(24px, 4vw, 46px);
+  margin: 0 0 22px;
+}
+
+.ctaActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* ---------- footer ---------- */
+.footer {
+  @include shell;
+  @include gutters;
+  @include flex(space-between, center, row, wrap);
+  gap: 16px;
+  padding-top: 26px;
+  padding-bottom: 26px;
+  border-top: 1px solid $ED_BORDER;
+}
+
+.footerBrand {
+  font-family: $FONT_DISPLAY;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 15px;
+}
+
+.footerLinks {
+  @include flex(flex-start, center, row, wrap);
+  gap: 18px;
+  font-family: $FONT_MONO;
+  font-size: 12px;
+  color: $ED_MUTED;
+}
+
+.footerLink {
+  color: $ED_MUTED;
+  cursor: pointer;
+  @include transition(color);
+
+  &:hover {
+    color: $ED_TEXT;
   }
 }
 
-.priceValue {
-  @include text(rem(20px), 700, $MOCCA);
-  @include media($SCREEN_TABLET_SMALL) {
-    font-size: rem(32px);
-  }
-}
-
-.priceCurrency {
-  @include text(rem(12px), 700, $MOCCA);
-  @include media($SCREEN_TABLET_SMALL) {
-    font-size: rem(16px);
-  }
+.footerCopy {
+  color: inherit;
 }

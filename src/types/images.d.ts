@@ -17,3 +17,8 @@ declare module '*.JPEG' {
   const content: StaticImageData;
   export default content;
 }
+
+declare module '*.PNG' {
+  const content: StaticImageData;
+  export default content;
+}

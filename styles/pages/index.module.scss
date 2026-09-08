@@ -1,130 +1,332 @@
 @import '../core';
 
-@keyframes arromZoom {
-    from {
-        transform: scale(1) translate(2px, -2px);
-    }
-    to {
-        transform: scale(1.2) translate(0px, 0px);
-    }
+@mixin gutters {
+  padding-left: clamp(16px, 4vw, 40px);
+  padding-right: clamp(16px, 4vw, 40px);
 }
-
-$nav_height: 100px;
 
 .page {
-    overflow: hidden;
-    width: 100%;
-    position: fixed;
-    @include position;
-    @include flex-col;
-    height: calc(100vh - calc(100vh - 100%));
-    max-height: calc(100vh - calc(100vh - 100%));
+  min-height: 100vh;
+  background: $ED_BG;
+  color: $ED_TEXT;
+  @include flex(flex-start, stretch, column);
+  font-family: $FONT_BODY;
 }
 
-.header {
-    position: relative;
-    height: 100px;
-    margin: 0 auto;
-    width: 100%;
-    flex-shrink: 0;
-    flex-grow: 0;
-    @include media($SCREEN_IPHONE_PLUS) {
-        height: 120px;
-    }
+.topbar {
+  @include flex(space-between, center);
+  @include gutters;
+  padding-top: 22px;
+  padding-bottom: 22px;
 }
 
-.image {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    @include transition(filter, transform);
-    transition-duration: 0.5s;
+.topbarLogo {
+  display: block;
+  height: clamp(32px, 5vw, 46px);
+  width: auto;
 }
 
-.barbers {
-    flex-grow: 1;
-    @include flex-col;
-    @include media($SCREEN_TABLET_LARGE) {
-        flex-direction: row;
-    }
+.city {
+  font-family: $FONT_MONO;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: $ED_MUTED;
+  text-transform: uppercase;
 }
 
-.barber {
-    flex: 0 0 50%;
-    display: flex;
-    @include flex-col(center, center);
-    overflow: hidden;
-    position: relative;
-    @include media($SCREEN_TABLET_LARGE) {
-        .image {
-            filter: grayscale(100%);
-        }
-        &:hover .image {
-            filter: grayscale(0%);
-            transform: scale(1.05);
-        }
-    }
-
+.intro {
+  @include gutters;
+  padding-top: 24px;
+  padding-bottom: clamp(10px, 2vw, 18px);
 }
 
-.barber::after {
-    content: '';
-    display: block;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: linear-gradient(180deg, rgba(black, 0) 0%, rgba(black, 0.6) 40%, rgba(black, 0.6) 60%, rgba(black, 0) 100%);
+.kicker {
+  font-family: $FONT_MONO;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: $ED_MUTED;
+  text-transform: uppercase;
+  margin-bottom: 16px;
 }
 
-.address {
-    text-align: center;
-    @include text(rem(18px), 500, $MOCCA);
-    line-height: 150%;
-    position: relative;
-    z-index: 2;
-    @include media($SCREEN_TABLET_LARGE) {
-        font-size: 18px;
-        // position: absolute;
-        flex-shrink: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-    }
+.title {
+  font-family: $FONT_DISPLAY;
+  font-weight: 600;
+  font-size: clamp(24px, 6vw, 60px);
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  margin: 0;
+  max-width: 75%;
+}
+
+.cards {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  @include gutters;
+  padding-top: clamp(16px, 3vw, 32px);
+  padding-bottom: clamp(20px, 3vw, 36px);
+}
+
+.card {
+  position: relative;
+  flex: 1 1 340px;
+  min-height: clamp(400px, 54vh, 580px);
+  overflow: hidden;
+  cursor: pointer;
+  color: $ED_TEXT;
+  @include transition(filter);
+}
+
+.cardMain {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #000;
+
+  &:hover {
+    filter: brightness(1.14);
+  }
+}
+
+.cardYoung {
+  border: 1px solid rgba(245, 224, 3, 0.25);
+  background: $Y_BG;
+  color: $Y_TEXT;
+
+  &:hover {
+    filter: saturate(1.35) brightness(1.08);
+  }
+}
+
+.cardImage {
+  opacity: 0.6;
+}
+
+.cardImageYoung {
+  opacity: 0.78;
+}
+
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 11, 13, 0.15),
+    rgba(10, 11, 13, 0.88)
+  );
+}
+
+.cardOverlayYoung {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(12, 13, 10, 0.05),
+    rgba(12, 13, 10, 0.55) 55%,
+    rgba(12, 13, 10, 0.9)
+  );
+}
+
+.cardContent {
+  position: relative;
+  height: 100%;
+  @include flex(flex-end, stretch, column);
+  padding: clamp(22px, 3vw, 40px);
+}
+
+.cardIndex {
+  font-family: $FONT_MONO;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #9a9ca1;
+}
+
+.cardIndexYoung {
+  font-family: $FONT_MONO;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $Y_YELLOW;
+}
+
+.cardLogoYoung {
+  display: block;
+  width: min(100%, clamp(180px, 24vw, 280px));
+  height: auto;
+  margin: 10px 0 6px;
+}
+
+.cardAddress {
+  color: $ED_TEXT_SOFT;
+  font-size: clamp(14px, 1.6vw, 17px);
+}
+
+.cardAddressYoung {
+  color: #e7e7e2;
+  font-size: clamp(14px, 1.6vw, 17px);
+}
+
+.badge {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: $Y_YELLOW;
+  color: $Y_BG;
+  font-family: $FONT_MONO;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  transform: rotate(3deg);
+  @include z-index(popover);
+}
+
+.edu {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0 clamp(16px, 4vw, 40px) clamp(20px, 3vw, 36px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #101114;
+  color: $ED_TEXT;
+  cursor: pointer;
+  @include transition(filter);
+
+  &:hover {
+    filter: brightness(1.15);
+  }
+}
+
+.eduImage {
+  opacity: 0.35;
+}
+
+.eduOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(10, 11, 13, 0.92),
+    rgba(10, 11, 13, 0.55)
+  );
+}
+
+.eduContent {
+  position: relative;
+  @include flex(flex-start, center, row, wrap);
+  gap: clamp(14px, 3vw, 32px);
+  padding: clamp(22px, 3.5vw, 40px) clamp(22px, 3vw, 40px);
+}
+
+.eduText {
+  flex: 1 1 320px;
+  @include flex(flex-start, stretch, column);
+  gap: 8px;
+}
+
+.eduIndex {
+  font-family: $FONT_MONO;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #9a9ca1;
+}
+
+.eduName {
+  font-family: $FONT_DISPLAY;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: clamp(26px, 4vw, 44px);
+  line-height: 1;
+}
+
+.eduDesc {
+  color: $ED_TEXT_SOFT;
+  font-size: clamp(14px, 1.6vw, 16px);
+}
+
+.eduCta {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: $ED_TEXT;
+  color: $ED_BG;
+  font-family: $FONT_DISPLAY;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 13px;
+  padding: 14px 24px;
 }
 
 .footer {
-    flex: 0 0 $nav_height;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: $MAIN_COLOR;
+  @include flex(space-between, center, row, wrap);
+  @include gutters;
+  gap: 14px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid $ED_BORDER;
 }
 
-.nav {
-    @include flex(center, center);
-}
+.footerMeta {
+  @include flex(flex-start, center);
+  gap: 18px;
+  font-family: $FONT_MONO;
+  font-size: 12px;
+  color: $ED_MUTED;
 
-.link {
-    padding: 16px;
-    @include flex(center, center);
-    @include text(rem(16px), 500, $MOCCA);
+  a {
+    color: $ED_MUTED;
     @include transition(color);
-    @include media($SCREEN_TABLET_LARGE) {
-        font-size: 18px;
-    }
-    @include hover {
-        color: $N0;
-    }
 
-    &:focus, &:active {
-        color: $P100;
+    &:hover {
+      color: $ED_TEXT;
     }
+  }
 }
 
-.arrow {
-    @include svg(28px, $P100);
-    margin-left: 6px;
-    animation: arromZoom 1s ease-in-out infinite alternate both;
+// Mobile: both location cards must fit the first screen without scrolling.
+@media (max-width: 759px) {
+  .topbar {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .intro {
+    padding-top: 10px;
+    padding-bottom: 6px;
+  }
+
+  .kicker {
+    margin-bottom: 10px;
+  }
+
+  .title {
+    max-width: 100%;
+  }
+
+  .cards {
+    padding-top: 12px;
+    padding-bottom: 16px;
+    gap: 8px;
+  }
+
+  .card {
+    // Viewport minus topbar/intro/paddings, split between the two cards.
+    min-height: 180px;
+    height: calc((100vh - 215px) / 2);
+    height: calc((100svh - 215px) / 2);
+    max-height: 340px;
+  }
+
+  .cardContent {
+    padding: 16px;
+  }
+
+  .cardLogoYoung {
+    width: 170px;
+  }
 }

@@ -1,86 +1,70 @@
-import React, { ReactNode, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import Head from "next/head";
-import Zoom from "react-medium-image-zoom";
 import Image, { StaticImageData } from "next/image";
-import NextLink from "next/link";
-import { locations } from "../../../data";
-import { Container } from "../Container";
-import { Button } from "../Button";
-import icon from "../../assets/icons8-instagram.svg";
-import styles from "./BarbershopPage.module.scss";
+import Link from "next/link";
 import clsx from "clsx";
+import { locations } from "../../../data";
 import { Routes } from "../../constants";
 import { Pricing } from "../../types/Pricing";
+import { GalleryCarousel } from "../GalleryCarousel";
+import { HiddenTitle } from "../HiddenTitle";
+import { Lightbox } from "../Lightbox";
+import styles from "./BarbershopPage.module.scss";
+
+export interface Barber {
+  id: string | number;
+  name: string;
+  role: string;
+  photo: string | StaticImageData;
+}
 
 export interface BarbershopPageProps {
-  pricing: Pricing[];
+  variant: "minimal" | "loud";
   data: (typeof locations)[keyof typeof locations];
+  pricing: Pricing[];
   logo: string | StaticImageData;
-  color: string;
-  renderMap?: ReactNode;
-  photoGrid?: {
-    id: string | number;
-    src: string | StaticImageData;
-    type: "big" | "horizontal" | "vertical" | "square";
-  }[];
+  heroImage: string | StaticImageData;
+  heroLogo?: string | StaticImageData;
+  heroTitleImage?: string | StaticImageData;
+  gallery: (string | StaticImageData)[];
+  barbers: Barber[];
+  contactImage: string | StaticImageData;
+  crossLink: { label: string; href: string };
   ogImage?: string;
+  showTicker?: boolean;
+  showStickers?: boolean;
 }
 
-const CTA = "Записатися";
-
-interface LinkData {
-  link: string;
-  name: string;
-  blank: boolean;
-  icon: string;
-}
+const TICKER_PHRASE =
+  "Пострижись як в прошлий раз ✦ Eleven Dogs Youngsters ✦ ";
 
 export const BarbershopPage = ({
-  pricing,
+  variant,
   data,
+  pricing,
   logo,
-  color,
-  renderMap,
-  photoGrid,
+  heroImage,
+  heroLogo,
+  heroTitleImage,
+  gallery,
+  barbers,
+  contactImage,
+  crossLink,
   ogImage,
+  showTicker = true,
+  showStickers = true,
 }: BarbershopPageProps) => {
-  const itemsRef = useRef([]);
-  // you can access the elements with itemsRef.current[n]
-
-  useEffect(() => {
-    itemsRef.current = itemsRef.current.slice(0, 100);
-  }, []);
-
-  const renderLink = ({ link, name, blank, icon }: LinkData) => {
-    return (
-      <NextLink
-        key={name}
-        href={link}
-        target={blank ? '_blank' : '_self'}
-        className={clsx(styles.instagram)}
-      >
-        <span className={styles.icon}>{icon}</span>
-        <span className={styles.instaText}>{name}</span>
-      </NextLink>
-    );
-  };
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const isLoud = variant === "loud";
+  const instagramUrl = `https://www.instagram.com/${data.instagram}/`;
 
   return (
     <>
       <Head>
         <title>{data.title}</title>
-        <meta
-          name="description"
-          content={data.description}
-        />
-        <meta
-          name="og:title"
-          content={data.title}
-        />
-        <meta
-          name="og:description"
-          content={data.description}
-        />
+        <meta name="description" content={data.description} />
+        <meta name="og:title" content={data.title} />
+        <meta name="og:description" content={data.description} />
         <meta name="twitter:title" content={data.title} />
         <meta name="twitter:description" content={data.description} />
         {ogImage && (
@@ -90,121 +74,324 @@ export const BarbershopPage = ({
           </>
         )}
       </Head>
-      <div className={styles.container}>
-        <div className={styles.inner}>
-          <header className={styles.header}>
-            <Container className={styles.headerContainer}>
-              <div className={styles.logo}>
-                <Image
-                  priority
-                  src={logo}
-                  alt={data.name}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: '100%', height: 'auto' }}
-                />
-              </div>
-              <nav className={styles.nav}>
-                {(
-                  [
-                    {
-                      blank: false,
-                      icon: "💈",
-                      link: Routes.HOME,
-                      name: "Головна",
-                    },
-                    {
-                      blank: true,
-                      icon: "🗺",
-                      link: data.map,
-                      name: data.address,
-                    },
-                    {
-                      blank: false,
-                      icon: "📞",
-                      link: `tel:${data.phone}`,
-                      name: data.phone,
-                    },
-                    {
-                      blank: true,
-                      icon: (
-                        <Image
-                          priority
-                          src={icon}
-                          alt="instagram"
-                          width={0}
-                          height={0}
-                          sizes="100vw"
-                          style={{ width: '100%', height: 'auto' }}
-                        />
-                      ),
-                      link: `https://www.instagram.com/${data.instagram}/`,
-                      name: data.instagram,
-                    },
-                  ] as LinkData[]
-                ).map(renderLink)}
-              </nav>
-            </Container>
-          </header>
-          <Container className={styles.buttonWrapper}>
-            <Button
-              className={styles.button}
-              href={data.booking}
-              backgroundColor={color}
+
+      <div className={clsx(styles.page, isLoud ? styles.loud : styles.minimal)}>
+        <header className={styles.header}>
+          <div className={styles.headerInner}>
+            <Link
+              href={Routes.HOME}
+              className={styles.brand}
+              aria-label={data.name}
             >
-              {CTA}
-            </Button>
-          </Container>
-          <div className={clsx("grid", styles.photoGrid)}>
-            {(photoGrid || []).map(({ src, type, id }) => {
-              return (
-                <div key={id} className={clsx("grid__item", type)}>
-                  <Zoom
-                    zoomImg={{
-                      src: String(src),
-                      width: "100%",
-                      height: "100%",
-                    }}
-                  >
-                    <Image
-                      src={src}
-                      alt={data.title}
-                      fill
-                      loading="lazy"
-                      style={{ objectFit: 'cover', objectPosition: '50% 50%' }}
-                    />
-                  </Zoom>
-                </div>
-              );
-            })}
+              <Image
+                priority
+                src={logo}
+                alt={data.name}
+                className={styles.brandLogo}
+                style={{ width: "auto" }}
+              />
+            </Link>
+            <a
+              href={data.booking}
+              target="_blank"
+              rel="noreferrer"
+              className={styles.cta}
+            >
+              Записатися
+            </a>
           </div>
-          <main className={styles.main}>
-            <Container className={styles.mainContainer}>
-              <ul className={styles.list} style={{ borderColor: color }}>
-                {pricing.map((service) => (
-                  <li key={service.id} className={styles.listItem}>
-                    <span className={styles.serviceName}>{service.title}</span>
-                    <div className={styles.price}>
-                      <span className={styles.priceValue}>{service.price}</span>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-              <Button
-                className={styles.button}
+          <nav className={styles.nav}>
+            <a href="#services" className={styles.navLink}>
+              Послуги
+            </a>
+            <a href="#gallery" className={styles.navLink}>
+              Галерея
+            </a>
+            <a href="#team" className={styles.navLink}>
+              Майстри
+            </a>
+            <a href="#contacts" className={styles.navLink}>
+              Контакти
+            </a>
+            <Link
+              href={crossLink.href}
+              className={clsx(styles.navLink, styles.navCross)}
+            >
+              {crossLink.label} →
+            </Link>
+          </nav>
+        </header>
+
+        <section className={styles.hero}>
+          <Image
+            src={heroImage}
+            alt={data.name}
+            fill
+            priority
+            sizes="100vw"
+            className={styles.heroImage}
+            style={{ objectFit: "cover" }}
+          />
+          <div className={styles.heroOverlay} />
+          {isLoud && showStickers && (
+            <div className={styles.sticker}>COLOR IS LIFE</div>
+          )}
+          <div className={styles.heroContent}>
+            {heroLogo && (
+              <Image
+                src={heroLogo}
+                alt={data.name}
+                priority
+                className={styles.heroLogo}
+                style={{ width: "auto" }}
+              />
+            )}
+            <div className={styles.heroAddress}>
+              <span>{data.address}</span>
+              <span className={styles.heroDot} aria-hidden="true">
+                ·
+              </span>
+              <a href={`tel:${data.phone}`} className={styles.heroPhone}>
+                {data.phone}
+              </a>
+            </div>
+            {heroTitleImage ? (
+              <>
+                <HiddenTitle>{isLoud ? "Youngsters" : "Eleven Dogs"}</HiddenTitle>
+                <Image
+                  src={heroTitleImage}
+                  alt=""
+                  priority
+                  className={styles.heroTitleImage}
+                />
+              </>
+            ) : (
+              <h1 className={styles.heroTitle}>
+                {isLoud ? (
+                  <>
+                    Young
+                    <br />
+                    sters
+                  </>
+                ) : (
+                  <>
+                    Eleven
+                    <br />
+                    Dogs
+                  </>
+                )}
+              </h1>
+            )}
+            <div className={styles.heroSubtitle}>
+              {isLoud
+                ? "Eleven Dogs · район Водоканал"
+                : "barbershop & men's club · центр"}
+            </div>
+            <div className={styles.heroActions}>
+              <a
                 href={data.booking}
-                backgroundColor={color}
+                target="_blank"
+                rel="noreferrer"
+                className={styles.cta}
               >
-                {CTA}
-              </Button>
-            </Container>
-          </main>
-          <footer className={styles.footer}>
-            <div className={styles.map}>{renderMap}</div>
-          </footer>
-        </div>
+                Записатися онлайн
+              </a>
+              <a href="#services" className={styles.ctaGhost}>
+                Прайс
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {isLoud
+          ? showTicker && (
+              <div className={styles.ticker}>
+                <div className={styles.tickerTrack}>
+                  <span>{TICKER_PHRASE.repeat(4)}</span>
+                  <span>{TICKER_PHRASE.repeat(4)}</span>
+                </div>
+              </div>
+            )
+          : (
+              <section className={styles.about}>
+                <div className={styles.aboutHead}>
+                  <div className={styles.kicker}>01 — Локація</div>
+                  <h2 className={styles.aboutTitle}>
+                    Пострижись як в прошлий раз
+                  </h2>
+                </div>
+                <div className={styles.aboutBody}>
+                  <p>
+                    Барбершоп в центрі Кременчука та в районі зупинки Водоканал —
+                    мережа Eleven Dogs.
+                  </p>
+                  <p className={styles.aboutMail}>hello@elevendogs.com.ua</p>
+                </div>
+              </section>
+            )}
+
+        <section id="services" className={styles.section}>
+          <div className={styles.sectionHead}>
+            <h2 className={styles.sectionTitle}>
+              {isLoud ? "Прайс" : "Послуги"}
+            </h2>
+            <div className={styles.kicker}>
+              {isLoud ? "грн · Youngsters" : "Прайс · грн"}
+            </div>
+          </div>
+
+          <ul className={styles.priceList}>
+            {pricing.map((service, index) => (
+              <li key={service.id} className={styles.priceRow}>
+                <span className={styles.priceNum}>
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className={styles.priceName}>{service.title}</span>
+                <span className={styles.priceValue}>{service.price}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div className={styles.sectionActions}>
+            <a
+              href={data.booking}
+              target="_blank"
+              rel="noreferrer"
+              className={styles.cta}
+            >
+              Записатися онлайн
+            </a>
+          </div>
+        </section>
+
+        <section id="gallery" className={styles.section}>
+          <div className={styles.sectionHead}>
+            <h2 className={styles.sectionTitle}>Галерея</h2>
+            <div className={styles.kicker}>
+              {isLoud ? "вайб · стиль" : "Інтер'єр · роботи"}
+            </div>
+          </div>
+          <GalleryCarousel
+            images={gallery}
+            variant={variant}
+            onImageClick={setLightboxIndex}
+          />
+        </section>
+
+        <section id="team" className={styles.section}>
+          <div className={styles.sectionHead}>
+            <h2 className={styles.sectionTitle}>Майстри</h2>
+            <div className={styles.kicker}>
+              {isLoud ? "команда · Youngsters" : "Команда · Eleven Dogs"}
+            </div>
+          </div>
+          <div className={styles.teamGrid}>
+            {barbers.map((barber) => (
+              <article key={barber.id} className={styles.barberCard}>
+                <div className={styles.barberPhoto}>
+                  <Image
+                    src={barber.photo}
+                    alt={barber.name}
+                    fill
+                    loading="lazy"
+                    sizes="(max-width: 600px) 100vw, 240px"
+                    style={{ objectFit: "cover", objectPosition: "50% 25%" }}
+                  />
+                </div>
+                <div className={styles.barberInfo}>
+                  <div className={styles.barberName}>{barber.name}</div>
+                  <div className={styles.barberRole}>{barber.role}</div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="contacts" className={styles.contacts}>
+          <div className={styles.contactsInfo}>
+            <div className={styles.kicker}>
+              {isLoud ? "Контакти · Локація 02" : "Контакти · Локація 01"}
+            </div>
+            <h2 className={styles.contactsTitle}>{data.address}</h2>
+            <div className={styles.contactRows}>
+              <a href={`tel:${data.phone}`} className={styles.contactRow}>
+                <span className={styles.contactLabel}>ТЕЛЕФОН</span>
+                {data.phone}
+              </a>
+              <a
+                href={instagramUrl}
+                target="_blank"
+                rel="noreferrer"
+                className={styles.contactRow}
+              >
+                <span className={styles.contactLabel}>INSTAGRAM</span>@
+                {data.instagram}
+              </a>
+              <div className={styles.contactRow}>
+                <span className={styles.contactLabel}>МІСТО</span>Кременчук
+              </div>
+            </div>
+            <div className={styles.contactsActions}>
+              <a
+                href={data.booking}
+                target="_blank"
+                rel="noreferrer"
+                className={styles.cta}
+              >
+                Записатися
+              </a>
+              <a
+                href={data.map}
+                target="_blank"
+                rel="noreferrer"
+                className={styles.ctaGhost}
+              >
+                На мапі
+              </a>
+            </div>
+          </div>
+          <div className={styles.contactsPhoto}>
+            <Image
+              src={contactImage}
+              alt={data.name}
+              fill
+              loading="lazy"
+              sizes="(max-width: 900px) 100vw, 600px"
+              style={{ objectFit: "cover" }}
+            />
+          </div>
+        </section>
+
+        <footer className={styles.footer}>
+          <div className={styles.footerBrand}>
+            {isLoud ? "Youngsters" : "Eleven Dogs"}
+          </div>
+          <div className={styles.footerLinks}>
+            <Link href={crossLink.href} className={styles.footerLink}>
+              {crossLink.label}
+            </Link>
+            <Link href={Routes.EDUCATION} className={styles.footerLink}>
+              Навчання
+            </Link>
+            <a
+              href={instagramUrl}
+              target="_blank"
+              rel="noreferrer"
+              className={styles.footerLink}
+            >
+              @{data.instagram}
+            </a>
+            <span className={styles.footerCopy}>© Eleven Dogs</span>
+          </div>
+        </footer>
       </div>
+
+      <Lightbox
+        images={gallery}
+        index={lightboxIndex}
+        onClose={() => setLightboxIndex(null)}
+        onIndexChange={setLightboxIndex}
+      />
     </>
   );
 };

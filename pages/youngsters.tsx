@@ -1,15 +1,27 @@
 import React from "react";
 import type { GetStaticProps, NextPage } from "next";
+import { StaticImageData } from "next/image";
 import { locations } from "../data";
-import logo from "../src/assets/eleven_dogs_logo_2.png";
 import { BarbershopPage } from "../src/components";
-import image1 from "../src/assets/edy2/DSCF5379-2.jpg";
-import image2 from "../src/assets/new2025/1IMG_3516.JPG";
-import image3 from "../src/assets/edy2/DSCF5406-2-2.jpg";
-import image4 from "../src/assets/edy/b00004.jpg";
-import image5 from "../src/assets/new2025/1IMG_3539.JPG";
-import image6 from "../src/assets/new2025/1IMG_9791.JPG";
-import image8 from "../src/assets/new2025/1IMG_9793.JPG";
+import { Routes } from "../src/constants";
+import logo from "../src/assets/2026/logo_youngsters_text.png";
+import heroLogo from "../src/assets/eleven_dogs_youngsters.svg";
+import dmytroPhoto from "../src/assets/2026/youngsters_masters/dmytro.JPG";
+import jaroslavPhoto from "../src/assets/2026/youngsters_masters/jaroslav.JPG";
+import olegPhoto from "../src/assets/2026/youngsters_masters/oleg.JPG";
+import image0528 from "../src/assets/2026/youngsters/IMG_0528.JPG";
+import image3516 from "../src/assets/2026/youngsters/IMG_3516.JPG";
+import image3530 from "../src/assets/2026/youngsters/IMG_3530.JPG";
+import image5092 from "../src/assets/2026/youngsters/IMG_5092.JPG";
+import image5133 from "../src/assets/2026/youngsters/IMG_5133.JPG";
+import image5134 from "../src/assets/2026/youngsters/IMG_5134.JPG";
+import image6301 from "../src/assets/2026/youngsters/IMG_6301.JPG";
+import image6306 from "../src/assets/2026/youngsters/IMG_6306.JPG";
+import image6310 from "../src/assets/2026/youngsters/IMG_6310.JPG";
+import image6315 from "../src/assets/2026/youngsters/IMG_6315.JPG";
+import image6869 from "../src/assets/2026/youngsters/IMG_6869.jpg";
+import image9402 from "../src/assets/2026/youngsters/IMG_9402.JPG";
+import image9796 from "../src/assets/2026/youngsters/IMG_9796.JPG";
 import { Client } from "@notionhq/client";
 import { Pricing } from "../src/types/Pricing";
 import { ApiService } from "../src/services/ApiService";
@@ -18,77 +30,65 @@ export interface YoungstersProps {
   pricing: Pricing[];
 }
 
+const heroImage = image3516;
+const contactImage = image6306;
+
+// All 2026 youngsters-location photos; signature shots lead the set.
+const gallery = [
+  image3516,
+  image6306,
+  image0528,
+  image5134,
+  image3530,
+  image5092,
+  image5133,
+  image6301,
+  image6310,
+  image6315,
+  image6869,
+  image9402,
+  image9796,
+];
+
+// Explicit portrait per barber id (data.js): 1 Олег, 2 Дмитро, 3 Ярослав.
+const barberPhotosById: Record<number, StaticImageData> = {
+  1: olegPhoto,
+  2: dmytroPhoto,
+  3: jaroslavPhoto,
+};
+
 const Youngsters: NextPage<YoungstersProps> = ({ pricing }) => {
   return (
-    <>
-      <BarbershopPage
-        ogImage="/og_youngsters.jpg"
-        renderMap={
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2613.041752248158!2d33.4244195155907!3d49.085846879310346!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d752fdf4d39067%3A0xacc45b86accd9370!2sSvobody%20Ave%2C%2039%2F43%2C%20Kremenchuk%2C%20Poltavs&#39;ka%20oblast%2C%2039600!5e0!3m2!1sen!2sua!4v1658230504480!5m2!1sen!2sua"
-            width="100%"
-            height="100%"
-            style={{ border: "none" }}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
-        }
-        data={locations.secondary}
-        pricing={pricing}
-        logo={logo}
-        color="#00c800"
-        photoGrid={[
-          {
-            id: 4,
-            src: image4,
-            type: "vertical",
-          },
-          
-          {
-            id: 5,
-            src: image5,
-            type: "horizontal",
-          },          
-          {
-            id: 1,
-            src: image1,
-            type: "vertical",
-          },
-          {
-            id: 6,
-            src: image6,
-            type: "vertical",
-          },
-
-          {
-            id: 3,
-            src: image3,
-            type: "horizontal",
-          },
-          
-          {
-            id: 2,
-            src: image2,
-            type: "vertical",
-          },
-          
-          {
-            id: 8,
-            src: image8,
-            type: "vertical",
-          },
-        ]}
-      />
-    </>
+    <BarbershopPage
+      variant="loud"
+      ogImage="/og_youngsters.jpg"
+      data={locations.secondary}
+      pricing={pricing}
+      logo={logo}
+      heroLogo={heroLogo}
+      heroTitleImage={logo}
+      heroImage={heroImage}
+      gallery={gallery}
+      contactImage={contactImage}
+      barbers={locations.secondary.barbers.map((barber) => ({
+        ...barber,
+        photo: barberPhotosById[barber.id],
+      }))}
+      crossLink={{ label: "Eleven Dogs", href: Routes.MAIN }}
+    />
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const notion = new Client({
-    auth: process.env.NOTION_SECRET,
-  });
-  const apiService = new ApiService("Свободи", notion);
-  const pricing = await apiService.fetchPricing();
+  let pricing: Pricing[] = [];
+
+  try {
+    const notion = new Client({ auth: process.env.NOTION_SECRET });
+    const apiService = new ApiService("Свободи", notion);
+    pricing = await apiService.fetchPricing();
+  } catch (error) {
+    console.error("Failed to fetch pricing from Notion", error);
+  }
 
   return {
     props: { pricing },

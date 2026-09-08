@@ -39,6 +39,45 @@ const services = [
   },
 ];
 
+// Майстри (barbers) shown on each location page. Edit the name / role here;
+// photos are wired in the page files (pages/main.tsx, pages/youngsters.tsx)
+// where the images are imported.
+const barbersMain = [
+  {
+    id: 3,
+    name: "Гліб",
+    role: 'Арт-партнер',
+  },
+  {
+    id: 2,
+    name: "Іван",
+    role: 'Топ-барбер',
+  },
+  {
+    id: 1,
+    name: "Євгеній",
+    role: 'Барбер',
+  },
+];
+
+const barbersYoungsters = [
+  {
+    id: 1,
+    name: "Олег",
+    role: 'Топ-барбер',
+  },
+  {
+    id: 2,
+    name: "Дмитро",
+    role: 'Барбер',
+  },
+  {
+    id: 3,
+    name: "Ярослав",
+    role: 'Барбер',
+  },
+];
+
 export const locations = {
   main: {
     booking: 'https://n764807.alteg.io/',
@@ -49,6 +88,7 @@ export const locations = {
     address: 'Кременчук, вул. Івана Мазепи, 28',
     title: 'Eleven Dogs | Кременчук Барбершоп',
     description: 'Барбершоп в центрі Кременчука. Пострижись як в прошлий раз!',
+    barbers: barbersMain,
   },
   secondary: {
     booking: 'https://n768560.alteg.io/',
@@ -60,6 +100,7 @@ export const locations = {
     title: 'Youngsters - Eleven Dogs | Кременчук Барбершоп',
     description:
       'Барбершоп в районі зупинки Водоканал м. Кременчук. Пострижись як в прошлий раз!',
+    barbers: barbersYoungsters,
   },
 };
 
@@ -67,7 +108,7 @@ export const education = {
   phone: '+380962210799',
   title: 'Навчання в Eleven Dogs | Кременчук Барбершоп',
   description:
-    'Начвання в майстрів барбершопів Eleven Dogs в Кременчуці. Барбер з нуля. Інтенсив за скороченим терміном навчання. Курс підвищення кваліфікації.',
+    'Навчання у майстрів барбершопів Eleven Dogs в Кременчуці. Барбер з нуля. Інтенсив за скороченим терміном навчання. Курс підвищення кваліфікації.',
   data: [
     {
       name: 'Барбер з нуля',
