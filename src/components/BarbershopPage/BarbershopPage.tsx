@@ -264,7 +264,7 @@ export const BarbershopPage = ({
           <div className={styles.sectionHead}>
             <h2 className={styles.sectionTitle}>Галерея</h2>
             <div className={styles.kicker}>
-              {isLoud ? "вайб · стиль" : "Інтер'єр · роботи"}
+              {isLoud ? "Галерея · Youngsters" : "Інтер'єр · роботи"}
             </div>
           </div>
           <GalleryCarousel
