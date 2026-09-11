@@ -699,6 +699,12 @@ $shell: 1240px;
     background: $Y_GREEN_DEEP;
     color: $Y_BG;
   }
+
+  // The green accent kicker is invisible on the green background.
+  .loud & .kicker {
+    color: $Y_BG;
+    opacity: 0.75;
+  }
 }
 
 .contactsTitle {
