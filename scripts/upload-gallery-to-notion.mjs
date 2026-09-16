@@ -10,6 +10,9 @@
 //
 // The token needs "Insert content" and "Update content" capabilities on the
 // Elevendogs page. It is the same NOTION_SECRET the site uses.
+//
+// Safe to re-run: each photo is written to the row named in the manifest, so a
+// second run replaces the same files rather than creating duplicate rows.
 
 import { readFile } from "node:fs/promises";
 import path from "node:path";
@@ -24,7 +27,9 @@ if (!token) {
   process.exit(1);
 }
 
-const api = async (url, init = {}) => {
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const api = async (url, init = {}, attempt = 1) => {
   const response = await fetch(url, {
     ...init,
     headers: {
@@ -33,12 +38,26 @@ const api = async (url, init = {}) => {
       ...init.headers,
     },
   });
-  if (!response.ok) {
-    throw new Error(
-      `${init.method ?? "GET"} ${url} -> ${response.status} ${await response.text()}`
-    );
+
+  if (response.ok) {
+    return response.json();
   }
-  return response.json();
+
+  // Notion rate-limits at roughly 3 requests/second, and each photo costs
+  // three. Backing off beats aborting a 39-photo run two thirds of the way in.
+  const retriable = response.status === 429 || response.status >= 500;
+  if (retriable && attempt <= 4) {
+    const retryAfter = Number(response.headers.get("retry-after"));
+    const wait = Number.isFinite(retryAfter) && retryAfter > 0
+      ? retryAfter * 1000
+      : 2 ** attempt * 500;
+    await sleep(wait);
+    return api(url, init, attempt + 1);
+  }
+
+  throw new Error(
+    `${init.method ?? "GET"} ${url} -> ${response.status} ${await response.text()}`
+  );
 };
 
 const uploadOne = async (entry) => {
@@ -93,8 +112,7 @@ if (missing.length > 0) {
 
 let done = 0;
 for (const entry of manifest) {
-  // Sequential on purpose: Notion rate-limits at roughly 3 requests/second and
-  // each photo costs three of them.
+  // Sequential on purpose, to stay within Notion's rate limit.
   await uploadOne(entry);
   done += 1;
   console.log(

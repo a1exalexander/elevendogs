@@ -24,13 +24,21 @@
    файл у `Фото`.
 3. Протягом години фото з'явиться на сайті. Щоб швидше — передеплоїти.
 
-`scripts/upload-gallery-to-notion.mjs` робить кроки 1–2 пакетно для всього, що
+## Пакетна заливка
+
+`scripts/upload-gallery-to-notion.mjs` робить кроки 1–2 для всього, що
 перелічене в `scripts/prepare-gallery-uploads.mjs`:
 
 ```
-node scripts/prepare-gallery-uploads.mjs
+npm ci                                                  # потрібен sharp
+node scripts/prepare-gallery-uploads.mjs                # -> .gallery-out/
 NOTION_SECRET=secret_... node scripts/upload-gallery-to-notion.mjs
 ```
+
+Кожен запис у `prepare-gallery-uploads.mjs` прив'язаний до конкретного рядка
+бази за `notionPageId`, тому скрипт заповнює вже наявні рядки, а не створює
+нові — його безпечно перезапускати. Токен має мати права «Insert content» і
+«Update content».
 
 ## Чому не просто `<Image src>` з Notion
 
@@ -45,3 +53,7 @@ Hero і контактне фото кожної сторінки (`IMG_3468`, `
 `IMG_6306`) плюс картки на головній (`IMG_6628`) імпортуються з `src/assets/`
 напряму. Вони над згином, тому не повинні залежати від зовнішнього сервісу:
 якщо Notion недоступний, сторінка просто лишається без секції «Галерея».
+
+Решта фото в `src/assets/2026/main/`, `src/assets/2026/youngsters/` і
+`src/assets/ed/` більше нікуди не імпортується — вони лежать у репозиторії як
+резервна копія оригіналів (у Notion зберігаються перекодовані 2400px версії).
