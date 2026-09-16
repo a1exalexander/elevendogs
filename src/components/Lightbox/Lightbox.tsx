@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect } from 'react';
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import clsx from 'clsx';
+import { GalleryImage } from '../../types/GalleryImage';
 import styles from './Lightbox.module.scss';
 
 export interface LightboxProps {
-  images: (string | StaticImageData)[];
+  images: GalleryImage[];
   index: number | null;
   onClose: () => void;
   onIndexChange: (index: number) => void;
@@ -57,8 +58,8 @@ export const Lightbox = ({
       />
       <div className={styles.imageWrap}>
         <Image
-          src={images[index]}
-          alt=""
+          src={images[index].src}
+          alt={images[index].alt}
           fill
           sizes="92vw"
           priority

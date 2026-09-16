@@ -5,20 +5,16 @@ import Link from "next/link";
 import { education } from "../../../data";
 import { Routes } from "../../constants";
 import { Lightbox } from "../Lightbox";
+import { GalleryImage } from "../../types/GalleryImage";
 import styles from "./EducationPage.module.scss";
 import logo from "../../assets/new_logo_2024.jpg";
-import photo1 from "../../assets/ed/a00001.jpg";
-import photo2 from "../../assets/ed/a00003.jpg";
-import photo3 from "../../assets/ed/a00005.jpg";
-import photo4 from "../../assets/ed/a00007.jpg";
 
 export interface EducationPageProps {
   data: typeof education;
+  gallery: GalleryImage[];
 }
 
-const galleryPhotos = [photo1, photo2, photo3, photo4];
-
-export const EducationPage: FC<EducationPageProps> = ({ data }) => {
+export const EducationPage: FC<EducationPageProps> = ({ data, gallery }) => {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   return (
@@ -58,28 +54,34 @@ export const EducationPage: FC<EducationPageProps> = ({ data }) => {
           <p className={styles.heroText}>{data.description}</p>
         </section>
 
-        <section className={styles.gallerySection}>
-          <div className={styles.galleryGrid}>
-            {galleryPhotos.map((src, index) => (
-              <button
-                type="button"
-                key={index}
-                className={styles.galleryItem}
-                onClick={() => setLightboxIndex(index)}
-                aria-label={`Відкрити фото ${index + 1}`}
-              >
-                <Image
-                  src={src}
-                  alt=""
-                  fill
-                  loading="lazy"
-                  sizes="(max-width: 600px) 50vw, 200px"
-                  style={{ objectFit: "cover" }}
-                />
-              </button>
-            ))}
-          </div>
-        </section>
+        {gallery.length > 0 && (
+          <section className={styles.gallerySection}>
+            <div className={styles.galleryGrid}>
+              {gallery.map((image, index) => (
+                <button
+                  type="button"
+                  key={image.id}
+                  className={styles.galleryItem}
+                  onClick={() => setLightboxIndex(index)}
+                  aria-label={
+                    image.alt
+                      ? `Відкрити фото: ${image.alt}`
+                      : `Відкрити фото ${index + 1}`
+                  }
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    loading="lazy"
+                    sizes="(max-width: 600px) 50vw, 200px"
+                    style={{ objectFit: "cover" }}
+                  />
+                </button>
+              ))}
+            </div>
+          </section>
+        )}
 
         <section className={styles.programsSection}>
           {data.data.map((program, index) => (
@@ -143,7 +145,7 @@ export const EducationPage: FC<EducationPageProps> = ({ data }) => {
       </div>
 
       <Lightbox
-        images={galleryPhotos}
+        images={gallery}
         index={lightboxIndex}
         onClose={() => setLightboxIndex(null)}
         onIndexChange={setLightboxIndex}

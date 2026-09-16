@@ -1,8 +1,8 @@
-import { BARBERS_DATABASE_ID } from "../../../src/services/ApiService";
+import { IMAGES_DATABASE_ID } from "../../../src/services/ApiService";
 import { createNotionFileHandler } from "../../../src/services/notionFile";
 
 export default createNotionFileHandler({
-  databaseId: BARBERS_DATABASE_ID,
+  databaseId: IMAGES_DATABASE_ID,
   property: "Фото",
-  label: "barber photo",
+  label: "gallery image",
 });
