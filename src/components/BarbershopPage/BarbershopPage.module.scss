@@ -202,10 +202,10 @@ $shell: 1240px;
   }
 
   .loud & {
-    scrollbar-color: rgba(0, 177, 64, 0.6) transparent;
+    scrollbar-color: rgba($Y_GREEN, 0.6) transparent;
 
     &::-webkit-scrollbar-thumb {
-      background: rgba(0, 177, 64, 0.6);
+      background: rgba($Y_GREEN, 0.6);
     }
   }
 }
