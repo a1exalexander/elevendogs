@@ -5,7 +5,6 @@ import { BarbershopPage } from "../src/components";
 import { Routes } from "../src/constants";
 import logo from "../src/assets/2026/logo_main.png";
 import logoYoungstersText from "../src/assets/2026/logo_youngsters_text.png";
-import heroLogo from "../src/assets/eleven_dogs_youngsters.svg";
 import image0528 from "../src/assets/2026/youngsters/IMG_0528.JPG";
 import image3516 from "../src/assets/2026/youngsters/IMG_3516.JPG";
 import image3530 from "../src/assets/2026/youngsters/IMG_3530.JPG";
@@ -57,7 +56,6 @@ const Youngsters: NextPage<YoungstersProps> = ({ pricing, barbers }) => {
       data={locations.secondary}
       pricing={pricing}
       logo={logo}
-      heroLogo={heroLogo}
       heroTitleImage={logoYoungstersText}
       heroImage={heroImage}
       gallery={gallery}
