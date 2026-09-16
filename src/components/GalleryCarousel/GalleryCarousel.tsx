@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import clsx from "clsx";
 import useEmblaCarousel from "embla-carousel-react";
+import { GalleryImage } from "../../types/GalleryImage";
 import styles from "./GalleryCarousel.module.scss";
 
 export interface GalleryCarouselProps {
-  images: (string | StaticImageData)[];
+  images: GalleryImage[];
   variant?: "minimal" | "loud";
   onImageClick?: (index: number) => void;
 }
@@ -40,17 +41,21 @@ export const GalleryCarousel = ({
     <div className={clsx(variant === "loud" && styles.loud)}>
       <div className={styles.viewport} ref={emblaRef}>
         <div className={styles.container}>
-          {images.map((src, index) => (
-            <div key={index} className={styles.slide}>
+          {images.map((image, index) => (
+            <div key={image.id} className={styles.slide}>
               <button
                 type="button"
                 className={styles.slideButton}
                 onClick={() => onImageClick?.(index)}
-                aria-label={`Відкрити фото ${index + 1}`}
+                aria-label={
+                  image.alt
+                    ? `Відкрити фото: ${image.alt}`
+                    : `Відкрити фото ${index + 1}`
+                }
               >
                 <Image
-                  src={src}
-                  alt=""
+                  src={image.src}
+                  alt={image.alt}
                   fill
                   loading="lazy"
                   sizes="(max-width: 600px) 78vw, 320px"

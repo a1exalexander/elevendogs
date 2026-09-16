@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { locations } from "../../../data";
 import { Routes } from "../../constants";
 import { Barber } from "../../types/Barber";
+import { GalleryImage } from "../../types/GalleryImage";
 import { Pricing } from "../../types/Pricing";
 import { GalleryCarousel } from "../GalleryCarousel";
 import { HiddenTitle } from "../HiddenTitle";
@@ -20,7 +21,7 @@ export interface BarbershopPageProps {
   heroImage: string | StaticImageData;
   heroLogo?: string | StaticImageData;
   heroTitleImage?: string | StaticImageData;
-  gallery: (string | StaticImageData)[];
+  gallery: GalleryImage[];
   barbers: Barber[];
   contactImage: string | StaticImageData;
   crossLink: { label: string; href: string };
@@ -98,9 +99,11 @@ export const BarbershopPage = ({
             <a href="#services" className={styles.navLink}>
               Послуги
             </a>
-            <a href="#gallery" className={styles.navLink}>
-              Галерея
-            </a>
+            {gallery.length > 0 && (
+              <a href="#gallery" className={styles.navLink}>
+                Галерея
+              </a>
+            )}
             {barbers.length > 0 && (
               <a href="#team" className={styles.navLink}>
                 Майстри
@@ -260,19 +263,21 @@ export const BarbershopPage = ({
           </div>
         </section>
 
-        <section id="gallery" className={styles.section}>
-          <div className={styles.sectionHead}>
-            <h2 className={styles.sectionTitle}>Галерея</h2>
-            <div className={styles.kicker}>
-              {isLoud ? "Галерея · Youngsters" : "Інтер'єр · роботи"}
+        {gallery.length > 0 && (
+          <section id="gallery" className={styles.section}>
+            <div className={styles.sectionHead}>
+              <h2 className={styles.sectionTitle}>Галерея</h2>
+              <div className={styles.kicker}>
+                {isLoud ? "Галерея · Youngsters" : "Інтер'єр · роботи"}
+              </div>
             </div>
-          </div>
-          <GalleryCarousel
-            images={gallery}
-            variant={variant}
-            onImageClick={setLightboxIndex}
-          />
-        </section>
+            <GalleryCarousel
+              images={gallery}
+              variant={variant}
+              onImageClick={setLightboxIndex}
+            />
+          </section>
+        )}
 
         {barbers.length > 0 && (
           <section id="team" className={styles.section}>

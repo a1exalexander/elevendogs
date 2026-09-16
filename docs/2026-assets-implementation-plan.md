@@ -2,6 +2,11 @@
 
 Plan for rolling out the new 2026 photo/logo assets (`src/assets/2026/`) across the site.
 
+> **Outdated in part.** Barber photos and, since the Images migration, the page
+> galleries are served from Notion rather than `src/assets/` — see
+> [gallery-in-notion.md](./gallery-in-notion.md). The counts below are also off:
+> `src/assets/2026/main/` holds 22 photos, not 24.
+
 ## New assets inventory
 
 | Folder / file | Contents | Used for |
