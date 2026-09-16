@@ -55,8 +55,22 @@ const api = async (url, init = {}, attempt = 1) => {
     return api(url, init, attempt + 1);
   }
 
+  const body = await response.text();
+
+  // The site's token only needs to read, so it usually lacks the capabilities
+  // an upload requires. Say so, instead of printing a bare 403.
+  if (response.status === 403 && body.includes("restricted_resource")) {
+    throw new Error(
+      "Notion refused the request: this integration is missing the " +
+        '"Insert content" / "Update content" capabilities. Enable them at ' +
+        "https://www.notion.so/my-integrations and re-run; they can be turned " +
+        "off again afterwards, since the site only reads.\n" +
+        `${init.method ?? "GET"} ${url} -> 403 ${body}`
+    );
+  }
+
   throw new Error(
-    `${init.method ?? "GET"} ${url} -> ${response.status} ${await response.text()}`
+    `${init.method ?? "GET"} ${url} -> ${response.status} ${body}`
   );
 };
 

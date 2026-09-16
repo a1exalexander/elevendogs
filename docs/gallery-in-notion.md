@@ -37,8 +37,13 @@ NOTION_SECRET=secret_... node scripts/upload-gallery-to-notion.mjs
 
 Кожен запис у `prepare-gallery-uploads.mjs` прив'язаний до конкретного рядка
 бази за `notionPageId`, тому скрипт заповнює вже наявні рядки, а не створює
-нові — його безпечно перезапускати. Токен має мати права «Insert content» і
-«Update content».
+нові — його безпечно перезапускати.
+
+Токену потрібні capabilities **Insert content** і **Update content**
+([notion.so/my-integrations](https://www.notion.so/my-integrations) →
+інтеграція → Capabilities). Без них `POST /v1/file_uploads` повертає
+`403 restricted_resource`. Після заливки їх можна вимкнути: сайту для роботи
+достатньо `Read content`.
 
 ## Чому не просто `<Image src>` з Notion
 
