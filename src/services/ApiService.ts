@@ -40,7 +40,7 @@ export const fetchGalleryImages = async (
       const name = get(item, "properties.Name.title[0].plain_text", "").trim();
       return {
         id: item.id,
-        src: `/api/gallery-image/${item.id}`,
+        src: `/api/gallery-image/${item.id}?v=${get(item, "last_edited_time", "")}`,
         alt: POSITION_NAME.test(name) ? "" : name,
         order:
           (get(item, "properties.Порядок.number") as number | null) ??
@@ -105,7 +105,7 @@ export class ApiService implements IApiService {
           .map((chunk: { plain_text?: string }) => chunk.plain_text ?? "")
           .join("")
           .trim(),
-        photo: `/api/barber-photo/${item.id}`,
+        photo: `/api/barber-photo/${item.id}?v=${get(item, "last_edited_time", "")}`,
       }))
       .filter((barber) => barber.name);
   };

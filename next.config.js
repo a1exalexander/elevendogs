@@ -11,10 +11,14 @@ const nextConfig = {
   images: {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    // Gallery and barber photos are proxied through same-origin /api routes whose
-    // Cache-Control is `max-age=0, s-maxage=86400`. Without this the optimizer
-    // would fall back to its 60s default and re-fetch them constantly.
-    minimumCacheTTL: 86400,
+    // Every cache expiry re-bills a transformation per image × width, so keep
+    // optimised images for 31 days. Notion photos stay fresh because their src
+    // carries `?v=<last_edited_time>` (see ApiService), which changes the key.
+    minimumCacheTTL: 2678400,
+    // Fewer widths = fewer transformations. Sources are ≤2400px, so 2048/3840
+    // only cost transformations without adding detail.
+    deviceSizes: [640, 828, 1200, 1920],
+    imageSizes: [128, 256, 384],
   },
 };
 
