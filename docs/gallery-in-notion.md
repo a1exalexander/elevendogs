@@ -62,3 +62,20 @@ Hero і контактне фото кожної сторінки (`IMG_3468`, `
 Решта фото в `src/assets/2026/main/`, `src/assets/2026/youngsters/` і
 `src/assets/ed/` більше нікуди не імпортується — вони лежать у репозиторії як
 резервна копія оригіналів (у Notion зберігаються перекодовані 2400px версії).
+
+## Оновлення за зміною в Notion
+
+Крім щодобового `revalidate`, сторінки можна оновлювати одразу після правки в
+Notion через `POST /api/revalidate` (перевалідовує `/main`, `/youngsters`,
+`/education`). Два способи авторизації, можна використовувати будь-який:
+
+1. **Notion Automation → «Send webhook»** (на базах Pricing, Barbers, Images).
+   URL: `https://<домен>/api/revalidate`, заголовок
+   `x-revalidate-secret: <REVALIDATE_SECRET>` (або `?secret=...` в URL).
+2. **Webhook інтеграції Notion** (Integration → Webhooks, події
+   `page.created`, `page.properties_updated`, `page.content_updated`).
+   Notion спершу шле `verification_token` — він з'явиться в логах функції;
+   збережіть його як `NOTION_WEBHOOK_TOKEN`, далі підпис
+   `X-Notion-Signature` перевіряється автоматично.
+
+Змінні середовища (Vercel): `REVALIDATE_SECRET`, `NOTION_WEBHOOK_TOKEN`.
