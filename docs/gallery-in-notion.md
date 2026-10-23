@@ -3,7 +3,8 @@
 Фото галерей на `/main`, `/youngsters` і `/education` живуть у базі
 [Images](https://app.notion.com/p/3dd133f66fc88005953bfba6f56f6267), поруч із
 `Pricing` і `Barbers`. Сторінки читають її в `getStaticProps` і оновлюються
-раз на добу (`revalidate: 86400`).
+лише за webhook із Notion (див. «Оновлення за зміною в Notion»; часового
+`revalidate` немає).
 
 ## Схема
 
@@ -65,8 +66,7 @@ Hero і контактне фото кожної сторінки (`IMG_3468`, `
 
 ## Оновлення за зміною в Notion
 
-Крім щодобового `revalidate`, сторінки можна оновлювати одразу після правки в
-Notion через `POST /api/revalidate` (перевалідовує `/main`, `/youngsters`,
+Сторінки оновлюються одразу після правки в Notion через `POST /api/revalidate` (перевалідовує `/main`, `/youngsters`,
 `/education`). Два способи авторизації, можна використовувати будь-який:
 
 1. **Notion Automation → «Send webhook»** (на базах Pricing, Barbers, Images).

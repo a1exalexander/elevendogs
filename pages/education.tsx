@@ -21,13 +21,12 @@ export const getStaticProps: GetStaticProps<EducationProps> = async () => {
     gallery = await fetchGalleryImages(notion, "Освіта");
   } catch (error) {
     console.error("Failed to fetch education gallery from Notion", error);
-    // Retry soon rather than pinning an empty page for a whole day.
+    // Retry soon rather than pinning an empty page until the next on-demand revalidation.
     return { props: { gallery }, revalidate: 60 };
   }
 
   return {
     props: { gallery },
-    revalidate: 86400,
   };
 };
 
