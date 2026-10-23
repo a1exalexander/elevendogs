@@ -3,7 +3,7 @@
 Фото галерей на `/main`, `/youngsters` і `/education` живуть у базі
 [Images](https://app.notion.com/p/3dd133f66fc88005953bfba6f56f6267), поруч із
 `Pricing` і `Barbers`. Сторінки читають її в `getStaticProps` і оновлюються
-щогодини (`revalidate: 3600`).
+раз на добу (`revalidate: 86400`).
 
 ## Схема
 
