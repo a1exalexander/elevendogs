@@ -52,13 +52,12 @@ export const getStaticProps: GetStaticProps<MainProps> = async () => {
     ]);
   } catch (error) {
     console.error("Failed to fetch data from Notion", error);
-    // Retry soon rather than pinning an empty page for a whole hour.
+    // Retry soon rather than pinning an empty page until the next on-demand revalidation.
     return { props: { pricing, barbers, gallery }, revalidate: 60 };
   }
 
   return {
     props: { pricing, barbers, gallery },
-    revalidate: 3600,
   };
 };
 
