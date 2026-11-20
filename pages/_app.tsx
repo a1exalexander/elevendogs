@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import Script from 'next/script';
 import clsx from 'clsx';
 import { Saira, Manrope, Unbounded, JetBrains_Mono } from 'next/font/google';
 import { seo } from '../data';
@@ -27,6 +28,8 @@ const jetBrainsMono = JetBrains_Mono({
   variable: '--font-mono',
   display: 'swap',
 });
+
+const GA_MEASUREMENT_ID = 'G-29WYE72NXJ';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -64,6 +67,18 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="og:image" content="/og.jpg" />
         <meta name="twitter:image" content="/og.jpg" />
       </Head>
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_MEASUREMENT_ID}');
+        `}
+      </Script>
       <div
         className={clsx(
           saira.variable,
